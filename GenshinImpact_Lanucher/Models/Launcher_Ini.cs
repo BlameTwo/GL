@@ -233,13 +233,24 @@ namespace GenshinImpact_Lanucher.Model
         {
             try
             {
-                WriteMyLauncherConfig(height, width, IsFull, Server, tran, OneDay);
+                WriteMyLauncherConfig(height, width, IsFull, Server, tran, OneDay,PicPath);
                 IniWriteValue("MyLanucherConfig", "JarPath", JarPath.ToString());
                 return true;
             }
             catch (Exception) { return false; }
         }
 
+
+        public bool WriteMyLauncherConfig(int height, int width, bool IsFull, Server Server, double tran, bool OneDay, string PicPath, string JarPath,string ServerPath)
+        {
+            try
+            {
+                WriteMyLauncherConfig(height, width, IsFull, Server, tran, OneDay,PicPath,JarPath);
+                IniWriteValue("MyLanucherConfig", "ServerPath", ServerPath.ToString());
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
 
 
         public StartAgument GetAgument()

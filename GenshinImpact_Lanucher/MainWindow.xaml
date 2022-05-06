@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenshinImpact_Lanucher"
         mc:Ignorable="d"
-        xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        Title="MainWindow" Height="450" Width="800"
-        Style="{DynamicResource UiWindow}">
+        ResizeMode="NoResize"
+        xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:pages="clr-namespace:GenshinImpact_Lanucher.Pages"
+        Title="MainWindow" Height="600" Width="1000"
+        Style="{DynamicResource UiWindowNoResize}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
@@ -20,18 +21,43 @@
         </Grid.RowDefinitions>
         <wpfui:TitleBar 
             Title="原神启动器"
+            CanMaximize="False"
+            ShowMaximize="False"
+            Foreground="{DynamicResource TextFillColorTertiaryBrush}"
             ForceShutdown="False"
             Grid.Row="0"/>
-        <wpfui:NavigationCompact Grid.Row="1" HorizontalAlignment="Left">
-            <wpfui:Navigation.Items>
-                <wpfui:NavigationItem Content="启动游戏" Icon="Play20"/>
-
-                <wpfui:NavigationItem Content="私服" Icon="Server20"/>
-
-            </wpfui:Navigation.Items>
-            <wpfui:NavigationCompact.Footer>
-                <wpfui:NavigationItem Content="设置" Icon="Settings28"/>
-            </wpfui:NavigationCompact.Footer>
-        </wpfui:NavigationCompact>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <wpfui:NavigationCompact
+                HorizontalAlignment="Left"
+                SelectedPageIndex="0"
+                
+                Frame="{Binding ElementName=RootFrame}">
+                <wpfui:Navigation.Items>
+                    <wpfui:NavigationItem Content="游戏" Icon="Games16" Page="{x:Type pages:DefaultGame}"/>
+                    <wpfui:NavigationItem Content="私服" Icon="Server20"  Page="{x:Type pages:GameServer}"/>
+                </wpfui:Navigation.Items>
+                <wpfui:NavigationCompact.Footer>
+                    <wpfui:NavigationItem Content="设置" Icon="Settings28" Page="{x:Type pages:SettingApp}"/>
+                </wpfui:NavigationCompact.Footer>
+                
+            </wpfui:NavigationCompact>
+            <Grid
+                Grid.Row="1"
+                Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <wpfui:Breadcrumb
+                    Grid.Row="0"
+                    Margin="0,0,0,18"
+                    Navigation="{Binding ElementName=RootNavigation}"/>
+                <Frame x:Name="RootFrame" Grid.Row="1" />
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

@@ -51,6 +51,9 @@ namespace GameLauncherPrism.Event
         public bool IsPop { get; set; }
 
         public string JarPath { get; set; }
+
+        public string ServerPath { get; set; }
+
         public static SettingArgs DefaultSettingArgs()
         {
             SettingArgs args = new SettingArgs();
@@ -62,6 +65,7 @@ namespace GameLauncherPrism.Event
             args.Pic_Path = "";
             args.tran = 15;
             args.server = Server.官服;
+            
             return args;
         }
     }
