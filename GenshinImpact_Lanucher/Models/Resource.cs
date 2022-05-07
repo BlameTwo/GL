@@ -56,11 +56,6 @@ namespace GenshinImpact_Lanucher.Model
                     File.Delete("PCGameSDK.dll");
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
-                
             }
             return true;
         }

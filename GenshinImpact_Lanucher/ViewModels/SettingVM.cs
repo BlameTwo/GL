@@ -22,16 +22,21 @@ namespace GenshinImpact_Lanucher.ViewModels
         {
             IsActive = true;
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-            GameIni = new Launcher_Ini($@"{LanucherRegistryKey.GetGamePath()}/config.ini");
+            GameIni = new Launcher_Ini($@"{myini.IniReadValue("MyLanucherConfig", "GamePath")}/config.ini");
             StartArgs = myini.GetAgument();
-            RadServerCheck = new RelayCommand<System.Windows.Controls.RadioButton>((rad) => setradio(rad));
+            RadServerCheck = new RelayCommand(() => setradio());
             HeightGameSizeTextChanged = new RelayCommand<string >((txt) => heightchanged(txt));
             WidthGameSizeTextChanged = new RelayCommand<string>((txt) => widthchanged(txt));
+
             WindowCheck = new RelayCommand(() => windowcheck());
             SelectGamePath = new RelayCommand(()=>selectpath());
             WindowPop = new RelayCommand(() => popopen());
         }
 
+        private void setradio2()
+        {
+            throw new NotImplementedException();
+        }
 
         private void popopen()
         {
@@ -76,25 +81,26 @@ namespace GenshinImpact_Lanucher.ViewModels
             myini.IniWriteValue("MyLanucherConfig", "Width", txt);
             StartArgs.GameWidth = txt;
         }
-        private  void setradio(System.Windows.Controls.RadioButton rad)
+        private  void setradio()
         {
             if(Server1 == true)
             {
                  GameIni.GameLauncherWrite( Launcher_Ini.Server.官服);
             }
-            else if(Server2 == true)
+            else
             {
-                 GameIni.GameLauncherWrite( Launcher_Ini.Server.B站);
+                GameIni.GameLauncherWrite(Launcher_Ini.Server.B站);
             }
-                
+
         }
+
 
         private bool server1;
 
         public bool Server1
         {
-            get { return server1; }
-            set { server1 = value; OnPropertyChanged(); }
+            get => server1;
+            set=>SetProperty(ref server1, value);
         }
 
 
@@ -102,14 +108,14 @@ namespace GenshinImpact_Lanucher.ViewModels
 
         public bool Server2
         {
-            get { return server2; }
-            set { server2 = value;OnPropertyChanged(); }
+            get => server2;
+            set => SetProperty(ref server2, value);
         }
 
-        public RelayCommand<System.Windows.Controls.RadioButton> RadServerCheck { get; private set; }
+        public RelayCommand RadServerCheck { get; set; }
+
         public RelayCommand WindowCheck { get; private set; }
         public RelayCommand WindowPop { get; private set; }
-        public RelayCommand<System.Windows.Controls.RadioButton> RadServer2Check { get; private set; }
         public RelayCommand<string> HeightGameSizeTextChanged { get; set; }
 
         public RelayCommand<string> WidthGameSizeTextChanged { get; set; }

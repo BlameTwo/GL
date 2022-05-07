@@ -41,7 +41,8 @@ namespace GenshinImpact_Lanucher.Model
                 GameHeight = "1080",
                 GameWidth = "1980",
                 IsPop = false
-                , GamePath = LanucherRegistryKey.GetGamePath()
+                , 
+                GamePath = LanucherRegistryKey.GetGamePath()
             };
             return start;
         }
@@ -60,6 +61,7 @@ namespace GenshinImpact_Lanucher.Model
             {
                 try
                 {
+                    
                     using (Process p = new Process())
                     {
                         string pop = "";
@@ -73,7 +75,7 @@ namespace GenshinImpact_Lanucher.Model
                             Verb = "runas",
                             Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
                             $" -screen-width {args.GameWidth} {pop}",
-                            WorkingDirectory = GenshinImpact_Lanucher.Model.LanucherRegistryKey.GetGamePath(),
+                            WorkingDirectory = args.GamePath,
                             UseShellExecute = true,
                         };
                         p.Start();

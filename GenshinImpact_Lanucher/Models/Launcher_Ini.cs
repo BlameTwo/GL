@@ -55,13 +55,14 @@ namespace GenshinImpact_Lanucher.Model
         }
 
 
-
+        string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public bool WriteMyLauncherConfig(int height)
         {
             try
             {
                 IniWriteValue("MyLanucherConfig", "Height", height.ToString());
-                IniWriteValue("MyLanucherConfig", "GamePath", LanucherRegistryKey.GetGamePath());
+                Launcher_Ini  myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+                IniWriteValue("MyLanucherConfig", "GamePath", myini.IniReadValue("MyLanucherConfig","GamePath"));
                 return true;
             }
             catch (Exception)
@@ -88,7 +89,8 @@ namespace GenshinImpact_Lanucher.Model
                 {
                     IniWriteValue("MyLanucherConfig", "Height", width.ToString());
                 }
-                IniWriteValue("MyLanucherConfig", "GamePath", LanucherRegistryKey.GetGamePath());
+                Launcher_Ini myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+                IniWriteValue("MyLanucherConfig", "GamePath", myini.IniReadValue("MyLanucherConfig", "GamePath"));
                 return true;
             }
             catch (Exception)
@@ -110,7 +112,8 @@ namespace GenshinImpact_Lanucher.Model
             {
                 WriteMyLauncherConfig(height);
                 IniWriteValue("MyLanucherConfig", "Width", width.ToString());
-                IniWriteValue("MyLanucherConfig", "GamePath", LanucherRegistryKey.GetGamePath());
+                Launcher_Ini myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+                IniWriteValue("MyLanucherConfig", "GamePath", myini.IniReadValue("MyLanucherConfig", "GamePath"));
                 return true;
             }
             catch (Exception)
@@ -183,7 +186,7 @@ namespace GenshinImpact_Lanucher.Model
             }
 
 
-            if (IniReadValue("MyLanucherConfig", "IsPop") == "True")
+            if (IniReadValue("MyLauncherConfig", "IsPop") == "True")
             {
                 agument.IsPop = true;
             }

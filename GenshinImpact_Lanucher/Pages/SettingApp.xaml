@@ -49,10 +49,10 @@
                                       >
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Checked">
-                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" CommandParameter="{Binding ElementName=RadServer1}"/>
+                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" />
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="Unchecked">
-                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" CommandParameter="{Binding ElementName=RadServer1}"/>
+                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </RadioButton>
@@ -64,10 +64,10 @@
                                      IsChecked="{Binding Server2,Mode=TwoWay}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Checked">
-                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" CommandParameter="{Binding ElementName=RadServer2}"/>
+                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" />
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="Unchecked">
-                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" CommandParameter="{Binding ElementName=RadServer2}"/>
+                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </RadioButton>
