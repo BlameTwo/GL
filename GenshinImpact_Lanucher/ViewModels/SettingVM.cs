@@ -27,10 +27,40 @@ namespace GenshinImpact_Lanucher.ViewModels
             RadServerCheck = new RelayCommand(() => setradio());
             HeightGameSizeTextChanged = new RelayCommand<string >((txt) => heightchanged(txt));
             WidthGameSizeTextChanged = new RelayCommand<string>((txt) => widthchanged(txt));
-
+            SaveServer = new RelayCommand(() => saveserver());
             WindowCheck = new RelayCommand(() => windowcheck());
+            SelectServerPath = new RelayCommand(() => selectserverpath());
             SelectGamePath = new RelayCommand(()=>selectpath());
             WindowPop = new RelayCommand(() => popopen());
+            if(StartArgs.GameServer == Server.B站)
+            {
+                Server2 = true;
+            }
+            else
+            {
+                Server1 = true;
+            }
+            _IP = myini.IniReadValue("Server", "IP");
+            _Host = myini.IniReadValue("Server", "Host");
+            _ServerPath = myini.IniReadValue("Server", "LocalHost");
+        }
+
+        private void selectserverpath()
+        {
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            folder.Description = "选择服务器要运行本地客户端文件夹";
+            if(folder.ShowDialog() == DialogResult.OK)
+            {
+                _ServerPath = folder.SelectedPath;
+            }
+        }
+
+        private void saveserver()
+        {
+            if(!string.IsNullOrWhiteSpace(_IP) && !string.IsNullOrWhiteSpace(_Host))
+            {
+                myini.WriteServer(_IP, Host, _ServerPath);
+            }
         }
 
         private void setradio2()
@@ -86,10 +116,12 @@ namespace GenshinImpact_Lanucher.ViewModels
             if(Server1 == true)
             {
                  GameIni.GameLauncherWrite( Launcher_Ini.Server.官服);
+                myini.GameLauncherWrite(Server.官服);
             }
             else
             {
                 GameIni.GameLauncherWrite(Launcher_Ini.Server.B站);
+                myini.GameLauncherWrite(Server.B站);
             }
 
         }
@@ -112,12 +144,41 @@ namespace GenshinImpact_Lanucher.ViewModels
             set => SetProperty(ref server2, value);
         }
 
+
+        private string IP;
+
+        public string _IP
+        {
+            get => IP;
+            set=> SetProperty(ref IP, value);   
+        }
+
+        private string  Host;
+
+        public string  _Host
+        {
+            get => Host;
+            set => SetProperty(ref Host, value);
+        }
+
+        private string ServerPath;
+
+        public string _ServerPath
+        {
+            get { return ServerPath; }
+            set { ServerPath = value; OnPropertyChanged(); }
+        }       
+
+
+
+
         public RelayCommand RadServerCheck { get; set; }
 
         public RelayCommand WindowCheck { get; private set; }
         public RelayCommand WindowPop { get; private set; }
         public RelayCommand<string> HeightGameSizeTextChanged { get; set; }
-
+        public RelayCommand SaveServer { get; set; }
+        public RelayCommand SelectServerPath { get; set; }
         public RelayCommand<string> WidthGameSizeTextChanged { get; set; }
         public RelayCommand SelectGamePath { get; private set; }
         Launcher_Ini myini { get; set; }

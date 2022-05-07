@@ -16,8 +16,12 @@ namespace GenshinImpact_Lanucher.ViewModels
         {
             StartGame = new AsyncRelayCommand(async () =>await start());
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+            StartServerGame = new RelayCommand<bool>(async (bo) =>
+            {
+                await startAgument.ServerGo(bo,myini.GetAgument());
+            });
         }
-
+        StartGame startAgument = new StartGame();
         private async Task start()
         {
             StartGame startAgument = new StartGame();
@@ -33,5 +37,7 @@ namespace GenshinImpact_Lanucher.ViewModels
 
         Launcher_Ini myini { get; set; }
         public AsyncRelayCommand StartGame { get; private set; }
+
+        public RelayCommand<bool> StartServerGame { get; private set; }
     }
 }

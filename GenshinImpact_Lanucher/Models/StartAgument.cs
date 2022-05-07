@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GrassCutter_Proxy.Common;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -86,6 +87,36 @@ namespace GenshinImpact_Lanucher.Model
                 {
                     return ex.Message;
                 }
+            });
+        }
+        private ProxyController Controller;
+        string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public async Task<string> ServerGo( bool flage, StartAgument args)
+        {
+            return await Task.Run(() =>
+            {
+                Launcher_Ini ini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+                Controller = new ProxyController(ini.IniReadValue("Server","Host"),ini.IniReadValue("Server","IP"));
+                Global.controller = Controller;
+                if (flage == true)
+                {
+                    Controller.Start();
+                    Console.WriteLine("正在打开代理，并使用证书");
+                }
+                else
+                {
+                    Controller.Stop();
+                    Console.WriteLine("正在关闭代理，并清除证书");
+                    foreach (Process item in Process.GetProcesses())
+                    {
+                        if(item.ProcessName == "YuanShen.exe")
+                        {
+                            item.Kill();
+                            Console.WriteLine("已经吧YuanShen进程杀灭，并清除证书");
+                        }
+                    }
+                }
+                return "1";
             });
         }
     }

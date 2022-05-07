@@ -195,7 +195,7 @@ namespace GenshinImpact_Lanucher.Model
                 agument.IsPop = false;
             }
            
-            if (IniReadValue("MyLanucherConfig", "channel") =="14" )
+            if (IniReadValue("General", "channel") =="14" )
             {
                 agument.GameServer = Server.B站;
             }
@@ -265,6 +265,20 @@ namespace GenshinImpact_Lanucher.Model
             }
         }
 
+        /// <summary>
+        /// 写入服务器配置
+        /// </summary>
+        /// <param name="IP">IP地址</param>
+        /// <param name="Host">端口号</param>
+        /// <param name="ServerPath">本地游戏文件夹</param>
+        /// <returns></returns>
+        public bool WriteServer(string IP,string Host,string ServerPath)
+        {
+            IniWriteValue("Server", "IP", IP);
+            IniWriteValue("Server", "Host",Host);
+            IniWriteValue("Server","LocalHost", ServerPath);
+            return true;
+        }
 
         public  bool GameLauncherWrite(Server server)
         {

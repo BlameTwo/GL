@@ -125,6 +125,8 @@
     <Compile Include="Pages\SettingApp.xaml.cs">
       <DependentUpon>SettingApp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\ProxyController.cs" />
+    <Compile Include="Utils\Request.cs" />
     <Compile Include="ViewModels\DefaultGameVM.cs" />
     <Compile Include="ViewModels\MainWinVM.cs" />
     <Compile Include="ViewModels\SettingVM.cs" />
@@ -196,6 +198,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
+    </PackageReference>
     <PackageReference Include="WPF-UI">
       <Version>1.2.6</Version>
     </PackageReference>
@@ -203,6 +208,5 @@
   <ItemGroup>
     <None Include="Resources\PCGameSDK.dll" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
