@@ -15,8 +15,7 @@ namespace GenshinImpact_Lanucher.Model
         /// </summary>
         public string GameHeight { get; set; }
 
-
-
+        public bool IsPop { get; set; }
 
         /// <summary>
         /// 游戏宽度
@@ -25,26 +24,24 @@ namespace GenshinImpact_Lanucher.Model
 
         public Server GameServer { get; set; }
 
+        public string GamePath { get; set; }
 
         /// <summary>
         /// 是否全屏
         /// </summary>
         public bool full { get; set; }
 
-        /// <summary>
-        /// 窗口无边框化
-        /// </summary>
-        public string pop { get; set; }
 
         public static StartAgument GetDefultAgument()
         {
             var start = new StartAgument()
             {
-                full =true,
-                GameServer=Server.官服,
-                GameHeight="1080",
-                GameWidth="1980",
-                pop = "0"
+                full = true,
+                GameServer = Server.官服,
+                GameHeight = "1080",
+                GameWidth = "1980",
+                IsPop = false
+                , GamePath = LanucherRegistryKey.GetGamePath()
             };
             return start;
         }
@@ -59,18 +56,23 @@ namespace GenshinImpact_Lanucher.Model
     {
         public async Task<string> GO(StartAgument args)
         {
-            await Task.Run(() =>
+            return await Task.Run(() =>
             {
                 try
                 {
                     using (Process p = new Process())
                     {
+                        string pop = "";
+                        if(args.IsPop == true)
+                        {
+                            pop = "-popupwindow";
+                        }
                         p.StartInfo = new ProcessStartInfo()
                         {
-                            FileName = GenshinImpact_Lanucher.Model.LanucherRegistryKey.GetGamePath() + "//YuanShen.exe",
+                            FileName = args.GamePath + "//YuanShen.exe",
                             Verb = "runas",
-                            Arguments = $"-screen-fullscreen {Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
-                            $" -screen-width {args.GameWidth} -pop{args.pop}",
+                            Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
+                            $" -screen-width {args.GameWidth} -pop {pop}",
                             WorkingDirectory = GenshinImpact_Lanucher.Model.LanucherRegistryKey.GetGamePath(),
                             UseShellExecute = true,
                         };
@@ -82,9 +84,7 @@ namespace GenshinImpact_Lanucher.Model
                 {
                     return ex.Message;
                 }
-                
             });
-            return "0";
         }
     }
 }

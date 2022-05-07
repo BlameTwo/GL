@@ -103,6 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Convert\ServerConvert.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\GetUrl.cs" />
     <Compile Include="Models\LanucherRegistryKey.cs" />
@@ -201,5 +202,6 @@
   <ItemGroup>
     <None Include="Resources\PCGameSDK.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

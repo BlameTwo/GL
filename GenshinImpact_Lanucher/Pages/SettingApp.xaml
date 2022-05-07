@@ -8,8 +8,13 @@
       d:DesignHeight="450" d:DesignWidth="800"
       xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI"
       Title="SettingApp" Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-      Margin="10">
-
+      Margin="10"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:server1="clr-namespace:GenshinImpact_Lanucher.Convert">
+    <Page.Resources>
+        <server1:ServerConvert x:Key="Convert1"/>
+        <server1:ServerConvert2 x:Key="Convert2"/> 
+    </Page.Resources>
     <Grid>
         <StackPanel >
             <wpfui:CardExpander Icon="Games16" Header="游戏设置">
@@ -17,7 +22,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition/> 
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -39,11 +44,33 @@
                         <RadioButton Content="官服" GroupName="Server" 
                                      Margin="10 0 0 0"
                                      FontSize="20"
-                                       />
+                                     IsChecked="{Binding Server1,Mode=TwoWay}"
+                                     x:Name="RadServer1"
+                                      >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" CommandParameter="{Binding ElementName=RadServer1}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Unchecked">
+                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" CommandParameter="{Binding ElementName=RadServer1}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </RadioButton>
                         <RadioButton Content="B服" GroupName="Server" 
                                      Margin="10 0 0 0"
                                      HorizontalAlignment="Center"
-                                     FontSize="20"/>
+                                     FontSize="20"
+                                     x:Name="RadServer2"
+                                     IsChecked="{Binding Server2,Mode=TwoWay}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" CommandParameter="{Binding ElementName=RadServer2}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Unchecked">
+                                    <i:InvokeCommandAction Command="{Binding RadServerCheck}" CommandParameter="{Binding ElementName=RadServer2}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </RadioButton>
                     </StackPanel>
                     <TextBlock 
                         Text="游戏文件夹" 
@@ -56,28 +83,73 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox HorizontalAlignment="Stretch"/>
+                            <TextBox HorizontalAlignment="Stretch" Text="{Binding StartArgs.GamePath}"/>
                             <Button Grid.Row="1"
                                 Grid.Column="1"
-                                Content="浏览" Padding="10" Margin="10 0 0 0"/>
+                                Content="浏览" Padding="10" Margin="10 0 0 0" Command="{Binding SelectGamePath}"/>
                         </Grid>
                     </StackPanel>
 
                     <StackPanel  Margin="10 10 0 0"  Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-                        <TextBox Width="80"/>
-                        <TextBlock Text="X" FontSize="20" VerticalAlignment="Center" />
-                        <TextBox Width="80"/>
+                        <TextBox 
+                            Width="80" 
+                            x:Name="WidthGame"
+                            Text="{Binding StartArgs.GameWidth,Mode=TwoWay}" 
+                            HorizontalContentAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction 
+                                        Command="{Binding WidthGameSizeTextChanged}"
+                                        CommandParameter="{Binding ElementName=WidthGame,Path=Text}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                        <TextBlock Text="X" Margin="10 0" FontSize="20" VerticalAlignment="Center" />
+                        <TextBox 
+                            Width="80" 
+                            x:Name="HeightGame"
+                            Text="{Binding StartArgs.GameHeight,Mode=TwoWay}" 
+                            HorizontalContentAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction 
+                                        Command="{Binding HeightGameSizeTextChanged}"
+                                        CommandParameter="{Binding ElementName=HeightGame,Path=Text}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                        
                     </StackPanel>
                     <StackPanel  Grid.Row="2" Margin="10 10 0 0"
                                 Orientation="Horizontal"
                                 Grid.Column="1">
-                        <wpfui:ToggleSwitch Content="全屏"/>
-                        <wpfui:ToggleSwitch Content="无边框" Margin="10 0 0 0"/>
+                        <wpfui:ToggleSwitch Content="全屏"  IsChecked="{Binding StartArgs.full,Mode=TwoWay}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <i:InvokeCommandAction Command="{Binding WindowCheck}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Unchecked">
+                                    <i:InvokeCommandAction Command="{Binding WindowCheck}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </wpfui:ToggleSwitch>
+                        <wpfui:ToggleSwitch Content="无边框" Margin="10 0 0 0" IsChecked="{Binding StartArgs.IsPop,Mode=TwoWay}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <i:InvokeCommandAction Command="{Binding WindowPop}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Unchecked">
+                                    <i:InvokeCommandAction Command="{Binding WindowPop}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </wpfui:ToggleSwitch>
                     </StackPanel>
                 </Grid>
             </wpfui:CardExpander>
-
-            <wpfui:CardExpander Margin="0 10 0 0"
+            <wpfui:CardExpander
+                
+                IsEnabled="False"
+                Margin="0 10 0 0"
                                 Header="服务器设置（私服）" Icon="Server24">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -120,5 +192,6 @@
             </wpfui:CardExpander>
             <TextBlock Text="其他功能正在开发中o(*￣▽￣*)ブ" HorizontalAlignment="Center" Margin="0 10 0 0"/>
         </StackPanel>
+        
     </Grid>
 </Page>

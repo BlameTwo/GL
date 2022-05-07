@@ -21,7 +21,14 @@ namespace GenshinImpact_Lanucher.ViewModels
         private async Task start()
         {
             StartGame startAgument = new StartGame();
-            await startAgument.GO(myini.GetAgument());
+            string a = await startAgument.GO(myini.GetAgument()) ;
+            if (a == "1")
+            {
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "从外部启动游戏成功！如果出现闪退请检查游戏文件夹";
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "游戏已经启动";       //返回的错误列表
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+            };
         }
 
         Launcher_Ini myini { get; set; }

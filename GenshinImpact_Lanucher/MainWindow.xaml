@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:GenshinImpact_Lanucher"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:pages="clr-namespace:GenshinImpact_Lanucher.Pages"
+        xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:pages="clr-namespace:GenshinImpact_Lanucher.Pages"
         Title="MainWindow" Height="600" Width="1000"
         Style="{DynamicResource UiWindowNoResize}">
     <i:Interaction.Triggers>
@@ -59,5 +60,14 @@
                 <Frame x:Name="RootFrame" Grid.Row="1" />
             </Grid>
         </Grid>
+        <wpfui:Snackbar
+                x:Name="WindowTitler"
+                Grid.Row="0"
+                x:FieldModifier="public"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                IsShown="False"
+                ShowCloseButton="True"
+                Timeout="5000" />
     </Grid>
 </Window>

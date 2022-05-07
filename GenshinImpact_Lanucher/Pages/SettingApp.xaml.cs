@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenshinImpact_Lanucher.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace GenshinImpact_Lanucher.Pages
         public SettingApp()
         {
             InitializeComponent();
+            this.DataContext = new SettingVM();
         }
     }
 }

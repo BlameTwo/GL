@@ -158,7 +158,6 @@ namespace GenshinImpact_Lanucher.Model
                     IniWriteValue("MyLanucherConfig", "cps", "pcadbdpz");
                     IniWriteValue("MyLanucherConfig", "channel", "1");
                     IniWriteValue("MyLanucherConfig", "sub_channel", "1");
-                    IniWriteValue("MyLanucherConfig", "GamePath", LanucherRegistryKey.GetGamePath());
                 }
                 
                 return true;
@@ -166,91 +165,9 @@ namespace GenshinImpact_Lanucher.Model
             catch (Exception) { return false; }
         }
 
-        /// <summary>
-        /// 写入配置
-        /// </summary>
-        /// <param name="height">高度</param>
-        /// <param name="width">宽度</param>
-        /// <param name="IsFull">是否全屏</param>
-        /// <param name="Server">服务器选择，“B站”或“官服”</param>
-        /// <param name="tran">背景透明°</param>
-        /// <returns></returns>
-        public bool WriteMyLauncherConfig(int height, int width, bool IsFull, Server Server,double tran)
-        {
-            try
-            {
-                WriteMyLauncherConfig(height, width, IsFull, Server);
-                IniWriteValue("MyLanucherConfig", "tran", tran.ToString());
-                return true;
-            }catch (Exception){return false;}
-        }
+        
 
-        /// <summary>
-        /// 写入配置
-        /// </summary>
-        /// <param name="height">高度</param>
-        /// <param name="width">宽度</param>
-        /// <param name="IsFull">是否全屏</param>
-        /// <param name="Server">服务器选择，“B站”或“官服”</param>
-        /// <param name="tran">背景透明°</param>
-        /// <param name="OneDay">是否显示每日一句</param>
-        /// <returns></returns>
-        public bool WriteMyLauncherConfig(int height, int width, bool IsFull, Server Server, double tran,bool OneDay)
-        {
-            try
-            {
-                WriteMyLauncherConfig(height, width, IsFull, Server,tran);
-                IniWriteValue("MyLanucherConfig", "OneDay", OneDay.ToString());
-                return true;
-            }
-            catch (Exception) { return false; }
-        }
-
-        /// <summary>
-        /// 写入配置
-        /// </summary>
-        /// <param name="height">高度</param>
-        /// <param name="width">宽度</param>
-        /// <param name="IsFull">是否全屏</param>
-        /// <param name="Server">服务器选择，“B站”或“官服”</param>
-        /// <param name="tran">背景透明°</param>
-        /// <param name="OneDay">是否显示每日一句</param>
-        /// <param name="PicPath">图片地址</param>
-        /// <returns></returns>
-        public bool WriteMyLauncherConfig(int height, int width, bool IsFull, Server Server, double tran, bool OneDay,string PicPath)
-        {
-            try
-            {
-                WriteMyLauncherConfig(height, width, IsFull, Server, tran,OneDay);
-                IniWriteValue("MyLanucherConfig", "PicPath", PicPath.ToString());
-                return true;
-            }
-            catch (Exception) { return false; }
-        }
-
-
-        public bool WriteMyLauncherConfig(int height, int width, bool IsFull, Server Server, double tran, bool OneDay, string PicPath,string JarPath)
-        {
-            try
-            {
-                WriteMyLauncherConfig(height, width, IsFull, Server, tran, OneDay,PicPath);
-                IniWriteValue("MyLanucherConfig", "JarPath", JarPath.ToString());
-                return true;
-            }
-            catch (Exception) { return false; }
-        }
-
-
-        public bool WriteMyLauncherConfig(int height, int width, bool IsFull, Server Server, double tran, bool OneDay, string PicPath, string JarPath,string ServerPath)
-        {
-            try
-            {
-                WriteMyLauncherConfig(height, width, IsFull, Server, tran, OneDay,PicPath,JarPath);
-                IniWriteValue("MyLanucherConfig", "ServerPath", ServerPath.ToString());
-                return true;
-            }
-            catch (Exception) { return false; }
-        }
+        
 
 
         public StartAgument GetAgument()
@@ -262,11 +179,22 @@ namespace GenshinImpact_Lanucher.Model
 
             if (IniReadValue("MyLanucherConfig", "IsFull") == "True"){
                 agument.full = true;
-                agument.pop = "-popupwindow";        //这是设置是否无边框化
             }
-            else{
+            else
+            {
                 agument.full = false;
             }
+
+
+            if (IniReadValue("MyLauncherConfig","IsPop") == "True")
+            {
+                agument.IsPop = true;
+            }
+            else
+            {
+                agument.IsPop = false;
+            }
+           
             if (IniReadValue("MyLanucherConfig", "channel") =="14" )
             {
                 agument.GameServer = Server.B站;
@@ -276,6 +204,7 @@ namespace GenshinImpact_Lanucher.Model
                 agument.GameServer = Server.官服;
             }
 
+            agument.GamePath = IniReadValue("MyLanucherConfig", "GamePath");
 
             return agument;
         }
@@ -283,12 +212,10 @@ namespace GenshinImpact_Lanucher.Model
         public SettingArgs GetSettingArgs()
         {
             SettingArgs args = new SettingArgs();
-            args.IsFul = Convert.ToBoolean(IniReadValue("MyLanucherConfig", "IsFull"));
+            args.IsFul = System.Convert.ToBoolean(IniReadValue("MyLanucherConfig", "IsFull"));
             args.GameHeight = int.Parse(IniReadValue("MyLanucherConfig", "Height"));
             args.GameWidth = int.Parse(IniReadValue("MyLanucherConfig", "Width"));
-            args.OneDay = Convert.ToBoolean(IniReadValue("MyLanucherConfig", "OneDay"));
-            args.Pic_Path = IniReadValue("MyLanucherConfig", "PicPath");
-            args.tran = Convert.ToDouble(IniReadValue("MyLanucherConfig", "tran"));
+            
             if (IniReadValue("MyLanucherConfig", "channel") == "14")
             {
                 args.server = Server.B站;
@@ -329,7 +256,7 @@ namespace GenshinImpact_Lanucher.Model
             try
             {
                 var setting = SettingArgs.DefaultSettingArgs();
-                WriteMyLauncherConfig(setting.GameHeight, setting.GameWidth, setting.IsFul, setting.server, setting.tran, setting.OneDay, setting.Pic_Path);
+                WriteMyLauncherConfig(setting.GameHeight, setting.GameWidth, setting.IsFul, setting.server);
                 return true;
             }
             catch (Exception)
@@ -342,7 +269,7 @@ namespace GenshinImpact_Lanucher.Model
         public async Task<bool> GameLauncherWrite(Server server)
         {
             //就这一个改成多线程吧，上面的就不改了
-            await Task.Run(() =>
+            return await Task.Run(() =>
             {
                 if (server == Server.B站)        //为B服
                 {
@@ -350,6 +277,7 @@ namespace GenshinImpact_Lanucher.Model
                     WritePrivateProfileString("General", "sub_channel", "0", LauncherPath);
                     WritePrivateProfileString("General", "channel", "14", LauncherPath);
                     Resource.BilibiliSDK();
+                    return true;
                 }
                 else if (server == Server.官服)            //严谨一点好
                 {
@@ -360,7 +288,6 @@ namespace GenshinImpact_Lanucher.Model
                 }
                 return false;
             });
-            return false;
         }
 
 

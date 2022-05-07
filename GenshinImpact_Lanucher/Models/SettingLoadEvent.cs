@@ -15,19 +15,6 @@ namespace GameLauncherPrism.Event
     public class SettingArgs
     {
         /// <summary>
-        /// 背景模糊度
-        /// </summary>
-        public double tran { get; set; }
-        /// <summary>
-        /// 图片地址
-        /// </summary>
-        public string Pic_Path { get; set; }
-        /// <summary>
-        /// 每日一句
-        /// </summary>
-        public bool OneDay { get; set; }
-
-        /// <summary>
         /// 区服设置
         /// </summary>
         public Server server { get; set; }
@@ -61,9 +48,6 @@ namespace GameLauncherPrism.Event
             args.GameWidth = 1024;
             args.IsFul = false;
             args.IsPop = true;
-            args.OneDay = true;
-            args.Pic_Path = "";
-            args.tran = 15;
             args.server = Server.官服;
             
             return args;
