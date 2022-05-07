@@ -65,7 +65,7 @@ namespace GenshinImpact_Lanucher.Model
                         string pop = "";
                         if(args.IsPop == true)
                         {
-                            pop = "-pop";
+                            pop = "-popupwindow 1";
                         }
                         p.StartInfo = new ProcessStartInfo()
                         {

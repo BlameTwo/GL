@@ -183,7 +183,7 @@ namespace GenshinImpact_Lanucher.Model
             }
 
 
-            if (IniReadValue("MyLauncherConfig","IsPop") == "True")
+            if (IniReadValue("MyLanucherConfig", "IsPop") == "True")
             {
                 agument.IsPop = true;
             }
