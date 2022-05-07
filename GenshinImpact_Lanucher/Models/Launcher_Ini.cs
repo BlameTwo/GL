@@ -149,9 +149,6 @@ namespace GenshinImpact_Lanucher.Model
                     IniWriteValue("MyLanucherConfig", "cps", "bilibili");
                     IniWriteValue("MyLanucherConfig", "channel", "14");
                     IniWriteValue("MyLanucherConfig", "sub_channel", "0");
-                    //修复SDK
-                    if (Resource.BilibiliSDK())
-                        MessageBox.Show("SDK修复完毕");
                 }
                 else if (Server == Server.官服)
                 {
@@ -266,28 +263,27 @@ namespace GenshinImpact_Lanucher.Model
         }
 
 
-        public async Task<bool> GameLauncherWrite(Server server)
+        public  bool GameLauncherWrite(Server server)
         {
-            //就这一个改成多线程吧，上面的就不改了
-            return await Task.Run(() =>
+            if (server == Server.B站)        //为B服
             {
-                if (server == Server.B站)        //为B服
+                if (Resource.BilibiliSDK() == true)
                 {
                     WritePrivateProfileString("General", "cps", "bilibili", LauncherPath);
                     WritePrivateProfileString("General", "sub_channel", "0", LauncherPath);
                     WritePrivateProfileString("General", "channel", "14", LauncherPath);
-                    Resource.BilibiliSDK();
-                    return true;
-                }
-                else if (server == Server.官服)            //严谨一点好
-                {
-                    WritePrivateProfileString("General", "cps", "pcadbdpz", LauncherPath);
-                    WritePrivateProfileString("General", "sub_channel", "1", LauncherPath);
-                    WritePrivateProfileString("General", "channel", "1", LauncherPath);
                     return true;
                 }
                 return false;
-            });
+            }
+            else if (server == Server.官服)            //严谨一点好
+            {
+                WritePrivateProfileString("General", "cps", "pcadbdpz", LauncherPath);
+                WritePrivateProfileString("General", "sub_channel", "1", LauncherPath);
+                WritePrivateProfileString("General", "channel", "1", LauncherPath);
+                return true;
+            }
+            return false;
         }
 
 

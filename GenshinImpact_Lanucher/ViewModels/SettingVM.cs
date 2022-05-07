@@ -76,15 +76,15 @@ namespace GenshinImpact_Lanucher.ViewModels
             myini.IniWriteValue("MyLanucherConfig", "Width", txt);
             StartArgs.GameWidth = txt;
         }
-        private async  void setradio(System.Windows.Controls.RadioButton rad)
+        private  void setradio(System.Windows.Controls.RadioButton rad)
         {
             if(Server1 == true)
             {
-                await GameIni.GameLauncherWrite( Launcher_Ini.Server.官服);
+                 GameIni.GameLauncherWrite( Launcher_Ini.Server.官服);
             }
             else if(Server2 == true)
             {
-                await GameIni.GameLauncherWrite( Launcher_Ini.Server.B站);
+                 GameIni.GameLauncherWrite( Launcher_Ini.Server.B站);
             }
                 
         }

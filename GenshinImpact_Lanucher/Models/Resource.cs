@@ -32,31 +32,37 @@ namespace GenshinImpact_Lanucher.Model
         }
 
 
+        static  Launcher_Ini myini { get; set; }
+        static string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         /// <summary>
         /// 修复SDK，前提是在本启动器的方法下拥有该文件
         /// </summary>
         /// <returns></returns>
-        public static bool BilibiliSDK()
+        public static  bool BilibiliSDK()
         {
-            if (!File.Exists(LanucherRegistryKey.GetGamePath() + @"\YuanShen_Data\Plugins\PCGameSDK.dll"))
+            myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+            string path = myini.IniReadValue("MyLanucherConfig", "GamePath");
+            if (!File.Exists(path + @"\YuanShen_Data\Plugins\PCGameSDK.dll"))
             {
                 string sdk = "PCGameSDK.dll";
                 FileStream fs = new FileStream(sdk, FileMode.Create, FileAccess.ReadWrite);
                 byte[] buffer = Properties.Resources.PCGameSDK;
                 fs.Write(buffer, 0, buffer.Length);
                 fs.Close();
-                File.Move(sdk, LanucherRegistryKey.GetGamePath() + @"\YuanShen_Data\Plugins\PCGameSDK.dll");
-                if (File.Exists(LanucherRegistryKey.GetGamePath() + @"\YuanShen_Data\Plugins\PCGameSDK.dll"))
+                fs.Dispose();
+                File.Move(sdk, path + @"\YuanShen_Data\Plugins\PCGameSDK.dll");
+                if (File.Exists("PCGameSDK.dll"))
                 {
                     File.Delete("PCGameSDK.dll");
+                    return true;
                 }
                 else
                 {
                     return false;
                 }
-                return true;
+                
             }
-            return false;
+            return true;
         }
 
 
@@ -67,10 +73,13 @@ namespace GenshinImpact_Lanucher.Model
         /// <returns></returns>
         public async static Task<bool> ConfigSave(Server server)
         {
-            //游戏ini配置地址
-            Launcher_Ini ini = new Launcher_Ini(LanucherRegistryKey.GetGamePath() + "config.ini");
-            await ini.GameLauncherWrite(server);
-            return true;
+            return await Task.Run(() =>
+            {
+                //游戏ini配置地址
+                Launcher_Ini ini = new Launcher_Ini(LanucherRegistryKey.GetGamePath() + "config.ini");
+                ini.GameLauncherWrite(server);
+                return true;
+            });
         }
     }
 }

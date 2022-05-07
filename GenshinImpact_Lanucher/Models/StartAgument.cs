@@ -65,14 +65,14 @@ namespace GenshinImpact_Lanucher.Model
                         string pop = "";
                         if(args.IsPop == true)
                         {
-                            pop = "-popupwindow";
+                            pop = "-pop";
                         }
                         p.StartInfo = new ProcessStartInfo()
                         {
                             FileName = args.GamePath + "//YuanShen.exe",
                             Verb = "runas",
                             Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
-                            $" -screen-width {args.GameWidth} -pop {pop}",
+                            $" -screen-width {args.GameWidth} {pop}",
                             WorkingDirectory = GenshinImpact_Lanucher.Model.LanucherRegistryKey.GetGamePath(),
                             UseShellExecute = true,
                         };
