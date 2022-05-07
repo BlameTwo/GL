@@ -127,10 +127,6 @@ namespace GenshinImpact_Lanucher.ViewModels
         {
             get 
             {
-                if (startargs.GameServer == Launcher_Ini.Server.官服)
-                    Server1 = true;
-                else
-                    Server2 = true;
                 return startargs;
             }
             set 
