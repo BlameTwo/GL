@@ -1,4 +1,4 @@
-﻿using GenshinImpact_Lanucher.Model;
+using GenshinImpact_Lanucher.Model;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
@@ -18,6 +18,14 @@ namespace GenshinImpact_Lanucher.ViewModels
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
             StartServerGame = new RelayCommand<bool>(async (bo) =>
             {
+                if (myini.IniReadValue("Server", "IP") == null || myini.IniReadValue("Server", "IP").Equals(""))
+                {
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "旅行者，您似乎还没有配置代理呢";
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "代理设置错误";       //返回的错误列表
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+                    return;
+                };
                 await startAgument.ServerGo(bo,myini.GetAgument());
             });
         }
@@ -31,6 +39,13 @@ namespace GenshinImpact_Lanucher.ViewModels
                 (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "从外部启动游戏成功！如果出现闪退请检查游戏文件夹";
                 (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
                 (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "游戏已经启动";       //返回的错误列表
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+            }
+            else
+            {
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "请检查游戏路径是否设置正确";
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "游戏启动失败";       //返回的错误列表
                 (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
             };
         }
