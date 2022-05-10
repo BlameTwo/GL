@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +42,15 @@ namespace GenshinImpact_Lanucher.Model
         {
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
             string path = myini.IniReadValue("MyLanucherConfig", "GamePath");
+            Console.WriteLine(path);
+            if (path == null || path.Equals("")) //检测路径是否为空，防止出现崩溃
+            {
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "旅行者似乎没有配置游戏路径呢";
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "区服切换失败";       //返回的错误列表
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+                return false;
+            }
             if (!File.Exists(path + @"\YuanShen_Data\Plugins\PCGameSDK.dll"))
             {
                 string sdk = "PCGameSDK.dll";
