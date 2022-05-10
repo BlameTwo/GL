@@ -12,8 +12,6 @@
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:server1="clr-namespace:GenshinImpact_Lanucher.Convert">
     <Page.Resources>
-        <server1:ServerConvert x:Key="Convert1"/>
-        <server1:ServerConvert2 x:Key="Convert2"/> 
     </Page.Resources>
     <Grid>
         <StackPanel >

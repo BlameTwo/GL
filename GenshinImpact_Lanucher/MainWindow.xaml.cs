@@ -22,11 +22,13 @@ namespace GenshinImpact_Lanucher
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Window win { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = new MainWinVM();
             Loaded += MainWindow_Loaded;
+            win = this;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
