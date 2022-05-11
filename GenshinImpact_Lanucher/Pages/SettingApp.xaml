@@ -203,5 +203,5 @@
             <TextBlock Text="其他功能正在开发中o(*￣▽￣*)ブ" HorizontalAlignment="Center" Margin="0 10 0 0"/>
         </StackPanel>
         
-    </Grid>
+    </wpfui:Card>
 </Page>

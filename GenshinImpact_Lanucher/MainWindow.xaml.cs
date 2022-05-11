@@ -38,21 +38,28 @@ namespace GenshinImpact_Lanucher
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
-            StartGame.Controller.Stop();
+            if (StartGame.Controller != null) { }
+                StartGame.Controller.Stop();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
             Theme.Changed += Theme_Changed;    //Window11
-            WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
-
+            //设置上自动修改颜色，背景材质为默认
+            WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Auto, true, true);
             Console.WriteLine("完成启动器启动。");
         }
 
         private void Theme_Changed(ThemeType currentTheme, Color systemAccent)
         {
-            throw new NotImplementedException();
+            if(currentTheme == ThemeType.Light)
+            {
+                ChipBack.Background = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                ChipBack.Background = new SolidColorBrush(Colors.Black);
+            }
         }
     }
 }
