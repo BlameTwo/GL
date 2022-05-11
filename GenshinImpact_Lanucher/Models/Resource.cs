@@ -42,7 +42,6 @@ namespace GenshinImpact_Lanucher.Model
         {
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
             string path = myini.IniReadValue("MyLanucherConfig", "GamePath");
-            Console.WriteLine(path);
             if (path == null || path.Equals("")) //检测路径是否为空，防止出现崩溃
             {
                 return false;

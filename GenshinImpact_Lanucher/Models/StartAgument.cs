@@ -89,7 +89,7 @@ namespace GenshinImpact_Lanucher.Model
                 }
             });
         }
-        private ProxyController Controller;
+        public static ProxyController Controller;
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public async Task<string> ServerGo( bool flage, StartAgument args)
         {

@@ -1,4 +1,5 @@
-﻿using GenshinImpact_Lanucher.ViewModels;
+﻿using GenshinImpact_Lanucher.Model;
+using GenshinImpact_Lanucher.ViewModels;
 using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
@@ -31,37 +32,38 @@ namespace GenshinImpact_Lanucher
             InitializeComponent();
             this.DataContext = new MainWinVM();
             Loaded += MainWindow_Loaded;
+            Closing += MainWindow_Closed; ;
             win = this;
         }
 
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            if (StartGame.Controller != null)
+                StartGame.Controller.Stop();
+            
+        }
+
+
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var b = new ComputerInfo().OSFullName;
-            if(b.IndexOf("11") != 0)
+            WPFUI.Appearance.Theme.Changed += Theme_Changed;        //颜色适配，舍弃Mica
+            //Window11
+            WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Auto, true, true);
+            var a = Theme.IsMatchedDark() ? true:false;
+            
+            Console.WriteLine("完成启动器启动。");
+        }
+
+        private void Theme_Changed(ThemeType currentTheme, Color systemAccent)
+        {
+            ///适配颜色
+            if(currentTheme == ThemeType.Light)
             {
-                //Window11
-                WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
-                
-            }
-            else if(b.IndexOf("7") != 0 ||b.IndexOf("8")!=0)
-            {
-                //Windows7、Window8/Window8.1，根据WPF-UI官方文档修改
-                this.Background = new SolidColorBrush(Color.FromArgb(255, 30, 30, 30));
-                var newTheme = WPFUI.Appearance.Theme.GetAppTheme() == WPFUI.Appearance.ThemeType.Dark
-                        ? WPFUI.Appearance.ThemeType.Light
-            :               WPFUI.Appearance.ThemeType.Dark;
-                WPFUI.Appearance.Theme.Apply(
-                            themeType: ThemeType.Dark,
-                            backgroundEffect: WPFUI.Appearance.BackgroundType.Unknown,
-                            updateAccent: true,
-                            forceBackground: false);
+                ChipBack.Background = new SolidColorBrush(Colors.White);
             }
             else
             {
-                //Window10
-                WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Acrylic, true, true);
-                //微透明白色
-                this.Background = new SolidColorBrush(Color.FromArgb(200, 0, 0, 0));
+                ChipBack.Background = new SolidColorBrush(Colors.Black);
             }
         }
     }

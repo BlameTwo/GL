@@ -6,6 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3BD3934A-12FA-41FB-AAEE-560A4F47A930}</ProjectGuid>
     <OutputType>WinExe</OutputType>
+    <XamlDebuggingInformation>True</XamlDebuggingInformation>
     <RootNamespace>GenshinImpact_Lanucher</RootNamespace>
     <AssemblyName>GenshinImpact_Lanucher</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -147,6 +148,9 @@
     <Compile Include="Pages\DefaultGame.xaml.cs">
       <DependentUpon>DefaultGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SettingApp.xaml.cs">
       <DependentUpon>SettingApp.xaml</DependentUpon>
     </Compile>
@@ -168,6 +172,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\DefaultGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,6 +203,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="help.md" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -205,8 +214,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Cake.Powershell">
-      <Version>1.0.1</Version>
+    <PackageReference Include="Costura.Fody">
+      <Version>5.7.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.TestPlatform.TestHost">
       <Version>17.1.0</Version>
@@ -244,6 +255,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AniBack.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AniBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AniBack2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AniBack3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,11 +6,31 @@
         xmlns:local="clr-namespace:GenshinImpact_Lanucher"
         mc:Ignorable="d"
         ResizeMode="NoResize"
+        Background='Transparent'
         xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:pages="clr-namespace:GenshinImpact_Lanucher.Pages"
+        x:Name="Home" 
         Title="MainWindow" Height="600" Width="1000"
+        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
         Style="{DynamicResource UiWindowNoResize}">
+    <Window.Resources>
+        <Storyboard x:Key="OnLoaded1" RepeatBehavior="Forever">
+            <ThicknessAnimation 
+                Storyboard.TargetProperty="Margin" 
+                From="0 0 0 0"
+                Duration="00:00:02:00"
+                To="-2168 0 0 0"
+                Storyboard.TargetName="MyImage">
+            </ThicknessAnimation>
+        </Storyboard>
+        <BitmapImage x:Key="BackKey" UriSource="/Resources/AniBack2.png"/>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource OnLoaded1}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
@@ -21,11 +41,27 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+       
+        <Image x:Name="MyImage" Stretch="Uniform" Width="3168"
+               Source="{StaticResource BackKey}"
+               Grid.RowSpan="2" 
+               Opacity="1" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+        </Image>
+        <StackPanel x:Name="ChipBack"
+                    Grid.RowSpan="2" 
+                    Opacity="0.5"/>
         <wpfui:TitleBar 
             Title="原神启动器"
             CanMaximize="False"
             ShowMaximize="False"
-            Foreground="{DynamicResource TextFillColorTertiaryBrush}"
             ForceShutdown="False"
             Grid.Row="0"/>
         <Grid Grid.Row="1">
@@ -39,12 +75,13 @@
                 
                 Frame="{Binding ElementName=RootFrame}">
                 <wpfui:Navigation.Items>
+                    <wpfui:NavigationItem Content="首页" Icon="Home28" Page="{x:Type pages:Home}"/>
                     <wpfui:NavigationItem Content="游戏" Icon="Games16" Page="{x:Type pages:DefaultGame}"/>
                 </wpfui:Navigation.Items>
                 <wpfui:NavigationCompact.Footer>
                     <wpfui:NavigationItem Content="设置" Icon="Settings28" Page="{x:Type pages:SettingApp}"/>
                 </wpfui:NavigationCompact.Footer>
-                
+
             </wpfui:NavigationCompact>
             <Grid
                 Grid.Row="1"
