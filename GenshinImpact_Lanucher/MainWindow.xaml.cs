@@ -36,28 +36,16 @@ namespace GenshinImpact_Lanucher
             win = this;
         }
 
-        private void MainWindow_Closed(object sender, EventArgs e)
-        {
-            if (StartGame.Controller != null)
-                StartGame.Controller.Stop();
-            
-        }
-
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            WPFUI.Appearance.Theme.Changed += Theme_Changed;        //颜色适配，舍弃Mica
-            //Window11
-            WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Auto, true, true);
-            var a = Theme.IsMatchedDark() ? true:false;
-            
-            Console.WriteLine("完成启动器启动。");
-        }
-
-        private void Theme_Changed(ThemeType currentTheme, Color systemAccent)
-        {
-            ///适配颜色
-            if(currentTheme == ThemeType.Light)
+            var b = new ComputerInfo().OSFullName;
+            if(b.IndexOf("11") != 0)
+            {
+                //Window11
+                WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
+                
+            }
+            else if(b.IndexOf("7") != 0 ||b.IndexOf("8")!=0)
             {
                 ChipBack.Background = new SolidColorBrush(Colors.White);
             }
@@ -65,6 +53,8 @@ namespace GenshinImpact_Lanucher
             {
                 ChipBack.Background = new SolidColorBrush(Colors.Black);
             }
+
+            Console.WriteLine("完成启动器启动。");
         }
     }
 }
