@@ -9,6 +9,7 @@
       xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI"
       Title="SettingApp" Foreground="{DynamicResource TextFillColorTertiaryBrush}"
       Margin="10"
+      Background="Transparent"
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:server1="clr-namespace:GenshinImpact_Lanucher.Convert">
     <Page.Resources>

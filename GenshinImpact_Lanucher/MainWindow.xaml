@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:GenshinImpact_Lanucher"
         mc:Ignorable="d"
         ResizeMode="NoResize"
+        Background='Transparent'
         xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:pages="clr-namespace:GenshinImpact_Lanucher.Pages"
         Title="MainWindow" Height="600" Width="1000"

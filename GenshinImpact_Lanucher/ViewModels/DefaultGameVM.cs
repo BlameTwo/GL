@@ -26,6 +26,7 @@ namespace GenshinImpact_Lanucher.ViewModels
                     (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
                     return;
                 };
+                //此处并未设置打开游戏
                 await startAgument.ServerGo(bo,myini.GetAgument());
             });
         }

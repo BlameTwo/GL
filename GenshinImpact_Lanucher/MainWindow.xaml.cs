@@ -1,4 +1,5 @@
-﻿using GenshinImpact_Lanucher.ViewModels;
+﻿using GenshinImpact_Lanucher.Model;
+using GenshinImpact_Lanucher.ViewModels;
 using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
@@ -31,8 +32,16 @@ namespace GenshinImpact_Lanucher
             InitializeComponent();
             this.DataContext = new MainWinVM();
             Loaded += MainWindow_Loaded;
+            Closing += MainWindow_Closed; ;
             win = this;
         }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            if (StartGame.Controller != null)
+                StartGame.Controller.Stop();
+        }
+
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -41,7 +50,6 @@ namespace GenshinImpact_Lanucher
             {
                 //Window11
                 WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
-                
             }
             else if(b.IndexOf("7") != 0 ||b.IndexOf("8")!=0)
             {
@@ -63,6 +71,8 @@ namespace GenshinImpact_Lanucher
                 //微透明白色
                 this.Background = new SolidColorBrush(Color.FromArgb(200, 0, 0, 0));
             }
+
+            Console.WriteLine("完成启动器启动。");
         }
     }
 }
