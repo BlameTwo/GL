@@ -286,15 +286,39 @@ namespace GenshinImpact_Lanucher.Model
             {
                 if (Resource.BilibiliSDK() == true)
                 {
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "区服已经切换成功啦！";
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.CheckmarkCircle24; //icon 参考https://hub.fastgit.xyz/microsoft/fluentui-system-icons/blob/master/icons_regular.md
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "区服切换成B服";       //返回的信息标题
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
                     WritePrivateProfileString("General", "cps", "bilibili", LauncherPath);
                     WritePrivateProfileString("General", "sub_channel", "0", LauncherPath);
                     WritePrivateProfileString("General", "channel", "14", LauncherPath);
                     return true;
+                }else if (Resource.BilibiliSDK() == false)            //严谨一点好
+                {
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "旅行者似乎没有配置游戏路径呢";
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "区服切换失败";
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+                    return false;
                 }
-                return false;
+                    return false;
             }
             else if (server == Server.官服)            //严谨一点好
             {
+                Launcher_Ini myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+                if (myini.IniReadValue("MyLanucherConfig", "GamePath") == null || myini.IniReadValue("MyLanucherConfig", "GamePath").Equals(""))
+                {
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "旅行者似乎没有配置游戏路径呢";
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "区服切换失败";
+                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+                    return false;
+                }
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "区服已经切换成功啦！";
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.CheckmarkCircle24;
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "区服切换成官服";
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
                 WritePrivateProfileString("General", "cps", "pcadbdpz", LauncherPath);
                 WritePrivateProfileString("General", "sub_channel", "1", LauncherPath);
                 WritePrivateProfileString("General", "channel", "1", LauncherPath);
