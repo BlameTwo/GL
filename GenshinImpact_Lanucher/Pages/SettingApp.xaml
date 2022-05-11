@@ -41,7 +41,6 @@
                     <StackPanel Margin="10 0 0 0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"  >
                         <RadioButton Content="官服" GroupName="Server" 
                                      Margin="10 0 0 0"
-                                     FontSize="20"
                                      IsChecked="{Binding Server1,Mode=TwoWay}"
                                      x:Name="RadServer1"
                                       >
@@ -57,7 +56,6 @@
                         <RadioButton Content="B服" GroupName="Server" 
                                      Margin="10 0 0 0"
                                      HorizontalAlignment="Center"
-                                     FontSize="20"
                                      x:Name="RadServer2"
                                      IsChecked="{Binding Server2,Mode=TwoWay}">
                             <i:Interaction.Triggers>
@@ -81,7 +79,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox HorizontalAlignment="Stretch" Text="{Binding StartArgs.GamePath}"/>
+                            <wpfui:TextBox Placeholder="例如: E:\Genshin Impact\Genshin Impact Game"  HorizontalAlignment="Stretch" Text="{Binding StartArgs.GamePath}"/>
                             <Button Grid.Row="1"
                                 Grid.Column="1"
                                 Content="浏览" Padding="10" Margin="10 0 0 0" Command="{Binding SelectGamePath}"/>

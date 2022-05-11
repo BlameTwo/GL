@@ -88,7 +88,7 @@
     <ManifestKeyFile>GenshinImpact_Lanucher_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BasicFormatsForCore">
@@ -195,7 +195,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="GenshinImpact_Lanucher_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -208,11 +207,6 @@
   <ItemGroup>
     <PackageReference Include="Cake.Powershell">
       <Version>1.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="Costura.Fody">
-      <Version>5.8.0-alpha0098</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.TestPlatform.TestHost">
       <Version>17.1.0</Version>
