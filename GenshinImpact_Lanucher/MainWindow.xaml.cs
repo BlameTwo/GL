@@ -32,29 +32,27 @@ namespace GenshinImpact_Lanucher
             InitializeComponent();
             this.DataContext = new MainWinVM();
             Loaded += MainWindow_Loaded;
-            Closing += MainWindow_Closed; ;
+            Closed += MainWindow_Closed;
             win = this;
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            StartGame.Controller.Stop();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var b = new ComputerInfo().OSFullName;
-            if(b.IndexOf("11") != 0)
-            {
-                //Window11
-                WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
-                
-            }
-            else if(b.IndexOf("7") != 0 ||b.IndexOf("8")!=0)
-            {
-                ChipBack.Background = new SolidColorBrush(Colors.White);
-            }
-            else
-            {
-                ChipBack.Background = new SolidColorBrush(Colors.Black);
-            }
+
+            Theme.Changed += Theme_Changed;    //Window11
+            WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
 
             Console.WriteLine("完成启动器启动。");
+        }
+
+        private void Theme_Changed(ThemeType currentTheme, Color systemAccent)
+        {
+            throw new NotImplementedException();
         }
     }
 }
