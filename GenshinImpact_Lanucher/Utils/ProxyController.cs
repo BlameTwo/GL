@@ -30,8 +30,11 @@ namespace GrassCutter_Proxy.Common
         {
             EnsureCert();
 
+            //FiddlerApplication.Startup(int.Parse(port),
+            //    FiddlerCoreStartupFlags.RegisterAsSystemProxy);
+
             FiddlerApplication.Startup(int.Parse(port),
-                FiddlerCoreStartupFlags.Default);
+                FiddlerCoreStartupFlags.RegisterAsSystemProxy |FiddlerCoreStartupFlags.DecryptSSL);
         }
 
         public void Stop()

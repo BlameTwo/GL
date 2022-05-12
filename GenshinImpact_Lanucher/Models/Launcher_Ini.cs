@@ -185,8 +185,7 @@ namespace GenshinImpact_Lanucher.Model
                 agument.full = false;
             }
 
-
-            if (IniReadValue("MyLauncherConfig", "IsPop") == "True")
+            if (IniReadValue("MyLanucherConfig", "IsPop") == "True")
             {
                 agument.IsPop = true;
             }
@@ -224,7 +223,8 @@ namespace GenshinImpact_Lanucher.Model
             {
                 args.server = Server.官服;
             }
-            args.IsPop = args.IsFul?false:true;
+            //在全屏状态下，取消去边框
+            //args.IsPop = args.IsFul?false:true;
 
             return args;
         }
@@ -235,20 +235,6 @@ namespace GenshinImpact_Lanucher.Model
 
 
 
-        /// <summary>
-        /// 小判断
-        /// </summary>
-        /// <param name="server1"></param>
-        /// <param name="server2"></param>
-        /// <returns></returns>
-        public static Server GetServer3(bool server1, bool server2)
-        {
-            if (server1 == true)
-            {
-                return Server.B站;
-            }
-            return Server.官服;
-        }
 
 
         public  bool SaveDefaultSettingArgs()

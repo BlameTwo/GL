@@ -257,16 +257,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\AniBack.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\AniBack.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\AniBack2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\AniBack3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

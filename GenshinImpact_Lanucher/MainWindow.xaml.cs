@@ -38,7 +38,7 @@ namespace GenshinImpact_Lanucher
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
-            if (StartGame.Controller != null) { }
+            if (StartGame.Controller != null)
                 StartGame.Controller.Stop();
         }
 

@@ -188,7 +188,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <wpfui:TextBox Placeholder="例如: E:\Grasscutters\(目录下含有Grasscutters.jar类似文件)"
+                        <wpfui:TextBox Placeholder="目前只支持2.6版本"
                                  ToolTipService.ToolTip="本服务器要求本地游戏版本为2.6"
                                  Height="40"
                                  Text="{Binding _ServerPath,Mode=TwoWay}">
