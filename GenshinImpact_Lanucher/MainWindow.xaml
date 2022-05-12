@@ -77,6 +77,7 @@
                 <wpfui:Navigation.Items>
                     <wpfui:NavigationItem Content="首页" Icon="Home28" Page="{x:Type pages:Home}"/>
                     <wpfui:NavigationItem Content="游戏" Icon="Games16" Page="{x:Type pages:DefaultGame}"/>
+                    <wpfui:NavigationItem Content="公告" Icon="Note16" Page="{x:Type pages:NotifyGamePage}"/>
                 </wpfui:Navigation.Items>
                 <wpfui:NavigationCompact.Footer>
                     <wpfui:NavigationItem Content="设置" Icon="Settings28" Page="{x:Type pages:SettingApp}"/>

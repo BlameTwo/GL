@@ -11,14 +11,10 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenshinImpact_Lanucher.Model
+namespace GenshinImpact_Lanucher.GameNotifys
 {
-    public class GetUrl
+    public static class GameNitify
     {
-        public GetUrl()
-        {
-
-        }
 
         const string Url = "https://hk4e-api.mihoyo.com/common/hk4e_cn/announcement/api/getAnnList?game=hk4e&game_biz=hk4e_cn&lang=zh-cn&bundle_id=hk4e_cn&platform=pc&region=cn_gf01&level=55&uid=100000000";
         /// <summary>
@@ -52,7 +48,7 @@ namespace GenshinImpact_Lanucher.Model
             }
         }
 
-        public async Task<ObservableCollection<Notice>> GetoneAsync()
+        public static async Task<ObservableCollection<Notice>> GetOneAsync()
         {
             return await Task.Run(GetOne);
         }
@@ -63,20 +59,23 @@ namespace GenshinImpact_Lanucher.Model
         /// 此方法返回活动公告
         /// </summary>
         /// <returns></returns>
-        public ObservableCollection<Notice> GetOne()
+        public async static Task<ObservableCollection<Notice>> GetOne()
         {
-            var list = new ObservableCollection<Notice>();
-            JObject jo = JObject.Parse(GetTips(0));
-            JArray jas = (JArray)jo["list"];
-            foreach (JToken ja in jas)
+            return await Task.Run(() =>
             {
-                list.Add(InitNotice(ja));
-            }
-            return list;
+                var list = new ObservableCollection<Notice>();
+                JObject jo = JObject.Parse(GetTips(0));
+                JArray jas = (JArray)jo["list"];
+                foreach (JToken ja in jas)
+                {
+                    list.Add(InitNotice(ja));
+                }
+                return list;
+            });
         }
 
 
-        public async Task<ObservableCollection<Notice>> GetTwoAsync()
+        public static async Task<ObservableCollection<Notice>> GetTwoAsync()
         {
 
             return await Task.Run(GetTwo);
@@ -112,7 +111,7 @@ namespace GenshinImpact_Lanucher.Model
         /// 此方法返回游戏公告
         /// </summary>
         /// <returns></returns>
-        public ObservableCollection<Notice> GetTwo()
+        public static ObservableCollection<Notice> GetTwo()
         {
             var list = new ObservableCollection<Notice>();
             JObject jo = JObject.Parse(GetTips(1));
