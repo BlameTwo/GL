@@ -1,4 +1,5 @@
 ﻿using Fiddler;
+using GenshinImpact_Lanucher.GameNotifys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,6 +92,10 @@ namespace GrassCutter_Proxy.Common
         }
         private void BeforeReq(Session s)
         {
+            //过滤主机，防止过滤公告功能。
+            Uri uri1 = new Uri(GameNitify.Url);Uri uri2 =new Uri( GameNitify.MoreUrl);
+            if (s.hostname == uri1.Host || s.hostname == uri2.Host || s.hostname == "uploadstatic.mihoyo.com")
+                return;
             if (s.hostname.EndsWith(".yuanshen.com") |
                 s.hostname.EndsWith(".hoyoverse.com") |
                 s.hostname.EndsWith(".mihoyo.com"))

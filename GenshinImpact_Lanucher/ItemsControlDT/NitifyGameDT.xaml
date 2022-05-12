@@ -8,8 +8,11 @@
              mc:Ignorable="d" 
              xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
              HorizontalAlignment="Stretch"
+             Background="Transparent"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="10">
-        <Image Source="{Binding banner}" Stretch="UniformToFill"/>
-    </Grid>
+    <wpfui:Card HorizontalAlignment="Stretch" Margin="10" Padding="5">
+        <Grid>
+            <Image Source="{Binding banner}" Stretch="UniformToFill"/>
+        </Grid>
+    </wpfui:Card>
 </UserControl>
