@@ -32,15 +32,9 @@ namespace GenshinImpact_Lanucher
             InitializeComponent();
             this.DataContext = new MainWinVM();
             Loaded += MainWindow_Loaded;
-            Closed += MainWindow_Closed;
             win = this;
         }
 
-        private void MainWindow_Closed(object sender, EventArgs e)
-        {
-            if (StartGame.Controller != null)
-                StartGame.Controller.Stop();
-        }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {

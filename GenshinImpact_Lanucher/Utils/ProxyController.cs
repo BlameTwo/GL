@@ -11,8 +11,8 @@ using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Models;
 
-namespace GrassCutter_Proxy.Common
-{
+namespace GenshinImpact_Lanucher.Utils
+{ 
     //public static class Global
     //{
     //    public static ProxyController controller { get; set; }
@@ -132,18 +132,17 @@ namespace GrassCutter_Proxy.Common
 
         private async Task OnRequest(object sender, SessionEventArgs e)
         {
-
-
+            Uri uri1 = new Uri(GameNitify.Url); Uri uri2 = new Uri(GameNitify.MoreUrl);
+            Uri uri3 = new Uri("https://uploadstatic.mihoyo.com");
             string hostname = e.WebSession.Request.RequestUri.Host;
+            if (hostname == uri1.Host || hostname == uri2.Host || hostname == uri3.Host)
+                return;
             if (hostname.EndsWith(".yuanshen.com") |
                hostname.EndsWith(".hoyoverse.com") |
                hostname.EndsWith(".mihoyo.com"))
             {
-
                 string oHost = e.WebSession.Request.RequestUri.Host;
-
                 e.HttpClient.Request.Url = e.HttpClient.Request.Url.Replace(oHost, fakeHost);
-
             }
         }
 

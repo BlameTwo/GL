@@ -126,6 +126,7 @@
       <DependentUpon>NitifyGameDT.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\HtmlFormat.cs" />
     <Compile Include="Models\LanucherRegistryKey.cs" />
     <Compile Include="Models\Launcher_Ini.cs" />
     <Compile Include="Models\MyHttpClient.cs" />
@@ -230,7 +231,7 @@
       <Version>4.3.4</Version>
     </PackageReference>
     <PackageReference Include="Titanium.Web.Proxy">
-      <Version>3.1.1397</Version>
+      <Version>3.1.1434-beta</Version>
     </PackageReference>
     <PackageReference Include="WPF-UI">
       <Version>1.2.7</Version>
