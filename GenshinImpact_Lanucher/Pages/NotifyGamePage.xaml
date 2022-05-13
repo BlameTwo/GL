@@ -22,7 +22,20 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid HorizontalAlignment="Center" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <wpfui:Button
+                Style="{StaticResource UiTitlebarButton}" 
+                ToolTipService.ToolTip="刷新"
+                Grid.Column="1"
+                Command="{Binding RefNotify}"
+                HorizontalAlignment="Right" Margin="0 0 10 0">
+                <wpfui:SymbolIcon Symbol="ApprovalsApp20"/>
+                
+            </wpfui:Button>
+            <Grid HorizontalAlignment="Center" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
@@ -43,7 +56,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </Grid>
-            <Grid  Grid.Column="1" HorizontalAlignment="Center" >
+            <Grid  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>

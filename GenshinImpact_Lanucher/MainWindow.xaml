@@ -105,6 +105,9 @@
                 Grid.RowSpan="2"
                 Grid.Column="1"
                 IsShown="False"
+                HorizontalAlignment="Center" 
+            
+                VerticalAlignment="Top"
                 ShowCloseButton="True"
                 Timeout="5000" />
     </Grid>
