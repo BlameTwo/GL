@@ -96,8 +96,12 @@ namespace GenshinImpact_Lanucher.Model
             return await Task.Run(() =>
             {
                 Launcher_Ini ini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-                Controller = new ProxyController(ini.IniReadValue("Server","Host"),ini.IniReadValue("Server","IP"));
-                Global.controller = Controller;
+                if (Controller == null)
+                {
+                    Controller = new ProxyController(ini.IniReadValue("Server", "Host"), ini.IniReadValue("Server", "IP"));
+
+                }
+
                 if (flage == true)
                 {
                     Controller.Start();
@@ -105,6 +109,7 @@ namespace GenshinImpact_Lanucher.Model
                 }
                 else
                 {
+
                     Controller.Stop();
                     Console.WriteLine("正在关闭代理，并清除证书");
                     foreach (Process item in Process.GetProcesses())
