@@ -38,13 +38,36 @@ namespace GrassCutter_Proxy.Common
 
         public void Start()
         {
-            EnsureCert();
 
-            //FiddlerApplication.Startup(int.Parse(port),
-            //    FiddlerCoreStartupFlags.RegisterAsSystemProxy);
 
-            FiddlerApplication.Startup(int.Parse(port),
-                FiddlerCoreStartupFlags.RegisterAsSystemProxy |FiddlerCoreStartupFlags.DecryptSSL);
+            proxyServer = new ProxyServer();
+            proxyServer.CertificateManager.EnsureRootCertificate();
+
+
+            proxyServer.BeforeRequest += OnRequest;
+            proxyServer.ServerCertificateValidationCallback += OnCertificateValidation;
+            
+
+            explicitEndPoint = new ExplicitProxyEndPoint(IPAddress.Any,int.Parse(port), true)
+            {
+            };
+
+            // Fired when a CONNECT request is received
+            explicitEndPoint.BeforeTunnelConnectRequest += OnBeforeTunnelConnectRequest;
+
+            // An explicit endpoint is where the client knows about the existence of a proxy
+            // So client sends request in a proxy friendly manner
+            proxyServer.AddEndPoint(explicitEndPoint);
+            proxyServer.Start();
+
+
+            foreach (var endPoint in proxyServer.ProxyEndPoints)
+                Console.WriteLine("Listening on '{0}' endpoint at Ip {1} and port: {2} ",
+                    endPoint.GetType().Name, endPoint.IpAddress, endPoint.Port);
+
+            // Only explicit proxies can be set as system proxy!
+            proxyServer.SetAsSystemHttpProxy(explicitEndPoint);
+            proxyServer.SetAsSystemHttpsProxy(explicitEndPoint);
         }
 
 
