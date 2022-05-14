@@ -77,16 +77,18 @@ namespace GenshinImpact_Lanucher.Utils
         {
             return await Task.Run(() =>
             {
-                foreach (var item in ServerProfiles)
-                {
-                    if (item.Name == args.Name)
-                    {
-                        ServerProfiles.Remove(args);
-                        SaveProfiles();
-                        return true;
-                    }
-                }
-                return false;
+                //foreach (var item in ServerProfiles)
+                //{
+                //    if (item.Name == args.Name)
+                //    {
+                //        ServerProfiles.Remove(args);
+                //        SaveProfiles();
+                //        return true;
+                //    }
+                //}
+                //return false;
+
+                return !ServerProfiles.Remove(args);
             });
         }
 

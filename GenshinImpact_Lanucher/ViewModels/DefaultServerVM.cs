@@ -32,7 +32,7 @@ namespace GenshinImpact_Lanucher.ViewModels
             });
             Unloaded = new RelayCommand(() =>
             {
-                //xml.SaveProfiles();
+                xml.SaveProfiles();
             });
         }
 
