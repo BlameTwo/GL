@@ -9,7 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800"
               Style="{DynamicResource UiWindow}"
               HorizontalAlignment="Center" VerticalAlignment="Center" >
+    
     <Grid Margin="15">
+        
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

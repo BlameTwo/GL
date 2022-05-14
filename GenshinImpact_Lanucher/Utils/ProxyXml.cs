@@ -88,6 +88,7 @@ namespace GenshinImpact_Lanucher.Utils
                     //可以修改
                     var son = xmlel.SelectSingleNode($@".//Proxy[@Name='{args.Name}']");
                     xmlel.RemoveChild(son);
+                    XmlDoc.Save(Path);
                     return true;
                 }
                 //没有找到节点

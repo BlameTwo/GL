@@ -1,4 +1,8 @@
-﻿using GenshinImpact_Lanucher.Utils;
+﻿using GenshinImpact_Lanucher.EventArgs;
+using GenshinImpact_Lanucher.Model;
+using GenshinImpact_Lanucher.Models;
+using GenshinImpact_Lanucher.Utils;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,14 +28,10 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
         public ServerDT()
         {
             InitializeComponent();
-            
+            myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
         }
-
-
-
-
-
-
+        string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        Launcher_Ini myini { get; set; }
         public ProxyArgs MyData
         {
             get { return (ProxyArgs)GetValue(MyDataProperty); }
@@ -42,8 +42,21 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
         public static readonly DependencyProperty MyDataProperty =
             DependencyProperty.Register("MyData", typeof(ProxyArgs), typeof(ServerDT), new PropertyMetadata(null));
 
-
-
-
+        private async void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ProxyXml xml = new ProxyXml(myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
+            if(await xml.Delete(MyData) == true)
+            {
+                ProxyEvnetArgs arg = new ProxyEvnetArgs();
+                arg.Proxy = MyData;
+                arg.Stuate = XmlProxy.Remove;
+                WeakReferenceMessenger.Default.Send(arg);
+            }
+            else
+            {
+                TipWindow.Show("出错！", "请刷新或者联系作者修复！", WPFUI.Common.SymbolRegular.ErrorCircle24);
+                Console.WriteLine("没有找到该数据项目");
+            }
+        }
     }
 }
