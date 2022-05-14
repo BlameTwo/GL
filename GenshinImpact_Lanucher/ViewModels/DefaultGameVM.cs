@@ -23,10 +23,7 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 if (myini.IniReadValue("Server", "IP") == null || myini.IniReadValue("Server", "IP").Equals(""))
                 {
-                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "旅行者，您似乎还没有配置代理呢";
-                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
-                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "代理设置错误";       //返回的错误列表
-                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+                    WindowTip.TipShow("代理设置错误", "旅行者，您似乎还没有配置代理呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
                     return;
                 };
                 //这并不是打开游戏哦
@@ -41,17 +38,11 @@ namespace GenshinImpact_Lanucher.ViewModels
             string a = await startAgument.GO(myini.GetAgument()) ;
             if (a == "1")
             {
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "从外部启动游戏成功！如果出现闪退请检查游戏文件夹";
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.CheckmarkCircle24;
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "游戏已经启动";       //返回的错误列表
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+                WindowTip.TipShow("游戏已经启动", "从外部启动游戏成功！如果出现闪退请检查游戏文件夹", WPFUI.Common.SymbolRegular.CheckmarkCircle24);
             }
             else
             {
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "请检查游戏路径是否设置正确";
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "游戏启动失败";       //返回的错误列表
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+                WindowTip.TipShow("游戏启动失败", "请检查游戏路径是否设置正确", WPFUI.Common.SymbolRegular.ErrorCircle24);
             };
         }
 

@@ -46,7 +46,7 @@ namespace GenshinImpact_Lanucher.UserControls
                 Name = NameText.Text,
                 Host = IpText.Text
             };
-            ProxyXml xml = new ProxyXml ( myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
+            ProxyJson xml = new ProxyJson ( myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
             if(await xml.Add(args))
             {
                 ProxyEvnetArgs arg = new ProxyEvnetArgs();

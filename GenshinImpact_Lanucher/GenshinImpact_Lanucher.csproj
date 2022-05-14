@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3BD3934A-12FA-41FB-AAEE-560A4F47A930}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <XamlDebuggingInformation>True</XamlDebuggingInformation>
     <RootNamespace>GenshinImpact_Lanucher</RootNamespace>
     <AssemblyName>GenshinImpact_Lanucher</AssemblyName>
@@ -59,7 +59,9 @@
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
-  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
@@ -88,9 +90,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
@@ -140,6 +139,7 @@
     <Compile Include="Models\SettingLoadEvent.cs" />
     <Compile Include="Models\StartAgument.cs" />
     <Compile Include="Models\StaticResource.cs" />
+    <Compile Include="Models\WindowTip.cs" />
     <Compile Include="MyControl\PowershellRichTextBox.cs" />
     <Compile Include="Pages\DefaultGame.xaml.cs">
       <DependentUpon>DefaultGame.xaml</DependentUpon>
@@ -160,7 +160,7 @@
       <DependentUpon>AddServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\ProxyController.cs" />
-    <Compile Include="Utils\ProxyXml.cs" />
+    <Compile Include="Utils\ProxyJson.cs" />
     <Compile Include="Utils\Request.cs" />
     <Compile Include="ViewModels\DefaultGameVM.cs" />
     <Compile Include="ViewModels\DefaultServerVM.cs" />
@@ -282,8 +282,6 @@
   <ItemGroup>
     <Resource Include="IP.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\MessageBoxVm\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

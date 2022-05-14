@@ -18,23 +18,24 @@ namespace GenshinImpact_Lanucher.Utils
 
 
 
-    public class ProxyXml
+    public class ProxyJson
     {
 
         public ObservableCollection<ProxyArgs> ServerProfiles;
 
 
 
-        public void SaveProfiles()
+        public bool SaveProfiles()
         {
             var json = JsonConvert.SerializeObject(ServerProfiles);
             Console.WriteLine(json);
             File.WriteAllText(Path, json);
+            return true;
         }
 
 
         public string Path;
-        public ProxyXml(string XmlPath)
+        public ProxyJson(string XmlPath)
         {
             Path = XmlPath;
             ReadValue();
@@ -66,7 +67,6 @@ namespace GenshinImpact_Lanucher.Utils
             {
                 ServerProfiles = new ObservableCollection<ProxyArgs>();
             }
-
         }
 
 
@@ -75,9 +75,19 @@ namespace GenshinImpact_Lanucher.Utils
 
         public async Task<bool> Delete(ProxyArgs args)
         {
-            return ServerProfiles.Remove(args);
-
-            SaveProfiles();
+            return await Task.Run(() =>
+            {
+                foreach (var item in ServerProfiles)
+                {
+                    if (item.Name == args.Name)
+                    {
+                        ServerProfiles.Remove(args);
+                        SaveProfiles();
+                        return true;
+                    }
+                }
+                return false;
+            });
         }
 
 
@@ -89,13 +99,16 @@ namespace GenshinImpact_Lanucher.Utils
         /// <returns></returns>
         public async Task<bool> Add(ProxyArgs args)
         {
-            if (ServerProfiles == null)
+            return await Task.Run(() =>
             {
-                ServerProfiles = new ObservableCollection<ProxyArgs>();
-            }
-            ServerProfiles.Add(args);
-            SaveProfiles();
-            return true;
+                if (ServerProfiles == null)
+                {
+                    ServerProfiles = new ObservableCollection<ProxyArgs>();
+                }
+                ServerProfiles.Add(args);
+                SaveProfiles();
+                return true;
+            });
         }
     }
 }

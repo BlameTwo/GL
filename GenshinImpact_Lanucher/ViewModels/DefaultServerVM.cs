@@ -14,27 +14,28 @@ using System.Threading.Tasks;
 
 namespace GenshinImpact_Lanucher.ViewModels
 {
-    public class DefaultServerVM: ObservableRecipient, IRecipient<ProxyEvnetArgs>
+    public class DefaultServerVM: ObservableRecipient, IRecipient<ProxyEvnetArgs>,IRecipient<ServerStuatePorxy>
     {
         public DefaultServerVM()
         {
             IsActive = true;
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-            ProxyXml xml = new ProxyXml(myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
+            ProxyJson xml = new ProxyJson(myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
             AddServer = new RelayCommand(() =>
             {
                 var add = new AddServer();
                 add.ShowDialog();
             });
-            Loaded = new RelayCommand(async () =>
+            Loaded = new RelayCommand(() =>
             {
                 _Lists = xml.ServerProfiles;
             });
-            Unloaded = new RelayCommand(async () =>
+            Unloaded = new RelayCommand(() =>
             {
                 //xml.SaveProfiles();
             });
         }
+
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         Launcher_Ini myini { get; set; }
 
@@ -72,6 +73,35 @@ namespace GenshinImpact_Lanucher.ViewModels
                     break;
                 case XmlProxy.Updata:
                     //暂时不实现
+                    break;
+            }
+        }
+
+
+        /// <summary>
+        /// 服务器状态
+        /// </summary>
+        /// <param name="message">服务器状态</param>
+        public void Receive(ServerStuatePorxy message)
+        {
+            switch (message.State)
+            {
+                case ServerStuate.Runing:
+                    {
+                        //服务器运行状态
+                        break;
+                    }
+                case ServerStuate.Stop:
+                    {
+                        //服务器停滞状态
+                        break;
+                    }
+                case ServerStuate.Pause:
+                    {
+                        //服务器未知状态
+                        break;
+                    }
+                default:
                     break;
             }
         }

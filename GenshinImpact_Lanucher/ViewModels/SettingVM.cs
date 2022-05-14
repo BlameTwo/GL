@@ -19,7 +19,7 @@ namespace GenshinImpact_Lanucher.ViewModels
 {
     public class SettingVM: ObservableRecipient
     {
-        ProxyXml xml { get; set; }
+        ProxyJson xml { get; set; }
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public SettingVM()
         {
