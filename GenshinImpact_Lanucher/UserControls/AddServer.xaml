@@ -48,8 +48,8 @@
         <wpfui:Button Grid.Row="3"
                       Click="Button_Click"
                       Grid.ColumnSpan="2"
-                      HorizontalAlignment="Center" 
-                      Content="添加" Padding="10"/>
+                      HorizontalAlignment="Center" Padding="20 10"
+                      Content="添加"  />
         <TextBox 
                    x:Name="NameText" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
         <TextBox 
