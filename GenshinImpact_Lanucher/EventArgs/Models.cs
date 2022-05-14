@@ -29,6 +29,7 @@ namespace GenshinImpact_Lanucher.EventArgs
 
     public class ServerStuatePorxy
     {
+        public ProxyArgs Proxy { get; set; }
         public ServerStuate State { get; set; }
         public string Message { get; set; }
     }

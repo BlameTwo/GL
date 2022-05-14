@@ -52,6 +52,14 @@ namespace GenshinImpact_Lanucher.ViewModels
         public RelayCommand Loaded { get; set; }
         public RelayCommand Unloaded { get; set; }
 
+        private bool DialogShow;
+
+        public bool _DialogShow
+        {
+            get => DialogShow;
+            set => SetProperty(ref DialogShow, value);
+        }
+
 
         /// <summary>
         /// 处理消息
@@ -88,7 +96,7 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 case ServerStuate.Runing:
                     {
-                        //服务器运行状态
+                        _DialogShow = true;
                         break;
                     }
                 case ServerStuate.Stop:

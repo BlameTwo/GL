@@ -57,6 +57,7 @@
                 </wpfui:Button>
 
                 <wpfui:Button Padding="20 10" HorizontalAlignment="Right" 
+                              Click="Button_Click"
                           Content="加入游戏"/>
             </StackPanel>
         </Grid>

@@ -8,6 +8,7 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:dt="clr-namespace:GenshinImpact_Lanucher.ItemsControlDT"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DefaultServer"
+      x:Name="MyPage"
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
     <i:Interaction.Triggers>
         <i:EventTrigger x:Name="Loaded">
@@ -37,6 +38,8 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <ui:Dialog Grid.RowSpan="2" IsShown="{Binding _DialogShow}" DialogHeight="{Binding ElementName=MyPage,Path=ActualHeight}"
+                   DialogWidth="{Binding ElementName=MyPage,Path=ActualWidth}" ButtonLeftVisibility="Collapsed" ButtonRightVisibility="Collapsed"/>
     </Grid>
     
 </Page>
