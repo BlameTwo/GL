@@ -87,8 +87,9 @@ namespace GenshinImpact_Lanucher.Utils
                 //    }
                 //}
                 //return false;
-
-                return !ServerProfiles.Remove(args);
+                var r= ServerProfiles.Remove(args);
+                SaveProfiles();
+                return !r;
             });
         }
 
