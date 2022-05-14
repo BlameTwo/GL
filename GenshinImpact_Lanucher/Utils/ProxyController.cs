@@ -50,7 +50,10 @@ namespace GenshinImpact_Lanucher.Utils
 
             proxyServer.BeforeRequest += OnRequest;
             proxyServer.ServerCertificateValidationCallback += OnCertificateValidation;
-            
+            if (String.IsNullOrEmpty( port))
+            {
+                port = 11451.ToString(); ;
+            }
 
             explicitEndPoint = new ExplicitProxyEndPoint(IPAddress.Any,int.Parse(port), true)
             {

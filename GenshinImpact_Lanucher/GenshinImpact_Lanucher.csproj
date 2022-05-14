@@ -279,9 +279,6 @@
   <ItemGroup>
     <Resource Include="Resources\AniBack2.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="IP.xml" />
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
