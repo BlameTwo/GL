@@ -12,11 +12,14 @@ using Microsoft.Win32;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows;
+using GenshinImpact_Lanucher.Utils;
+using System.IO;
+
 namespace GenshinImpact_Lanucher.ViewModels
 {
     public class SettingVM: ObservableRecipient
     {
-
+        ProxyXml xml { get; set; }
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public SettingVM()
         {
@@ -27,9 +30,16 @@ namespace GenshinImpact_Lanucher.ViewModels
             RadServerCheck = new RelayCommand(() => setradio());
             HeightGameSizeTextChanged = new RelayCommand<string >((txt) => heightchanged(txt));
             WidthGameSizeTextChanged = new RelayCommand<string>((txt) => widthchanged(txt));
-            SaveServer = new RelayCommand(() => saveserver());
             WindowCheck = new RelayCommand(() => windowcheck());
             SelectServerPath = new RelayCommand(() => selectserverpath());
+            xml = new ProxyXml($@"{docpath}\GSIConfig\Config\Proxy.xml");
+            var b = myini.IniReadValue("MyLanucherConfig", "ProxyPath");
+            if (!string.IsNullOrWhiteSpace(b))
+            {
+                File.CreateText(xml.Path).Dispose();
+                xml.CreateHeader();
+                _ServerPath = xml.Path;
+            }
             SelectGamePath = new RelayCommand(()=>selectpath());
             WindowPop = new RelayCommand(() => popopen());
             if(StartArgs.GameServer == Server.B站)
@@ -40,33 +50,19 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 Server1 = true;
             }
-            _IP = myini.IniReadValue("Server", "IP");
-            _Host = myini.IniReadValue("Server", "Host");
-            _ServerPath = myini.IniReadValue("Server", "LocalHost");
         }
 
         private void selectserverpath()
         {
-            FolderBrowserDialog folder = new FolderBrowserDialog();
-            folder.Description = "选择服务器要运行本地客户端文件夹";
-            if(folder.ShowDialog() == DialogResult.OK)
+            FolderBrowserDialog file = new FolderBrowserDialog();
+            file.Description = "选择存放文件夹";
+            if (file.ShowDialog()  == DialogResult.OK)
             {
-                _ServerPath = folder.SelectedPath;
+                _ServerPath = file.SelectedPath;
+                myini.IniWriteValue("MyLanucherConfig", "ProxyPath", file.SelectedPath+ "/Proxy.xml");
             }
         }
 
-        private void saveserver()
-        {
-            if(!string.IsNullOrWhiteSpace(_IP) && !string.IsNullOrWhiteSpace(_Host))
-            {
-                myini.WriteServer(_IP, Host, _ServerPath);
-            }
-        }
-
-        private void setradio2()
-        {
-            throw new NotImplementedException();
-        }
 
         private void popopen()
         {
@@ -144,22 +140,6 @@ namespace GenshinImpact_Lanucher.ViewModels
             set => SetProperty(ref server2, value);
         }
 
-
-        private string IP;
-
-        public string _IP
-        {
-            get => IP;
-            set=> SetProperty(ref IP, value);   
-        }
-
-        private string  Host;
-
-        public string  _Host
-        {
-            get => Host;
-            set => SetProperty(ref Host, value);
-        }
 
         private string ServerPath;
 

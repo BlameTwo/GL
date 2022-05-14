@@ -20,9 +20,6 @@ namespace GenshinImpact_Lanucher.Utils
 
     public class ProxyController
     {
-
-
-
         ProxyServer proxyServer;
         ExplicitProxyEndPoint explicitEndPoint;
         private string port;
@@ -36,10 +33,17 @@ namespace GenshinImpact_Lanucher.Utils
 
         }
 
+        private bool IsRun;
+
+        public bool _IsRun
+        {
+            get { return proxyServer.ProxyRunning; }
+            set { IsRun = value; }
+        }
+
+
         public void Start()
         {
-
-
             proxyServer = new ProxyServer();
             proxyServer.CertificateManager.EnsureRootCertificate();
 

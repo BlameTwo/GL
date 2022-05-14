@@ -24,7 +24,7 @@ namespace GenshinImpact_Lanucher.GameNotifys
         /// <returns></returns>
         static string GetTips(int type)
         {
-            string retString = MyHttpClient.GetJson(Url);
+            string retString = MyHttpClient.GetJson(Url);       //简略公告
             var joject = JObject.Parse(retString);
             string message =  joject["message"].ToString();
             if (message=="OK")
@@ -38,7 +38,6 @@ namespace GenshinImpact_Lanucher.GameNotifys
                 if (type == 0)
                 {
                     return list[0];
-                    
                 }
                 return list[1];
             }
@@ -64,11 +63,14 @@ namespace GenshinImpact_Lanucher.GameNotifys
             return await Task.Run(() =>
             {
                 var list = new ObservableCollection<Notice>();
+
+                string morestring = MyHttpClient.GetJson(MoreUrl);      //完整公告
                 JObject jo = JObject.Parse(GetTips(0));
+                JArray morestr = JArray.Parse( JObject.Parse(morestring)["data"]["list"].ToString());
                 JArray jas = (JArray)jo["list"];
                 foreach (JToken ja in jas)
                 {
-                    list.Add(InitNotice(ja));
+                    list.Add(InitNotice(ja,ref morestr));
                 }
                 return list;
             });
@@ -81,29 +83,36 @@ namespace GenshinImpact_Lanucher.GameNotifys
             return await Task.Run(GetTwo);
         }
 
-        static Notice  InitNotice(JToken ja)
+        static Notice  InitNotice(JToken ja,ref JArray morejar)
         {
-            Notice no = new Notice()
+            Notice no = new Notice();
+            no.ann_id = ja["ann_id"].ToString();
+            no.title = ja["title"].ToString();
+            no.subtitle = ja["subtitle"].ToString();
+            no.banner = ja["banner"].ToString();
+            no.content = ja["content"].ToString();
+            no.type_label = ja["type_label"].ToString();
+            no.tag_label = ja["tag_label"].ToString();
+            no.login_alert = ja["login_alert"].ToString();
+            no.lang = ja["lang"].ToString();
+            no.Start_time = ja["start_time"].ToString();
+            no.End_time = ja["end_time"].ToString();
+            no.type = ja["type"].ToString();
+            no.remind = ja["remind"].ToString();
+            no.alert = ja["alert"].ToString();
+            no.tag_start_time = ja["tag_start_time"].ToString();
+            no.tag_end_time = ja["tag_end_time"].ToString();
+            no.remind_ver = ja["remind_ver"].ToString();
+            no.has_content = ja["has_content"].ToString();
+            foreach (var item in morejar)
             {
-                ann_id = ja["ann_id"].ToString(),
-                title = ja["title"].ToString(),
-                subtitle = ja["subtitle"].ToString(),
-                banner = ja["banner"].ToString(),
-                content = ja["content"].ToString(),
-                type_label = ja["type_label"].ToString(),
-                tag_label = ja["tag_label"].ToString(),
-                login_alert = ja["login_alert"].ToString(),
-                lang = ja["lang"].ToString(),
-                Start_time = ja["start_time"].ToString(),
-                End_time = ja["end_time"].ToString(),
-                type = ja["type"].ToString(),
-                remind = ja["remind"].ToString(),
-                alert = ja["alert"].ToString(),
-                tag_start_time = ja["tag_start_time"].ToString(),
-                tag_end_time = ja["tag_end_time"].ToString(),
-                remind_ver = ja["remind_ver"].ToString(),
-                has_content = ja["has_content"].ToString()
-            };
+                string str1 = item["ann_id"].ToString();
+                string str2 = ja["ann_id"].ToString();
+                if (str1 == str2)           //如果一样的话
+                {
+                    no.Content = item["content"].ToString();
+                }
+            }
             return no;
         }
 
@@ -114,11 +123,13 @@ namespace GenshinImpact_Lanucher.GameNotifys
         public static ObservableCollection<Notice> GetTwo()
         {
             var list = new ObservableCollection<Notice>();
+            string morestring = MyHttpClient.GetJson(MoreUrl);      //完整公告
             JObject jo = JObject.Parse(GetTips(1));
+            JArray morestr = JArray.Parse(JObject.Parse(morestring)["data"]["list"].ToString());
             JArray jas = (JArray)jo["list"];
             foreach (JToken ja in jas)
             {
-                list.Add(InitNotice(ja));
+                list.Add(InitNotice(ja, ref morestr));
             }
             return list;
         }
@@ -146,5 +157,7 @@ namespace GenshinImpact_Lanucher.GameNotifys
         public string Tag_Icon { get; set; }
         public string remind_ver { get; set; }
         public string has_content { get; set; }
+
+        public string Content { get; set; }
     }
 }

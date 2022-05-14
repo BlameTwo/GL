@@ -19,9 +19,12 @@ namespace GenshinImpact_Lanucher
         {
             try
             {
-                StartGame.Controller.Stop();
+                if(StartGame.Controller != null)
+                {
+                    StartGame.Controller.Stop();
+                }
             }
-            catch (Exception){}
+            catch (Exception){ Console.Write(e.ApplicationExitCode); }
             base.OnExit(e);
         }
     }

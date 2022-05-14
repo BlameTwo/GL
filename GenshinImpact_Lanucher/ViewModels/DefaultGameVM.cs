@@ -1,10 +1,12 @@
 using GenshinImpact_Lanucher.Model;
+using GenshinImpact_Lanucher.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GenshinImpact_Lanucher.ViewModels
@@ -12,6 +14,7 @@ namespace GenshinImpact_Lanucher.ViewModels
     public class DefaultGameVM: ObservableRecipient
     {
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        Launcher_Ini myini { get; set; }
         public DefaultGameVM()
         {
             StartGame = new AsyncRelayCommand(async () =>await start());
@@ -26,8 +29,9 @@ namespace GenshinImpact_Lanucher.ViewModels
                     (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
                     return;
                 };
-                //此处并未设置打开游戏
+                //这并不是打开游戏哦
                 await startAgument.ServerGo(bo,myini.GetAgument());
+                //string a =  MyHttpClient.GetJson($@"https://ys.mihoyo.com/status/server");
             });
         }
         StartGame startAgument = new StartGame();
@@ -51,7 +55,6 @@ namespace GenshinImpact_Lanucher.ViewModels
             };
         }
 
-        Launcher_Ini myini { get; set; }
         public AsyncRelayCommand StartGame { get; private set; }
 
         public RelayCommand<bool> StartServerGame { get; private set; }

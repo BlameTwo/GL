@@ -10,9 +10,62 @@
              HorizontalAlignment="Stretch"
              Background="Transparent"
              d:DesignHeight="450" d:DesignWidth="800">
-    <wpfui:Card HorizontalAlignment="Stretch" Margin="10" Padding="5">
-        <Grid>
-            <Image Source="{Binding banner}" Stretch="UniformToFill"/>
+    <UserControl.Resources>
+        <Storyboard x:Key="OnMouseEnter1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Grid1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stackPanel">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.75"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnMouseEnter2">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Grid1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stackPanel">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="card">
+            <BeginStoryboard x:Name="OnMouseEnter1_BeginStoryboard" Storyboard="{StaticResource OnMouseEnter1}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="card">
+            <BeginStoryboard x:Name="OnMouseEnter2_BeginStoryboard" Storyboard="{StaticResource OnMouseEnter2}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <wpfui:Card x:Name="card" HorizontalAlignment="Stretch" Margin="10" Padding="5">
+        <Grid x:Name="grid">
+            <Image x:Name="image" Source="{Binding banner}" Stretch="UniformToFill"/>
+            <StackPanel x:Name="stackPanel" Background="Black" Opacity="0"></StackPanel>
+            <!--内容模板-->
+            <Grid x:Name="Grid1" Opacity="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock
+                    TextWrapping="Wrap"
+                    x:Name="textBlock" Margin="10" Text="{Binding subtitle}" FontSize="15" FontWeight="Bold"/>
+
+                <TextBlock
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top"
+                    Grid.Row="1" Margin="10" Text="{Binding title}" FontSize="15" FontWeight="Bold"/>
+                <TextBlock Grid.Row="2" Margin="10">
+                    <Run Text="时间："/>
+                    <Run Text="{Binding Start_time}" FontSize="10"/>
+                    <Run Text="--"/>
+                    <Run Text="{Binding End_time}"/>
+                </TextBlock>
+            </Grid>
         </Grid>
     </wpfui:Card>
 </UserControl>

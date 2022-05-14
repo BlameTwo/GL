@@ -121,9 +121,13 @@
     </ApplicationDefinition>
     <Compile Include="Account\Accounts.cs" />
     <Compile Include="Convert\ServerConvert.cs" />
+    <Compile Include="EventArgs\Models.cs" />
     <Compile Include="GameNotifys\GameNitify.cs" />
     <Compile Include="ItemsControlDT\NitifyGameDT.xaml.cs">
       <DependentUpon>NitifyGameDT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsControlDT\ServerDt.xaml.cs">
+      <DependentUpon>ServerDt.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\HtmlFormat.cs" />
@@ -135,10 +139,12 @@
     <Compile Include="Models\SettingLoadEvent.cs" />
     <Compile Include="Models\StartAgument.cs" />
     <Compile Include="Models\StaticResource.cs" />
-    <Compile Include="Models\Tran.cs" />
     <Compile Include="MyControl\PowershellRichTextBox.cs" />
     <Compile Include="Pages\DefaultGame.xaml.cs">
       <DependentUpon>DefaultGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DefaultServer.xaml.cs">
+      <DependentUpon>DefaultServer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -149,13 +155,22 @@
     <Compile Include="Pages\SettingApp.xaml.cs">
       <DependentUpon>SettingApp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AddServer.xaml.cs">
+      <DependentUpon>AddServer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\ProxyController.cs" />
+    <Compile Include="Utils\ProxyXml.cs" />
     <Compile Include="Utils\Request.cs" />
     <Compile Include="ViewModels\DefaultGameVM.cs" />
+    <Compile Include="ViewModels\DefaultServerVM.cs" />
     <Compile Include="ViewModels\MainWinVM.cs" />
     <Compile Include="ViewModels\NotifyGamePageVM.cs" />
     <Compile Include="ViewModels\SettingVM.cs" />
     <Page Include="ItemsControlDT\NitifyGameDT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemsControlDT\ServerDt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,6 +190,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\DefaultServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SettingApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AddServer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,6 +278,11 @@
   <ItemGroup>
     <Resource Include="Resources\AniBack2.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="IP.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\MessageBoxVm\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -40,7 +40,7 @@ namespace GenshinImpact_Lanucher
         {
             Theme.Changed += Theme_Changed;    //Window11
             //设置上自动修改颜色，背景材质为默认
-            WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Auto, true, true);
+            WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
             Console.WriteLine("完成启动器启动。");
         }
 

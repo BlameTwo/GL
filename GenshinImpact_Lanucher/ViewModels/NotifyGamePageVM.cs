@@ -1,4 +1,5 @@
 ﻿using GenshinImpact_Lanucher.GameNotifys;
+using GenshinImpact_Lanucher.Utils;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;

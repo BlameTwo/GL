@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Proxys>
+	<Proxy Host="127.0.0.1" Port="11451" Name="本地服务器"/>
+	<Proxy Host="106.12.143.157" Port="11451" Name="我的远程服务器"/>
+</Proxys>
