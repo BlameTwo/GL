@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,14 @@ namespace GenshinImpact_Lanucher.Utils
             return await Task.Run(() =>
             {
                 ObservableCollection<ProxyArgs> retval = new ObservableCollection<ProxyArgs>();
+
+                if (!File.Exists(Path))
+                {
+                    var a=File.Create(Path);
+                    a.Close();
+                }
+                
+                
                 XmlDoc.Load(Path);
                 var xmlel = XmlDoc.SelectSingleNode("Proxys");
                 var nodes = xmlel.SelectNodes("Proxy");

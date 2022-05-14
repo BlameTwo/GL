@@ -15,18 +15,18 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="7*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ui:Button Content="添加连接" Icon="Add24" HorizontalAlignment="Center" Margin="10" Command="{Binding AddServer}"/>
+            <ui:Button HorizontalAlignment="Left" Content="添加连接" Icon="Add24" Margin="10" Command="{Binding AddServer}" Cursor="Hand"/>
         </Grid>
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding _Lists,Mode=TwoWay}">
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding _Lists,Mode=TwoWay}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
                     <dt:ServerDT MyData="{Binding}"/>

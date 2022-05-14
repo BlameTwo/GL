@@ -19,7 +19,7 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <ToggleButton
                 ToolTipService.ToolTip="您的电脑可能会没网哦，需要网的时候请退出游戏并关闭本按钮。"
-                Height="45" x:Name="Flage" Margin="0 0 10 10 " Padding="10"  FontSize="20">
+                Height="45" x:Name="Flage" Margin="0 0 10 10 " Padding="10"  FontSize="20" Cursor="Hand">
                 <ToggleButton.Content>
                     <Grid>
                         <Grid.ColumnDefinitions>
