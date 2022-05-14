@@ -39,7 +39,14 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <ui:Dialog Grid.RowSpan="2" IsShown="{Binding _DialogShow}" DialogHeight="{Binding ElementName=MyPage,Path=ActualHeight}"
-                   DialogWidth="{Binding ElementName=MyPage,Path=ActualWidth}" ButtonLeftVisibility="Collapsed" ButtonRightVisibility="Collapsed"/>
+                   DialogWidth="{Binding ElementName=MyPage,Path=ActualWidth}" ButtonLeftVisibility="Collapsed" ButtonRightVisibility="Collapsed">
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <ui:SymbolIcon Symbol="Checkmark48"/>
+                <TextBlock Text="游戏已经启动！"/>
+                <ui:Button Content="关闭连接" Command="{Binding CloseProxy}"/>
+            </StackPanel>
+        </ui:Dialog>
     </Grid>
     
 </Page>

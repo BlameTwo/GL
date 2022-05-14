@@ -1,5 +1,6 @@
 ﻿using GenshinImpact_Lanucher.EventArgs;
 using GenshinImpact_Lanucher.Model;
+using GenshinImpact_Lanucher.Models;
 using GenshinImpact_Lanucher.UserControls;
 using GenshinImpact_Lanucher.Utils;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -34,8 +35,12 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 xml.SaveProfiles();
             });
+            CloseProxy = new RelayCommand(() =>
+            {
+                Receive(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
+            });
         }
-
+        ProxyController Proxy { get; set; }
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         Launcher_Ini myini { get; set; }
 
@@ -86,6 +91,8 @@ namespace GenshinImpact_Lanucher.ViewModels
         }
 
 
+        public RelayCommand CloseProxy { get; set; }
+
         /// <summary>
         /// 服务器状态
         /// </summary>
@@ -96,12 +103,21 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 case ServerStuate.Runing:
                     {
+                        //这里重启一下服务器
+                        Proxy = new ProxyController(myini.IniReadValue("MyLanucherConfig", "Port"), message.Proxy.Host);
                         _DialogShow = true;
+                        //MyHttpClient.GetJson($@"https://{message.Proxy.Host}/status/server");
+                        Proxy.Start();
                         break;
                     }
                 case ServerStuate.Stop:
                     {
                         //服务器停滞状态
+                        _DialogShow = false;
+
+                        if (Proxy != null)
+                            Proxy.Stop();
+                        Proxy = null;
                         break;
                     }
                 case ServerStuate.Pause:

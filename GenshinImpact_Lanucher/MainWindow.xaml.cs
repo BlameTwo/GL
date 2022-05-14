@@ -1,4 +1,5 @@
 ﻿using GenshinImpact_Lanucher.Model;
+using GenshinImpact_Lanucher.Utils;
 using GenshinImpact_Lanucher.ViewModels;
 using Microsoft.VisualBasic.Devices;
 using System;

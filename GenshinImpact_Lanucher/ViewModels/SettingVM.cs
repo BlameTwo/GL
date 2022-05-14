@@ -31,6 +31,13 @@ namespace GenshinImpact_Lanucher.ViewModels
             HeightGameSizeTextChanged = new RelayCommand<string >((txt) => heightchanged(txt));
             WidthGameSizeTextChanged = new RelayCommand<string>((txt) => widthchanged(txt));
             WindowCheck = new RelayCommand(() => windowcheck());
+
+
+            _ServerPath = string.IsNullOrWhiteSpace(
+                myini.IniReadValue("MyLanucherConfig", "Port"))?
+                "": myini.IniReadValue("MyLanucherConfig", "Port");
+
+
             SelectServerPath = new RelayCommand(() => selectserverpath());
             //xml = new ProxyXml($@"{docpath}\GSIConfig\Config\Proxy.xml");
             var b = myini.IniReadValue("MyLanucherConfig", "ProxyPath");
@@ -54,13 +61,7 @@ namespace GenshinImpact_Lanucher.ViewModels
 
         private void selectserverpath()
         {
-            FolderBrowserDialog file = new FolderBrowserDialog();
-            file.Description = "选择存放文件夹";
-            if (file.ShowDialog()  == DialogResult.OK)
-            {
-                _ServerPath = file.SelectedPath;
-                myini.IniWriteValue("MyLanucherConfig", "ProxyPath", file.SelectedPath+ "/Proxy.json");
-            }
+            myini.IniWriteValue("MyLanucherConfig", "Port", _ServerPath);
         }
 
 

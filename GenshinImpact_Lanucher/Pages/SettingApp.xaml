@@ -153,24 +153,19 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock 
-                        VerticalAlignment="Center" 
-                        Grid.Row="1"
-                        Margin="0 10 0 0"
-                        Text="服务器配置文件"/>
                     <Grid Grid.Row="1" Grid.Column="1" Margin="10 10 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <wpfui:TextBox Placeholder="服务器文件存放地址"
+                        <wpfui:TextBox Placeholder="端口号"
                                  ToolTipService.ToolTip="本服务器要求本地游戏版本为2.6"
                                  Height="40"
                                  Text="{Binding _ServerPath,Mode=TwoWay}">
                         </wpfui:TextBox>
                         <Button
                             Grid.Column="1"
-                            Content="浏览" Padding="10" Margin="10,0,0,0" Command="{Binding SelectServerPath}" Cursor="Hand"/>
+                            Content="确定" Padding="10" Margin="10,0,0,0" Command="{Binding SelectServerPath}" Cursor="Hand"/>
                     </Grid>
                 </Grid>
             </wpfui:CardExpander>
