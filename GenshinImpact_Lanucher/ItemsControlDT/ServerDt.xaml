@@ -32,9 +32,14 @@
             
             
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <TextBlock
-                    Text="{Binding Name}" 
-                    FontSize="18"/>
+                <TextBlock FontSize="18">
+                    <Run Text="{Binding Name}"/>
+                    <Run Text="["/>
+                    <Run Text="{Binding Host}"/>
+                    <Run Text="]"/>
+                </TextBlock>
+                    
+                    
 
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
