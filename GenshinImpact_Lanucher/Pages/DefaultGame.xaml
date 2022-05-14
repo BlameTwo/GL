@@ -17,7 +17,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-            <ToggleButton
+            <!--<ToggleButton
                 ToolTipService.ToolTip="您的电脑可能会没网哦，需要网的时候请退出游戏并关闭本按钮。"
                 Height="45" x:Name="Flage" Margin="0 0 10 10 " Padding="10"  FontSize="20" Cursor="Hand">
                 <ToggleButton.Content>
@@ -35,7 +35,7 @@
                         <i:InvokeCommandAction Command="{Binding StartServerGame}" CommandParameter="{Binding ElementName=Flage,Path=IsChecked}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </ToggleButton>
+            </ToggleButton>-->
             <wpfui:Button  Grid.Row="1" HorizontalAlignment="Right" Icon="Play12" Content="开始游戏" VerticalAlignment="Bottom" Margin="0 0 10 10" Height="45" Padding="10" FontSize="15"
                        Command="{Binding StartGame}"/>
         </StackPanel>

@@ -28,7 +28,11 @@ namespace GenshinImpact_Lanucher.ViewModels
             });
             Loaded = new RelayCommand(async () =>
             {
-                _Lists = await xml.ReadValue();
+                _Lists = xml.ServerProfiles;
+            });
+            Unloaded = new RelayCommand(async () =>
+            {
+                //xml.SaveProfiles();
             });
         }
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -45,6 +49,7 @@ namespace GenshinImpact_Lanucher.ViewModels
 
         public RelayCommand AddServer { get; set; }
         public RelayCommand Loaded { get; set; }
+        public RelayCommand Unloaded { get; set; }
 
 
         /// <summary>

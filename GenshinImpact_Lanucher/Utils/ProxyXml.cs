@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -15,130 +16,86 @@ namespace GenshinImpact_Lanucher.Utils
         public string Name { get; set; }
     }
 
+
+
     public class ProxyXml
     {
-        XmlDocument XmlDoc = new XmlDocument();
+
+        public ObservableCollection<ProxyArgs> ServerProfiles;
+
+
+
+        public void SaveProfiles()
+        {
+            var json = JsonConvert.SerializeObject(ServerProfiles);
+            Console.WriteLine(json);
+            File.WriteAllText(Path, json);
+        }
+
+
         public string Path;
         public ProxyXml(string XmlPath)
         {
             Path = XmlPath;
-        }
-
-        public async void CreateHeader()
-        {
-            await Task.Run(() =>
-            {
-                XmlDocument xmldoc = new XmlDocument();
-                var node = xmldoc.CreateXmlDeclaration("1.0", "utf-8","");
-                xmldoc.AppendChild(node);
-                XmlElement father = xmldoc.CreateElement("Proxys");
-                xmldoc.AppendChild(father);
-                xmldoc.Save(Path);
-            });
+            ReadValue();
         }
 
 
-        public async Task<ObservableCollection<ProxyArgs>> ReadValue()
+
+        public void ReadValue()
         {
-            return await Task.Run(() =>
+            if (!File.Exists(Path))
             {
-                ObservableCollection<ProxyArgs> retval = new ObservableCollection<ProxyArgs>();
-
-                if (!File.Exists(Path))
-                {
-                    var a=File.Create(Path);
-                    a.Close();
-                }
-                
-                
-                XmlDoc.Load(Path);
-                var xmlel = XmlDoc.SelectSingleNode("Proxys");
-                var nodes = xmlel.SelectNodes("Proxy");
-                foreach (XmlNode item in nodes)
-                {
-                    var xmlel2 = item  as XmlElement;
-                    ProxyArgs arg = new ProxyArgs()
-                    {
-                        Host = xmlel2.GetAttribute("Host"),
-                        Name = xmlel2.GetAttribute("Name")
-                    };
-                    retval.Add(arg);
-                }
-                return retval;
-            });
-        } 
-
-
-        public async Task<bool> UpDate(ProxyArgs args)
-        {
-            return await Task.Run(async ()  =>
+                File.Create(Path).Close();
+            }
+            else
             {
-                XmlDoc.Load(Path);
-                var xmlel = XmlDoc.SelectSingleNode("Proxys");
-                if(await Delete(args) == true)
+                var profiles = File.ReadAllText(Path);
+                try
                 {
-                    await Add(args);
-                    return true;
+                    ServerProfiles = JsonConvert.DeserializeObject<ObservableCollection<ProxyArgs>>(profiles);
+
                 }
-                //没有找到节点
-                return false;
-            });
+                catch (Exception ex)
+                {
+                    ServerProfiles = new ObservableCollection<ProxyArgs>();
+                }
+            }
+
+            if (ServerProfiles == null)
+            {
+                ServerProfiles = new ObservableCollection<ProxyArgs>();
+            }
+
         }
+
+
+
 
 
         public async Task<bool> Delete(ProxyArgs args)
         {
-            return await Task.Run(() =>
-            {
-                XmlDoc.Load(Path);
-                var xmlel = XmlDoc.SelectSingleNode("Proxys");
-                if (ProxyExists(args, xmlel as XmlElement))
-                {
-                    //可以修改
-                    var son = xmlel.SelectSingleNode($@".//Proxy[@Name='{args.Name}']");
-                    xmlel.RemoveChild(son);
-                    return true;
-                }
-                //没有找到节点
-                return false;
-            });
+            return ServerProfiles.Remove(args);
+
+            SaveProfiles();
         }
 
 
-        public bool ProxyExists(ProxyArgs args,XmlElement xmlel)
-        {
-            foreach (var item in xmlel.SelectNodes("Proxy"))
-            {
-                if (((XmlElement)item).GetAttribute("Name") == args.Name)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
 
         /// <summary>
         /// 插入服务器段
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public async  Task<bool> Add(ProxyArgs args)
+        public async Task<bool> Add(ProxyArgs args)
         {
-            return await Task.Run(() =>
+            if (ServerProfiles == null)
             {
-                XmlDoc.Load(Path);
-                var xmlel = XmlDoc.SelectSingleNode("Proxys");
-                if(!ProxyExists(args,xmlel as XmlElement))
-                {
-                    XmlElement son = XmlDoc.CreateElement("Proxy");
-                    son.SetAttribute("Host", args.Host);
-                    son.SetAttribute("Name", args.Name);
-                    xmlel.AppendChild(son);
-                    XmlDoc.Save(Path);
-                    return true;
-                }
-                return false;
-            });
+                ServerProfiles = new ObservableCollection<ProxyArgs>();
+            }
+            ServerProfiles.Add(args);
+            SaveProfiles();
+            return true;
         }
     }
 }

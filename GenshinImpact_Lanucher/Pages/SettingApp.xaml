@@ -100,7 +100,7 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </TextBox>
-                        <TextBlock Text="X" Margin="10 0" FontSize="20" VerticalAlignment="Center" />
+                        <TextBlock Text="×" Margin="10 0" FontSize="20" VerticalAlignment="Center" />
                         <TextBox 
                             Width="80" 
                             x:Name="HeightGame"

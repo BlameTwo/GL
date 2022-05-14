@@ -13,6 +13,9 @@
         <i:EventTrigger x:Name="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
         </i:EventTrigger>
+        <i:EventTrigger x:Name="Unload" EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding Unloaded}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
@@ -24,7 +27,8 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ui:Button HorizontalAlignment="Left" Content="添加连接" Icon="Add24" Margin="10" Command="{Binding AddServer}" Cursor="Hand"/>
+            <ui:Button HorizontalAlignment="Left" Content="添加连接" Icon="Add24" Padding="10 10"
+                       Margin="2 10" Command="{Binding AddServer}" Cursor="Hand"/>
         </Grid>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding _Lists,Mode=TwoWay}">
             <ItemsControl.ItemTemplate>

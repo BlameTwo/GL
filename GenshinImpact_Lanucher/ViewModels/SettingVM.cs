@@ -32,14 +32,14 @@ namespace GenshinImpact_Lanucher.ViewModels
             WidthGameSizeTextChanged = new RelayCommand<string>((txt) => widthchanged(txt));
             WindowCheck = new RelayCommand(() => windowcheck());
             SelectServerPath = new RelayCommand(() => selectserverpath());
-            xml = new ProxyXml($@"{docpath}\GSIConfig\Config\Proxy.xml");
+            //xml = new ProxyXml($@"{docpath}\GSIConfig\Config\Proxy.xml");
             var b = myini.IniReadValue("MyLanucherConfig", "ProxyPath");
-            if (!string.IsNullOrWhiteSpace(b))
-            {
-                File.CreateText(xml.Path).Dispose();
-                xml.CreateHeader();
-                _ServerPath = xml.Path;
-            }
+            //if (!string.IsNullOrWhiteSpace(b))
+            //{
+            //    File.CreateText(xml.Path).Dispose();
+            //    xml.CreateHeader();
+            //    _ServerPath = xml.Path;
+            //}
             SelectGamePath = new RelayCommand(()=>selectpath());
             WindowPop = new RelayCommand(() => popopen());
             if(StartArgs.GameServer == Server.B站)
@@ -59,7 +59,7 @@ namespace GenshinImpact_Lanucher.ViewModels
             if (file.ShowDialog()  == DialogResult.OK)
             {
                 _ServerPath = file.SelectedPath;
-                myini.IniWriteValue("MyLanucherConfig", "ProxyPath", file.SelectedPath+ "/Proxy.xml");
+                myini.IniWriteValue("MyLanucherConfig", "ProxyPath", file.SelectedPath+ "/Proxy.json");
             }
         }
 
