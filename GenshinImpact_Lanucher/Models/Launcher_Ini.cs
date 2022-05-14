@@ -260,6 +260,7 @@ namespace GenshinImpact_Lanucher.Model
         /// <returns></returns>
         public bool WriteServer(string IP,string Host,string ServerPath)
         {
+            //ServerPath = "server.json";
             IniWriteValue("Server", "IP", IP);
             IniWriteValue("Server", "Host",Host);
             IniWriteValue("Server","LocalHost", ServerPath);

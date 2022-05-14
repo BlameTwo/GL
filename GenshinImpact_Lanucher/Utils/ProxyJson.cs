@@ -45,6 +45,11 @@ namespace GenshinImpact_Lanucher.Utils
 
         public void ReadValue()
         {
+
+            if (String.IsNullOrEmpty(Path))
+            {
+                Path = "Proxy.json";
+            }
             if (!File.Exists(Path))
             {
                 File.Create(Path).Close();

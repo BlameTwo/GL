@@ -9,6 +9,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,9 @@ namespace GenshinImpact_Lanucher.ViewModels
         {
             IsActive = true;
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-            ProxyJson xml = new ProxyJson(myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
+            var cfgpath = myini.IniReadValue("MyLanucherConfig", "ProxyPath");
+            //if (File.Exists)
+            ProxyJson xml = new ProxyJson(cfgpath);
             AddServer = new RelayCommand(() =>
             {
                 var add = new AddServer();
