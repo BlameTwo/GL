@@ -58,5 +58,16 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
             else
                 WindowTip.TipShow("错误！请联系制作人员！", "此错误来自于逻辑层面错误，必要的话，请把日志文件发给开发者", WPFUI.Common.SymbolRegular.ErrorCircleSettings16);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ServerStuatePorxy arg = new ServerStuatePorxy()
+            {
+                State = ServerStuate.Runing,
+                Message = "连接到服务器成功！"
+                ,Proxy = MyData
+            };
+            WeakReferenceMessenger.Default.Send(arg);
+        }
     }
 }
