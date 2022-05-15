@@ -1,4 +1,5 @@
 ﻿using GenshinImpact_Lanucher.GameNotifys;
+using GenshinImpact_Lanucher.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +51,10 @@ namespace GenshinImpact_Lanucher.Utils
 
             proxyServer.BeforeRequest += OnRequest;
             proxyServer.ServerCertificateValidationCallback += OnCertificateValidation;
-            
+            if (String.IsNullOrEmpty( port))
+            {
+                port = 11451.ToString(); ;
+            }
 
             explicitEndPoint = new ExplicitProxyEndPoint(IPAddress.Any,int.Parse(port), true)
             {
@@ -72,6 +76,7 @@ namespace GenshinImpact_Lanucher.Utils
             // Only explicit proxies can be set as system proxy!
             proxyServer.SetAsSystemHttpProxy(explicitEndPoint);
             proxyServer.SetAsSystemHttpsProxy(explicitEndPoint);
+            
         }
 
 

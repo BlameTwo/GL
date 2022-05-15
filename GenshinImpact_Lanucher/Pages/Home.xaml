@@ -10,7 +10,7 @@
       Background="Transparent"
       xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI">
 
-    <Grid Margin="0 -30 0 0">
+    <Grid Margin="0 0 0 0">
         <wpfui:Card HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50">
             <Grid>
                 <Grid.RowDefinitions>
@@ -22,11 +22,11 @@
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0 10 0 0">
                     <wpfui:Hyperlink Content="GitHub" Icon="WebAsset24" HorizontalAlignment="Center"  />
                     <TextBlock
-                        Text="本项目联机功能最好使用Grasscutter"
+                        Text="本项目联机功能推荐使用基于Grasscutter的服务器！"
                         Margin="0 10 0 0"
                         HorizontalAlignment="Center" />
                     <TextBlock
-                        Text="快乐的玩吧！"
+                        Text="Enjoy it！"
                         FontSize="15"
                         Margin="0 10 0 0"
                         HorizontalAlignment="Center" />
@@ -35,7 +35,7 @@
                         VerticalAlignment="Bottom"
                         Margin="0 15 0 0 "
                         FontSize="15"
-                        Text="By 怪"/>
+                        Text="By 怪 、SC"/>
                 </StackPanel>
             </Grid>
         </wpfui:Card>

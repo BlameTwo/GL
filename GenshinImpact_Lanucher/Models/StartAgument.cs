@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,15 +71,41 @@ namespace GenshinImpact_Lanucher.Model
                         {
                             pop = "-popupwindow 1";
                         }
-                        p.StartInfo = new ProcessStartInfo()
+
+
+                        if(File.Exists(Path.Combine(args.GamePath , "YuanShen.exe"))){
+                            p.StartInfo = new ProcessStartInfo()
+                            {
+                                FileName =Path.Combine( args.GamePath , "YuanShen.exe"),
+
+
+
+
+                                Verb = "runas",
+                                Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
+                                $" -screen-width {args.GameWidth} {pop}",
+                                WorkingDirectory = args.GamePath,
+                                UseShellExecute = true,
+                            };
+
+                        }
+                        else
                         {
-                            FileName = args.GamePath + "//YuanShen.exe",
-                            Verb = "runas",
-                            Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
-                            $" -screen-width {args.GameWidth} {pop}",
-                            WorkingDirectory = args.GamePath,
-                            UseShellExecute = true,
-                        };
+                            p.StartInfo = new ProcessStartInfo()
+                            {
+                                FileName =Path.Combine( args.GamePath ,"GenshinImpact.exe"),
+
+
+
+
+                                Verb = "runas",
+                                Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
+                                $" -screen-width {args.GameWidth} {pop}",
+                                WorkingDirectory = args.GamePath,
+                                UseShellExecute = true,
+                            };
+
+                        }
                         p.Start();
                         return "1";
                     }

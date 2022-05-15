@@ -18,29 +18,50 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock 
-                    Text="{Binding Name}" 
-                    FontSize="25"/>
-                <wpfui:Button>
-                    <wpfui:SymbolIcon Symbol="arrowundo16"/>
-                </wpfui:Button>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ProgressBar IsIndeterminate="True" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
+            <wpfui:SymbolIcon FontSize="24" Symbol="Server24" Grid.RowSpan="2" Margin="10 0">
+                
+            </wpfui:SymbolIcon>
+            
+            
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <TextBlock FontSize="18">
+                    <Run Text="{Binding Name}"/>
+                    <Run Text="["/>
+                    <Run Text="{Binding Host}"/>
+                    <Run Text="]"/>
+                </TextBlock>
+                    
+                    
+
             </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <wpfui:Hyperlink>
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle x:Name="ServerStatic"></Rectangle>
-                        <TextBlock x:Name="ServerStaticText"/>
-                    </StackPanel>
-                </wpfui:Hyperlink>
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
                 <TextBlock FontSize="15">
                     <Run Text="人数："/>
                     <Run x:Name="PeopleCount"/>
+                    <Run Text="，服务器游戏版本："/>
+                    <Run x:Name="ServerVersion"/>
                 </TextBlock>
             </StackPanel>
-            <wpfui:Button HorizontalAlignment="Right" Grid.RowSpan="2"
-                          Content="连接"/>
+            
+            <StackPanel Grid.Column="2" Grid.RowSpan="2" Orientation="Horizontal">
+                <wpfui:Button Padding="10 10" Margin="10 0" Click="Button_Click_1">
+                    <wpfui:SymbolIcon x:Name="StateServer" Foreground="Red" Symbol="Send28"/>
+                </wpfui:Button>
+
+                <wpfui:Button Padding="20 10" HorizontalAlignment="Right" 
+                              Click="Button_Click"
+                          Content="加入游戏"/>
+            </StackPanel>
         </Grid>
     </wpfui:Card>
 </UserControl>

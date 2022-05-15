@@ -8,31 +8,53 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:dt="clr-namespace:GenshinImpact_Lanucher.ItemsControlDT"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DefaultServer"
+      x:Name="MyPage"
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
     <i:Interaction.Triggers>
         <i:EventTrigger x:Name="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
         </i:EventTrigger>
+        <i:EventTrigger x:Name="Unload" EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding Unloaded}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="7*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ui:Button Content="添加连接" Icon="Add24" HorizontalAlignment="Center" Margin="10" Command="{Binding AddServer}"/>
+            <ui:Button HorizontalAlignment="Left" Content="添加连接" Icon="Add24" Padding="10 10"
+                       Margin="2 10" Command="{Binding AddServer}" Cursor="Hand"/>
         </Grid>
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding _Lists,Mode=TwoWay}">
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding _Lists,Mode=TwoWay}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
                     <dt:ServerDT MyData="{Binding}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <ui:Dialog Grid.RowSpan="2" IsShown="{Binding _DialogShow}"
+                   DialogHeight="{Binding ElementName=MyPage,Path=ActualHeight}"
+                   DialogWidth="{Binding ElementName=MyPage,Path=ActualWidth}" ButtonLeftVisibility="Collapsed" ButtonRightVisibility="Collapsed">
+
+            <ui:CardControl HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <StackPanel Margin="60">
+                    <ui:SymbolIcon FontSize="50" Margin="0 10" Symbol="Checkmark48"/>
+                    <TextBlock FontSize="24" Text="代理已启动"
+                               VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <TextBlock 
+                        Margin="0 10 0 0"
+                        FontSize="15"
+                        Text="如果计算机断网请关闭功能，并重启计算机"/>
+                    <ui:Button Margin="0 10" Padding="10 " Content="关闭连接" Command="{Binding CloseProxy}"/>
+                </StackPanel>
+            </ui:CardControl>
+        </ui:Dialog>
     </Grid>
     
 </Page>

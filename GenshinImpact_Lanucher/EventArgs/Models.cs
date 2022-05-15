@@ -21,4 +21,16 @@ namespace GenshinImpact_Lanucher.EventArgs
     {
         Add,Remove,Updata
     }
+
+    public enum ServerStuate
+    {
+        Runing,Stop,Pause
+    }
+
+    public class ServerStuatePorxy
+    {
+        public ProxyArgs Proxy { get; set; }
+        public ServerStuate State { get; set; }
+        public string Message { get; set; }
+    }
 }

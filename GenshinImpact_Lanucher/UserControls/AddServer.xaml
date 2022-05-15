@@ -19,7 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TextBlock FontSize="30"
@@ -27,12 +27,12 @@
                    HorizontalAlignment="Center"
                    Margin="0 20 0 0"
                    Grid.ColumnSpan="2"/>
-        <wpfui:Button
+        <wpfui:Button Background="Transparent" BorderThickness="0"
             Margin="10"
                       VerticalAlignment="Top"
                       Click="Hyperlink_Click"
                       HorizontalAlignment="Right"
-                      Grid.ColumnSpan="2">
+                      Grid.ColumnSpan="2" Cursor="Hand">
             <wpfui:SymbolIcon Symbol="Dismiss24">
                 
             </wpfui:SymbolIcon>
@@ -42,7 +42,7 @@
                    VerticalAlignment="Center" 
                    FontSize="15"
                    Grid.Row="1"/>
-        <TextBlock Text="服务器地址："
+        <TextBlock Text="地址："
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    FontSize="15"
@@ -50,8 +50,8 @@
         <wpfui:Button Grid.Row="3"
                       Click="Button_Click"
                       Grid.ColumnSpan="2"
-                      HorizontalAlignment="Center" 
-                      Content="添加" Padding="10"/>
+                      HorizontalAlignment="Center" Padding="20 10"
+                      Content="添加"  />
         <TextBox 
                    x:Name="NameText" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
         <TextBox 

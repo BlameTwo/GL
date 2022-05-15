@@ -69,7 +69,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <wpfui:NavigationCompact
+            <wpfui:NavigationStore
                 HorizontalAlignment="Left"
                 SelectedPageIndex="0"
                 
@@ -77,14 +77,17 @@
                 <wpfui:Navigation.Items>
                     <wpfui:NavigationItem Content="首页" Icon="Home28" Page="{x:Type pages:Home}"/>
                     <wpfui:NavigationItem Content="游戏" Icon="Games16" Page="{x:Type pages:DefaultGame}"/>
-                    <wpfui:NavigationItem Content="私服" Icon="Server24" Page="{x:Type pages:DefaultServer}"/>
-                    <wpfui:NavigationItem Content="公告" Icon="Note16" Page="{x:Type pages:NotifyGamePage}"/>
-                </wpfui:Navigation.Items>
-                <wpfui:NavigationCompact.Footer>
-                    <wpfui:NavigationItem Content="设置" Icon="Settings28" Page="{x:Type pages:SettingApp}"/>
-                </wpfui:NavigationCompact.Footer>
+                    <wpfui:NavigationItem Content="服务器" Icon="Server24" Page="{x:Type pages:DefaultServer}"/>
+                    <wpfui:NavigationItem Content="官方公告" Icon="Note16" Page="{x:Type pages:NotifyGamePage}"/>
 
-            </wpfui:NavigationCompact>
+                    <wpfui:NavigationItem Content="设置" Icon="Settings28" Page="{x:Type pages:SettingApp}"/>
+
+                </wpfui:Navigation.Items>
+                
+                <!--<wpfui:NavigationCompact.Footer>-->
+                <!--</wpfui:NavigationCompact.Footer>-->
+
+            </wpfui:NavigationStore>
             <Grid
                 Grid.Row="1"
                 Grid.Column="1">
@@ -92,10 +95,10 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <wpfui:Breadcrumb
+                <!--<wpfui:Breadcrumb
                     Grid.Row="0"
                     Margin="0,0,0,18"
-                    Navigation="{Binding ElementName=RootNavigation}"/>
+                    Navigation="{Binding ElementName=RootNavigation}"/>-->
                 <Frame x:Name="RootFrame" Grid.Row="1" />
             </Grid>
         </Grid>
@@ -113,6 +116,7 @@
         <wpfui:Dialog 
             Grid.Row="1"
             x:FieldModifier="public"
+            
             ButtonLeftVisibility="Collapsed"
             ButtonRightVisibility="Collapsed"
             x:Name="WindowDialog"/>
