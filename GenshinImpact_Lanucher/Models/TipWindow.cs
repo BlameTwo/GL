@@ -8,7 +8,7 @@ namespace GenshinImpact_Lanucher.Models
 {
     public static class TipWindow
     {
-        public static void Show(string title,string subtitle, WPFUI.Common.SymbolRegular icon)
+        public static void Show(string title, string subtitle, WPFUI.Common.SymbolRegular icon)
         {
             (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = subtitle;
             (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = icon;

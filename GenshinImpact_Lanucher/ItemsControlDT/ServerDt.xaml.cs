@@ -24,10 +24,8 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
     /// <summary>
     /// ServerDt.xaml 的交互逻辑
     /// </summary>
-    public partial class ServerDT: UserControl
+    public partial class ServerDT : UserControl
     {
-
-
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         Launcher_Ini myini { get; set; }
         public ServerDT()
@@ -35,8 +33,6 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
             InitializeComponent();
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
         }
-        string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        Launcher_Ini myini { get; set; }
         public ProxyArgs MyData
         {
             get { return (ProxyArgs)GetValue(MyDataProperty); }
@@ -45,12 +41,12 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
 
         // Using a DependencyProperty as the backing store for MyData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MyDataProperty =
-            DependencyProperty.Register("MyData", typeof(ProxyArgs), typeof(ServerDT), new PropertyMetadata(null,new PropertyChangedCallback(async (s,e) =>
-            {
-                var objectelment =  s as ServerDT;
-                var value = e.NewValue as ProxyArgs;
-                await Refallt(objectelment, value);
-            })));
+            DependencyProperty.Register("MyData", typeof(ProxyArgs), typeof(ServerDT), new PropertyMetadata(null, new PropertyChangedCallback(async (s, e) =>
+             {
+                 var objectelment = s as ServerDT;
+                 var value = e.NewValue as ProxyArgs;
+                 await Refallt(objectelment, value);
+             })));
 
 
         async static Task<bool> Refallt(ServerDT dt, ProxyArgs args)
@@ -82,14 +78,15 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
             {
                 State = ServerStuate.Runing,
                 Message = "连接到服务器成功！"
-                ,Proxy = MyData
+                ,
+                Proxy = MyData
             };
             WeakReferenceMessenger.Default.Send(arg);
         }
 
-        private async  void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(await Refallt(this, MyData))
+            if (await Refallt(this, MyData))
             {
                 StateServer.Foreground = new SolidColorBrush(Colors.Green);
             }
@@ -100,5 +97,6 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
                 WindowTip.TipShow("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
             };
 
+        }
     }
 }
