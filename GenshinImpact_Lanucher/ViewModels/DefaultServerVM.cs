@@ -40,6 +40,7 @@ namespace GenshinImpact_Lanucher.ViewModels
             });
             CloseProxy = new RelayCommand(() =>
             {
+                //在本体发送消息，就直接调用方法
                 Receive(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
             });
         }
@@ -75,10 +76,6 @@ namespace GenshinImpact_Lanucher.ViewModels
         /// <param name="message">消息</param>
         public void Receive(ProxyEvnetArgs message)
         {
-            if(message.Stuate == XmlProxy.Remove)
-            {
-                _Lists.Remove(message.Proxy);
-            }
             switch (message.Stuate)
             {
                 case XmlProxy.Add:
@@ -100,7 +97,7 @@ namespace GenshinImpact_Lanucher.ViewModels
         /// 服务器状态
         /// </summary>
         /// <param name="message">服务器状态</param>
-        public void Receive(ServerStuatePorxy message)
+        public async void Receive(ServerStuatePorxy message)
         {
             switch (message.State)
             {
@@ -108,9 +105,14 @@ namespace GenshinImpact_Lanucher.ViewModels
                     {
                         //这里重启一下服务器
                         Proxy = new ProxyController(myini.IniReadValue("MyLanucherConfig", "Port"), message.Proxy.Host);
-                        _DialogShow = true;
-                        //MyHttpClient.GetJson($@"https://{message.Proxy.Host}/status/server");
-                        Proxy.Start();
+                        if(await MyHttpClient.GetJson($@"https://{message.Proxy.Host}/status/server") != null)
+                        {
+                            Proxy.Start();
+                            _DialogShow = true;
+                            WindowTip.TipShow("代理启动成功", "如果无法连接请联系服务器管理人员", WPFUI.Common.SymbolRegular.CalendarMail16);
+                            break;
+                        };
+                        WindowTip.TipShow("服务器无法连接", "请刷新服务器是否可用", WPFUI.Common.SymbolRegular.ErrorCircle24);
                         break;
                     }
                 case ServerStuate.Stop:

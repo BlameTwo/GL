@@ -22,9 +22,9 @@ namespace GenshinImpact_Lanucher.GameNotifys
         /// </summary>
         /// <param name="Url"></param>
         /// <returns></returns>
-        static string GetTips(int type)
+        static async Task<string> GetTips(int type)
         {
-            string retString = MyHttpClient.GetJson(Url);       //简略公告
+            string retString = await MyHttpClient.GetJson(Url);       //简略公告
             var joject = JObject.Parse(retString);
             string message =  joject["message"].ToString();
             if (message=="OK")
@@ -60,12 +60,12 @@ namespace GenshinImpact_Lanucher.GameNotifys
         /// <returns></returns>
         public async static Task<ObservableCollection<Notice>> GetOne()
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
                 var list = new ObservableCollection<Notice>();
 
-                string morestring = MyHttpClient.GetJson(MoreUrl);      //完整公告
-                JObject jo = JObject.Parse(GetTips(0));
+                string morestring = await MyHttpClient.GetJson(MoreUrl);      //完整公告
+                JObject jo = JObject.Parse(await GetTips(0));
                 JArray morestr = JArray.Parse( JObject.Parse(morestring)["data"]["list"].ToString());
                 JArray jas = (JArray)jo["list"];
                 foreach (JToken ja in jas)
@@ -120,11 +120,11 @@ namespace GenshinImpact_Lanucher.GameNotifys
         /// 此方法返回游戏公告
         /// </summary>
         /// <returns></returns>
-        public static ObservableCollection<Notice> GetTwo()
+        public async static Task<ObservableCollection<Notice>> GetTwo()
         {
             var list = new ObservableCollection<Notice>();
-            string morestring = MyHttpClient.GetJson(MoreUrl);      //完整公告
-            JObject jo = JObject.Parse(GetTips(1));
+            string morestring = await MyHttpClient.GetJson(MoreUrl);      //完整公告
+            JObject jo = JObject.Parse(await GetTips(1));
             JArray morestr = JArray.Parse(JObject.Parse(morestring)["data"]["list"].ToString());
             JArray jas = (JArray)jo["list"];
             foreach (JToken ja in jas)

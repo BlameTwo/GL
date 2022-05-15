@@ -18,9 +18,9 @@ namespace GenshinImpact_Lanucher.Models
         }
 
 
-        public  OSADArgs GetOSAD()
+        public async Task<OSADArgs> GetOSAD()
         {
-            string retString = MyHttpClient.GetJson("https://api.xygeng.cn/one");
+            string retString = await MyHttpClient.GetJson("https://api.xygeng.cn/one");
             var joject = JObject.Parse(retString);
             OSADArgs args = new OSADArgs()
             {

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,14 @@ namespace GenshinImpact_Lanucher
         public MainWindow()
         {
             InitializeComponent();
+            //过滤证书
+            ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, error) =>
+            {
+                return true;
+            };
+            //ProxyController Proxy = new ProxyController("11451","127.0.0.1");
+            //Proxy.Start();
+            //Proxy.Stop();
             this.DataContext = new MainWinVM();
             Loaded += MainWindow_Loaded;
             win = this;

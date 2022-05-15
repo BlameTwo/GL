@@ -52,13 +52,15 @@
                 <TextBlock FontSize="15">
                     <Run Text="人数："/>
                     <Run x:Name="PeopleCount"/>
+                    <Run Text="，服务器游戏版本："/>
+                    <Run x:Name="ServerVersion"/>
                 </TextBlock>
             </StackPanel>
             
             <StackPanel Grid.Column="2" Grid.RowSpan="2" Orientation="Horizontal">
 
-                <wpfui:Button Padding="10 10" Margin="10 0">
-                    <wpfui:SymbolIcon Foreground="{StaticResource TextFillColorDarkInverseBrush}" Symbol="Circle24"/>
+                <wpfui:Button Padding="10 10" Margin="10 0" Click="Button_Click_1">
+                    <wpfui:SymbolIcon x:Name="StateServer" Foreground="Red" Symbol="Send28"/>
                 </wpfui:Button>
 
                 <wpfui:Button Padding="20 10" HorizontalAlignment="Right" 

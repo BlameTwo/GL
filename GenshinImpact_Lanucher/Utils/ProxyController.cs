@@ -1,4 +1,5 @@
 ﻿using GenshinImpact_Lanucher.GameNotifys;
+using GenshinImpact_Lanucher.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +76,7 @@ namespace GenshinImpact_Lanucher.Utils
             // Only explicit proxies can be set as system proxy!
             proxyServer.SetAsSystemHttpProxy(explicitEndPoint);
             proxyServer.SetAsSystemHttpsProxy(explicitEndPoint);
+            
         }
 
 
