@@ -35,12 +35,8 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
             InitializeComponent();
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
         }
-
-
-
-
-
-
+        string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        Launcher_Ini myini { get; set; }
         public ProxyArgs MyData
         {
             get { return (ProxyArgs)GetValue(MyDataProperty); }
@@ -103,6 +99,6 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
                 this.ServerVersion.Text = "服务器寄了";
                 WindowTip.TipShow("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
             };
-        }
+
     }
 }

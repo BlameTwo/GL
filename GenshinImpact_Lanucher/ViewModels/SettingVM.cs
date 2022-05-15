@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows;
 using GenshinImpact_Lanucher.Utils;
 using System.IO;
+using GenshinImpact_Lanucher.Models;
 
 namespace GenshinImpact_Lanucher.ViewModels
 {
@@ -78,10 +79,7 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 if (!System.IO.File.Exists($@"{openfolder.SelectedPath}\YuanShen.exe"))
                 {
-                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message="注意：是原神游戏的运行目录而不是官方启动器的运行目录哦！";
-                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon =  WPFUI.Common.SymbolRegular.ErrorCircle24;
-                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "找不到游戏文件";
-                    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+                    TipWindow.Show("找不到游戏文件", "注意：是原神游戏的运行目录而不是官方启动器的运行目录哦！", WPFUI.Common.SymbolRegular.ErrorCircle24);
                 }
                 else
                 {

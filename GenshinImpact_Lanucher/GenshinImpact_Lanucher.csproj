@@ -143,7 +143,9 @@
     <Compile Include="Models\SettingLoadEvent.cs" />
     <Compile Include="Models\StartAgument.cs" />
     <Compile Include="Models\StaticResource.cs" />
-    <Compile Include="Models\WindowTip.cs" />
+
+    <Compile Include="Models\TipWindow.cs" />
+
     <Compile Include="MyControl\PowershellRichTextBox.cs" />
     <Compile Include="Pages\DefaultGame.xaml.cs">
       <DependentUpon>DefaultGame.xaml</DependentUpon>
