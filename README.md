@@ -31,3 +31,7 @@
 
 ### 程序获取请到程序 [Realease](https://github.com/123456fsdaf/GenshinImpact_Lanucher/releases) 下载
 ### 目前仅支持Win7以上计算机运行该程序
+# 项目引用
+图片引用地址[wallhaven.cc](https://wallhaven.cc/w/3z9wv3)
+<br/>
+解锁帧率：[DGP.Genshin.FPSunlocking](https://github.com/DGP-Studio/DGP.Genshin.FPSUnlocking)
