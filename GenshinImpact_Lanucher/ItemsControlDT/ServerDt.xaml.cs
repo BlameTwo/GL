@@ -95,13 +95,12 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
         {
             if(await Refallt(this, MyData))
             {
-
-                this.PeopleCount.Text = "Null";
-                this.ServerVersion.Text = "寄了";
                 StateServer.Foreground = new SolidColorBrush(Colors.Green);
             }
             else
             {
+                this.PeopleCount.Text = "Null";
+                this.ServerVersion.Text = "服务器寄了";
                 WindowTip.TipShow("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
             };
         }
