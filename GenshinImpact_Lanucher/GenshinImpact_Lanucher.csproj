@@ -122,6 +122,10 @@
     <Compile Include="Account\Accounts.cs" />
     <Compile Include="Convert\ServerConvert.cs" />
     <Compile Include="EventArgs\Models.cs" />
+    <Compile Include="FPS\NativeMethods.cs" />
+    <Compile Include="FPS\StartFPS.cs" />
+    <Compile Include="FPS\Unlocker.cs" />
+    <Compile Include="FPS\UnlockResult.cs" />
     <Compile Include="GameNotifys\GameNitify.cs" />
     <Compile Include="ItemsControlDT\NitifyGameDT.xaml.cs">
       <DependentUpon>NitifyGameDT.xaml</DependentUpon>
