@@ -77,7 +77,7 @@ namespace GenshinImpact_Lanucher.ViewModels
             openfolder.Description = "选择游戏文件夹";
             if(openfolder.ShowDialog() == DialogResult.OK)
             {
-                if (!System.IO.File.Exists($@"{openfolder.SelectedPath}\YuanShen.exe"))
+                if (!(File.Exists(Path.Combine(openfolder.SelectedPath, "GenshinImpact.exe")) | File.Exists(Path.Combine(openfolder.SelectedPath, "YuanShen.exe"))))
                 {
                     TipWindow.Show("找不到游戏文件", "注意：是原神游戏的运行目录而不是官方启动器的运行目录哦！", WPFUI.Common.SymbolRegular.ErrorCircle24);
                 }
