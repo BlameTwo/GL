@@ -32,15 +32,13 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test
-    - name: 还原插件
-      run: nuget restore
-    - name: 还原插件
+    - name: Restore Plugin
       run: nuget restore && msbuild -t:restore
-    - name: 还原插件
+    - name: Building Applications
       run: msbuild -p:configuration="release" /p:OutputPath=out/
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: MSIX Package
-        path: out/
+        name: GenshinImpact_Lanucher
+        path: obj\Release\GenshinImpact_Lanucher.exe
