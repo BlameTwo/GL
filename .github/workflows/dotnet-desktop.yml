@@ -31,11 +31,15 @@ jobs:
 
     - name: Restore Plugin
       run: nuget restore && msbuild -t:restore
+
+    - name: install Costura.Fody
+      run: nuget install Costura.Fody
+
     - name: Building Applications
-      run: msbuild
+      run: msbuild /m -p:configuration="Debug"
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: GenshinImpact_Lanucher
-        path: /
+        path: GenshinImpact_Lanucher/bin/Debug/GenshinImpact_Lanucher.exe
