@@ -32,10 +32,10 @@ jobs:
     - name: Restore Plugin
       run: nuget restore && msbuild -t:restore
     - name: Building Applications
-      run: msbuild -p:configuration="release"
+      run: msbuild
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: GenshinImpact_Lanucher
-        path: bin/Release/
+        path: bin/Debug/
