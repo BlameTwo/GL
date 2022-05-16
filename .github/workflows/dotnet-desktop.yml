@@ -29,14 +29,11 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
 
-    # Execute all unit tests in the solution
-    - name: Execute unit tests
-      run: dotnet test
     - name: Restore Plugin
       run: nuget restore && msbuild -t:restore
     - name: Building Applications
-      run: msbuild -p:configuration="release" /p:OutputPath=out/
-    # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
+      run: msbuild -p:configuration="release"
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
