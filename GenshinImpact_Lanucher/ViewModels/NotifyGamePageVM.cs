@@ -1,4 +1,4 @@
-﻿using GenshinImpact_Lanucher.GameNotifys;
+using GenshinImpact_Lanucher.GameNotifys;
 using GenshinImpact_Lanucher.Utils;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -41,6 +41,13 @@ namespace GenshinImpact_Lanucher.ViewModels
         {
             _NotiGame = await GameNitify.GetOneAsync();
             _NotiMiHaYo = await GameNitify.GetTwoAsync();
+            if (NotiGame == null || _NotiMiHaYo == null)
+            {
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "旅行者似乎网络出现错误了呢";
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "公告加载失败";
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+            }
         }
         public RelayCommand RefNotify { get; set; }
         public RelayCommand Loaded { get; set; }
