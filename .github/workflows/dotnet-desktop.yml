@@ -30,7 +30,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Restore Plugin
-      run: nuget restore && msbuild -t:restore
+      run: nuget restore && msbuild -t:restore && dotnet add package Costura.Fody --version 5.7.0
     - name: Building Applications
       run: msbuild
 
