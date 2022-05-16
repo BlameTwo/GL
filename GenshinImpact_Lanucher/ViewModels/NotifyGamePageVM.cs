@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GenshinImpact_Lanucher.Models;
 
 namespace GenshinImpact_Lanucher.ViewModels
 {
@@ -43,10 +44,8 @@ namespace GenshinImpact_Lanucher.ViewModels
             _NotiMiHaYo = await GameNitify.GetTwoAsync();
             if (NotiGame == null || _NotiMiHaYo == null)
             {
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = "旅行者似乎网络出现错误了呢";
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = WPFUI.Common.SymbolRegular.ErrorCircle24;
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = "公告加载失败";
-                (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
+                WindowTip.TipShow("公告加载失败", "旅行者似乎网络出现错误了呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
+
             }
         }
         public RelayCommand RefNotify { get; set; }
