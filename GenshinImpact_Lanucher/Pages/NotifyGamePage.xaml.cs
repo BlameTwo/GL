@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFUI.Controls;
 
 namespace GenshinImpact_Lanucher.Pages
 {
@@ -25,6 +26,12 @@ namespace GenshinImpact_Lanucher.Pages
         {
             InitializeComponent();
             this.DataContext = new NotifyGamePageVM();
+        }
+
+        private void NotifiMoreDialog_ButtonRightClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = sender as Dialog;
+            dialog.Hide();
         }
     }
 }

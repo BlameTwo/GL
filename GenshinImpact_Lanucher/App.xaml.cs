@@ -34,7 +34,6 @@ namespace GenshinImpact_Lanucher
             Exception e = (Exception)args.ExceptionObject;
             Console.WriteLine("UnHandled Exception Caught : " + e.Message);
             Console.WriteLine("Runtime terminating: {0}", args.IsTerminating);
-
             MessageBox.Show(e.Message + "\n" + e.StackTrace, "程序崩溃了,已生成日志：err.log！");
             System.IO.File.WriteAllText("err.log", e.Message + e.StackTrace);
 

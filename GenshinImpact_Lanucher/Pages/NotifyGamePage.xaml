@@ -7,6 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="NotifyGamePage"
+      x:Name="pages"
       Background="Transparent"
       Foreground="{DynamicResource TextFillColorTertiaryBrush}"
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
@@ -33,7 +34,7 @@
                 Command="{Binding RefNotify}"
                 HorizontalAlignment="Right" Margin="0 0 10 0">
                 <wpfui:SymbolIcon Symbol="ApprovalsApp20"/>
-                
+
             </wpfui:Button>
             <Grid HorizontalAlignment="Center" Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -72,7 +73,7 @@
                     </ItemsControl.Template>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <dt:NitifyGameDT MyData="{Binding}"/>
+                            <dt:NitifyGameDT  MyData="{Binding}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

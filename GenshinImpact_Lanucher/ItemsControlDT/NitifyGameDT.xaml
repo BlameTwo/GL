@@ -9,6 +9,8 @@
              xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
              HorizontalAlignment="Stretch"
              Background="Transparent"
+             ToolTipService.ToolTip="双击打开详情"
+             MouseDoubleClick="UserControl_MouseDoubleClick"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Storyboard x:Key="OnMouseEnter1">

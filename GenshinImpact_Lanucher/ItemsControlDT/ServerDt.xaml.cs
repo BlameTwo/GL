@@ -86,9 +86,13 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Pro1.IsIndeterminate = true;
+            Pro1.Visibility =  Visibility.Visible;
             if (await Refallt(this, MyData))
             {
                 StateServer.Foreground = new SolidColorBrush(Colors.Green);
+                WindowTip.TipShow("状态刷新成功", "服务器状态正常", WPFUI.Common.SymbolRegular.InprivateAccount16);
+
             }
             else
             {
@@ -96,7 +100,8 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
                 this.ServerVersion.Text = "服务器寄了";
                 WindowTip.TipShow("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
             };
-
+            Pro1.IsIndeterminate = false;
+            Pro1.Visibility = Visibility.Collapsed;
         }
     }
 }

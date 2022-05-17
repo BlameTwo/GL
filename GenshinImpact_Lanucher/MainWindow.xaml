@@ -116,11 +116,8 @@
         <wpfui:Dialog 
             Grid.Row="1"
             x:FieldModifier="public"
-            
             ButtonLeftVisibility="Collapsed"
             ButtonRightVisibility="Collapsed"
             x:Name="WindowDialog"/>
-
-
     </Grid>
 </Window>

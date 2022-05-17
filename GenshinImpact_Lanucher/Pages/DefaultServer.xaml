@@ -44,7 +44,7 @@
 
             <ui:CardControl HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <StackPanel Margin="60">
-                    <ui:SymbolIcon FontSize="50" Margin="0 10" Symbol="Checkmark48"/>
+                    <ui:SymbolIcon FontSize="80" Margin="0 10" Symbol="EmojiLaugh24"/>
                     <TextBlock FontSize="24" Text="代理已启动"
                                VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <TextBlock 

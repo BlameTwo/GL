@@ -1,4 +1,5 @@
-﻿using GenshinImpact_Lanucher.Utils;
+﻿using GenshinImpact_Lanucher.GameNotifys;
+using GenshinImpact_Lanucher.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,5 +33,11 @@ namespace GenshinImpact_Lanucher.EventArgs
         public ProxyArgs Proxy { get; set; }
         public ServerStuate State { get; set; }
         public string Message { get; set; }
+    }
+
+
+    public class NotiArgs
+    {
+        public Notice _Notice { get; set; }
     }
 }

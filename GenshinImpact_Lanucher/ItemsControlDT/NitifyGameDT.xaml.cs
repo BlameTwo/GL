@@ -1,4 +1,6 @@
 ﻿using GenshinImpact_Lanucher.GameNotifys;
+using GenshinImpact_Lanucher.Pages;
+using GenshinImpact_Lanucher.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,8 +44,11 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
 
 
 
-
-
-
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            NotifyMoreMessage messagebox = new NotifyMoreMessage();
+            messagebox.MyNotice = MyData;
+            messagebox.ShowDialog();
+        }
     }
 }

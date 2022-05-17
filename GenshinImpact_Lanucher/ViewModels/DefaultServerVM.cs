@@ -119,7 +119,6 @@ namespace GenshinImpact_Lanucher.ViewModels
                     {
                         //服务器停滞状态
                         _DialogShow = false;
-
                         if (Proxy != null)
                             Proxy.Stop();
                         Proxy = null;
