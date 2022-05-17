@@ -29,7 +29,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <ui:Button HorizontalAlignment="Left" Content="添加连接" Icon="Add24" Padding="10 10"
-                       Margin="2 10" Command="{Binding AddServer}" Cursor="Hand"/>
+                       Margin="10 10" Command="{Binding AddServer}" Cursor="Hand"/>
         </Grid>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding _Lists,Mode=TwoWay}">
             <ItemsControl.ItemTemplate>

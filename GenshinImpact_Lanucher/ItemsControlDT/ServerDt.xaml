@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GenshinImpact_Lanucher.ItemsControlDT" xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Margin="10">
+             Margin="10 0 10 5">
     <UserControl.ContextMenu>
         <ContextMenu>
 
@@ -55,8 +55,8 @@
             </StackPanel>
             
             <StackPanel Grid.Column="2" Grid.RowSpan="2" Orientation="Horizontal">
-                <wpfui:Button Padding="10 10" Margin="10 0" Click="Button_Click_1">
-                    <wpfui:SymbolIcon x:Name="StateServer" Foreground="Red" Symbol="Send28"/>
+                <wpfui:Button Appearance="Light" Padding="10 10" Margin="10 0" Click="Button_Click_1">
+                    <wpfui:SymbolIcon x:Name="StateServer" Foreground="Red" Symbol="Circle24"/>
                 </wpfui:Button>
 
                 <wpfui:Button Padding="20 10" HorizontalAlignment="Right" 

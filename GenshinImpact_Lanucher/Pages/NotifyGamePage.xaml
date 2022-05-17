@@ -27,20 +27,13 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <wpfui:Button
-                Style="{StaticResource UiTitlebarButton}" 
-                ToolTipService.ToolTip="刷新"
-                Grid.Column="1"
-                Command="{Binding RefNotify}"
-                HorizontalAlignment="Right" Margin="0 0 10 0">
-                <wpfui:SymbolIcon Symbol="ApprovalsApp20"/>
-
-            </wpfui:Button>
             <Grid HorizontalAlignment="Center" Grid.Row="1">
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+
                 <TextBlock Grid.Row="0" Text="游戏公告" FontSize="25" HorizontalAlignment="Center" Margin="0 10 0 0"/>
                 <ItemsControl Grid.Row="1" Height="auto" Background="Transparent" ItemsSource="{Binding _NotiGame,Mode=TwoWay}">
                     <ItemsControl.Template>
@@ -62,6 +55,12 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+
+                <wpfui:Button Appearance="Primary" Grid.Column="1" HorizontalAlignment="Right"
+                ToolTipService.ToolTip="刷新" 
+                Command="{Binding RefNotify}" Margin="0 0 10 0">
+                    <wpfui:SymbolIcon FontSize="20" Foreground="{DynamicResource TextFillColorDarkInverseBrush}"  Symbol="ApprovalsApp20"/> </wpfui:Button>
+                
                 <TextBlock Text="活动公告" FontSize="25" HorizontalAlignment="Center" Margin="0 10 0 0"/>
                 <ItemsControl Grid.Row="1" ItemsSource="{Binding _NotiMiHaYo,Mode=TwoWay}">
                     <ItemsControl.Template>
