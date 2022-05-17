@@ -1,4 +1,4 @@
-﻿
+
 using GenshinImpact_Lanucher.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -43,7 +43,7 @@ namespace GenshinImpact_Lanucher.GameNotifys
             }
             else
             {
-                return null;
+                return null ;
             }
         }
 
@@ -65,6 +65,10 @@ namespace GenshinImpact_Lanucher.GameNotifys
                 var list = new ObservableCollection<Notice>();
 
                 string morestring = await MyHttpClient.GetJson(MoreUrl);      //完整公告
+                if (morestring == null) //如果MyHttpClient无法获取就返回无
+                {
+                    return null;
+                }
                 JObject jo = JObject.Parse(await GetTips(0));
                 JArray morestr = JArray.Parse( JObject.Parse(morestring)["data"]["list"].ToString());
                 JArray jas = (JArray)jo["list"];
@@ -124,6 +128,10 @@ namespace GenshinImpact_Lanucher.GameNotifys
         {
             var list = new ObservableCollection<Notice>();
             string morestring = await MyHttpClient.GetJson(MoreUrl);      //完整公告
+            if (morestring == null) //如果MyHttpClient无法获取就返回无
+            {
+                return null;
+            }
             JObject jo = JObject.Parse(await GetTips(1));
             JArray morestr = JArray.Parse(JObject.Parse(morestring)["data"]["list"].ToString());
             JArray jas = (JArray)jo["list"];

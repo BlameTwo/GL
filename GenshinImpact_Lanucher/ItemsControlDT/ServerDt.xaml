@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="GenshinImpact_Lanucher.ItemsControlDT.ServerDT"
+<UserControl x:Class="GenshinImpact_Lanucher.ItemsControlDT.ServerDT"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,6 +9,7 @@
              Margin="10">
     <UserControl.ContextMenu>
         <ContextMenu>
+
             <MenuItem Header="删除" Click="MenuItem_Click"/>
 
         </ContextMenu>
