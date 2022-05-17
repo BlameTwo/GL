@@ -9,7 +9,9 @@
              Margin="10">
     <UserControl.ContextMenu>
         <ContextMenu>
-            <MenuItem Icon="_" Header="删除" Click="MenuItem_Click"/>
+
+            <MenuItem Header="删除" Click="MenuItem_Click"/>
+
         </ContextMenu>
     </UserControl.ContextMenu>
     <wpfui:Card>
@@ -26,7 +28,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <ProgressBar IsIndeterminate="True" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
+            <ProgressBar IsIndeterminate="True" Visibility="Collapsed" x:Name="Pro1" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
             <wpfui:SymbolIcon FontSize="24" Symbol="Server24" Grid.RowSpan="2" Margin="10 0">
                 
             </wpfui:SymbolIcon>
