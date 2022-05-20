@@ -56,14 +56,7 @@ namespace GenshinImpact_Lanucher
 
         private void Theme_Changed(ThemeType currentTheme, Color systemAccent)
         {
-            if(currentTheme == ThemeType.Light)
-            {
-                ChipBack.Background = new SolidColorBrush(Colors.White);
-            }
-            else
-            {
-                ChipBack.Background = new SolidColorBrush(Colors.Black);
-            }
+           
         }
     }
 }

@@ -42,9 +42,9 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
 
         // Using a DependencyProperty as the backing store for MyData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MyDataProperty =
-            DependencyProperty.Register("MyData", typeof(ProxyArgs), typeof(ServerDT), new PropertyMetadata(null,new PropertyChangedCallback(async (s,e) =>
+            DependencyProperty.Register("MyData", typeof(ProxyArgs), typeof(ServerDT), new PropertyMetadata(null, new PropertyChangedCallback(async (s, e) =>
             {
-                var objectelment =  s as ServerDT;
+                var objectelment = s as ServerDT;
                 var value = e.NewValue as ProxyArgs;
                 await Refallt(objectelment, value);
             })));
@@ -87,7 +87,7 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(await Refallt(this, MyData))
+            if (await Refallt(this, MyData))
             {
                 StateServer.Foreground = new SolidColorBrush(Colors.Green);
                 WindowTip.TipShow("状态刷新成功", "服务器状态正常", WPFUI.Common.SymbolRegular.InprivateAccount16);
@@ -97,8 +97,9 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
             {
                 this.PeopleCount.Text = "Null";
                 this.ServerVersion.Text = "服务器寄了";
-                //WindowTip.TipShow("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
+                WindowTip.TipShow("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
             };
 
+        }
     }
 }

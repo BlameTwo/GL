@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:GenshinImpact_Lanucher"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Background='Transparent'
+        Background='White'
         xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:pages="clr-namespace:GenshinImpact_Lanucher.Pages"
-        x:Name="Home" 
+        x:Name="Home"
         Title="MainWindow" Height="600" Width="1000"
         Foreground="{DynamicResource TextFillColorTertiaryBrush}"
         Style="{DynamicResource UiWindowNoResize}">
@@ -26,9 +26,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
        
-        <StackPanel x:Name="ChipBack"
-                    Grid.RowSpan="2" 
-                    Opacity="0.5"/>
+       
         <wpfui:TitleBar 
             Title="原神启动器"
             CanMaximize="False"

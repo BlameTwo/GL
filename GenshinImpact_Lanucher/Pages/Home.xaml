@@ -7,11 +7,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Home"
-      Background="Transparent"
       xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI">
 
     <Grid Margin="0 0 0 0">
         <wpfui:Card HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50">
+            <wpfui:Card.Effect>
+                <DropShadowEffect Opacity="0.8" BlurRadius="23" Direction="0" ShadowDepth="0"/>
+            </wpfui:Card.Effect>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -20,7 +22,7 @@
                 <TextBlock FontFamily="等线" FontWeight="Bold" Foreground="{DynamicResource AccentFillColorDefaultBrush}"
                        FontSize="25" HorizontalAlignment="Center"><Run Text="欢迎使用原神启动器"/><Run Language="zh-cn" Text="!"/></TextBlock>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0 10 0 0">
-                    <wpfui:Hyperlink Content="GitHub" Icon="WebAsset24" HorizontalAlignment="Center"  />
+                    <wpfui:Hyperlink Content="GitHub" IconForeground="White" Icon="WebAsset24" HorizontalAlignment="Center"  />
                     <TextBlock
                         Margin="0 10 0 0"
                         HorizontalAlignment="Center" ><Run Text="本项目联机功能推荐使用基于Grasscutter的服务器"/><Run Language="zh-cn" Text="!"/></TextBlock>

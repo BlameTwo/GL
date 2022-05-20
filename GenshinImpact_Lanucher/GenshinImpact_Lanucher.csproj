@@ -121,6 +121,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Account\Accounts.cs" />
+    <Compile Include="Convert\ImageConvert.cs" />
     <Compile Include="Convert\ServerConvert.cs" />
     <Compile Include="EventArgs\Models.cs" />
     <Compile Include="FPS\NativeMethods.cs" />
@@ -152,6 +153,9 @@
     </Compile>
     <Compile Include="Pages\DefaultServer.xaml.cs">
       <DependentUpon>DefaultServer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GenshinPage.xaml.cs">
+      <DependentUpon>GenshinPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -201,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DefaultServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GenshinPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -299,6 +307,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dialogs\" />
+    <Folder Include="Welcome\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

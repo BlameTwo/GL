@@ -6,8 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GenshinImpact_Lanucher.ItemsControlDT"
              mc:Ignorable="d" 
-             xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
-             HorizontalAlignment="Stretch"
+             xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:convert="clr-namespace:GenshinImpact_Lanucher.Convert"
+    HorizontalAlignment="Stretch"
              Background="Transparent"
              ToolTipService.ToolTip="双击打开详情"
              MouseDoubleClick="UserControl_MouseDoubleClick"
@@ -33,6 +33,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <convert:ImageConvert x:Key="ImageConvert1"/>
     </UserControl.Resources>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="card">
@@ -44,7 +45,7 @@
     </UserControl.Triggers>
     <wpfui:Card x:Name="card" HorizontalAlignment="Stretch" Margin="10" Padding="5">
         <Grid x:Name="grid">
-            <Image x:Name="image" Source="{Binding banner}" Stretch="UniformToFill"/>
+            <Image x:Name="image" Source="{Binding banner,Converter={StaticResource ImageConvert1}}" Stretch="UniformToFill"/>
             <StackPanel x:Name="stackPanel" Background="Black" Opacity="0"></StackPanel>
             <!--内容模板-->
             <Grid x:Name="Grid1" Opacity="0">
