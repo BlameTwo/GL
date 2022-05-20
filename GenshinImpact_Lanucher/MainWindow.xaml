@@ -14,23 +14,7 @@
         Title="MainWindow" Height="600" Width="1000"
         Foreground="{DynamicResource TextFillColorTertiaryBrush}"
         Style="{DynamicResource UiWindowNoResize}">
-    <Window.Resources>
-        <Storyboard x:Key="OnLoaded1" RepeatBehavior="Forever">
-            <ThicknessAnimation 
-                Storyboard.TargetProperty="Margin" 
-                From="0 0 0 0"
-                Duration="00:00:02:00"
-                To="-2168 0 0 0"
-                Storyboard.TargetName="MyImage">
-            </ThicknessAnimation>
-        </Storyboard>
-        <BitmapImage x:Key="BackKey" UriSource="/Resources/AniBack2.png"/>
-    </Window.Resources>
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource OnLoaded1}"/>
-        </EventTrigger>
-    </Window.Triggers>
+   
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
@@ -42,19 +26,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
        
-        <Image x:Name="MyImage" Stretch="Uniform" Width="3168"
-               Source="{StaticResource BackKey}"
-               Grid.RowSpan="2" 
-               Opacity="1" >
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-        </Image>
         <StackPanel x:Name="ChipBack"
                     Grid.RowSpan="2" 
                     Opacity="0.5"/>

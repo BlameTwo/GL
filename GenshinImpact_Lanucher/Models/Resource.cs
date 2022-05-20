@@ -31,9 +31,8 @@ namespace GenshinImpact_Lanucher.Model
             return bitmapImage;
         }
 
-
         static  Launcher_Ini myini { get; set; }
-        static string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public static string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         /// <summary>
         /// 修复SDK，前提是在本启动器的方法下拥有该文件
         /// </summary>

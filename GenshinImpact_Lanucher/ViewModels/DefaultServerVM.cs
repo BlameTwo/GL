@@ -109,10 +109,10 @@ namespace GenshinImpact_Lanucher.ViewModels
                         {
                             Proxy.Start();
                             _DialogShow = true;
-                            WindowTip.TipShow("代理启动成功", "如果无法连接请联系服务器管理人员", WPFUI.Common.SymbolRegular.CalendarMail16);
+                           TipWindow.Show("代理启动成功", "如果无法连接请联系服务器管理人员", WPFUI.Common.SymbolRegular.CalendarMail16);
                             break;
                         };
-                        WindowTip.TipShow("服务器无法连接", "请刷新服务器是否可用", WPFUI.Common.SymbolRegular.ErrorCircle24);
+                        TipWindow.Show("服务器无法连接", "请刷新服务器是否可用", WPFUI.Common.SymbolRegular.ErrorCircle24);
                         break;
                     }
                 case ServerStuate.Stop:

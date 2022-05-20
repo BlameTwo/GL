@@ -31,7 +31,8 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
         public ServerDT()
         {
             InitializeComponent();
-            myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+
+            this.myini = new Launcher_Ini($@"{Resource.docpath}/GSIConfig/Config/LauncherConfig.ini");
         }
         public ProxyArgs MyData
         {
@@ -41,12 +42,12 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
 
         // Using a DependencyProperty as the backing store for MyData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MyDataProperty =
-            DependencyProperty.Register("MyData", typeof(ProxyArgs), typeof(ServerDT), new PropertyMetadata(null, new PropertyChangedCallback(async (s, e) =>
-             {
-                 var objectelment = s as ServerDT;
-                 var value = e.NewValue as ProxyArgs;
-                 await Refallt(objectelment, value);
-             })));
+            DependencyProperty.Register("MyData", typeof(ProxyArgs), typeof(ServerDT), new PropertyMetadata(null,new PropertyChangedCallback(async (s,e) =>
+            {
+                var objectelment =  s as ServerDT;
+                var value = e.NewValue as ProxyArgs;
+                await Refallt(objectelment, value);
+            })));
 
 
         async static Task<bool> Refallt(ServerDT dt, ProxyArgs args)
@@ -68,8 +69,8 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
             ProxyJson ProxyJson = new ProxyJson(myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
             if (await ProxyJson.Delete(MyData))
                 WeakReferenceMessenger.Default.Send(new ProxyEvnetArgs() { Proxy = MyData, Stuate = XmlProxy.Remove });
-            else
-                WindowTip.TipShow("错误！请联系制作人员！", "此错误来自于逻辑层面错误，必要的话，请把日志文件发给开发者", WPFUI.Common.SymbolRegular.ErrorCircleSettings16);
+            //else
+            //    WindowTip.TipShow("错误！请联系制作人员！", "此错误来自于逻辑层面错误，必要的话，请把日志文件发给开发者", WPFUI.Common.SymbolRegular.ErrorCircleSettings16);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -86,9 +87,7 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Pro1.IsIndeterminate = true;
-            Pro1.Visibility =  Visibility.Visible;
-            if (await Refallt(this, MyData))
+            if(await Refallt(this, MyData))
             {
                 StateServer.Foreground = new SolidColorBrush(Colors.Green);
                 WindowTip.TipShow("状态刷新成功", "服务器状态正常", WPFUI.Common.SymbolRegular.InprivateAccount16);
@@ -98,10 +97,8 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
             {
                 this.PeopleCount.Text = "Null";
                 this.ServerVersion.Text = "服务器寄了";
-                WindowTip.TipShow("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
+                //WindowTip.TipShow("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
             };
-            Pro1.IsIndeterminate = false;
-            Pro1.Visibility = Visibility.Collapsed;
-        }
+
     }
 }
