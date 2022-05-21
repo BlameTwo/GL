@@ -11,9 +11,6 @@
 
     <Grid Margin="0 0 0 0">
         <wpfui:Card HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50">
-            <wpfui:Card.Effect>
-                <DropShadowEffect Opacity="0.8" BlurRadius="23" Direction="0" ShadowDepth="0"/>
-            </wpfui:Card.Effect>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>

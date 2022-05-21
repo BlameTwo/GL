@@ -15,7 +15,7 @@ using System.Xml.XPath;
 
 namespace GenshinImpact_Lanucher.Models
 {
-    public class Account
+    public class GenshinAccount
     {
         private static string GetStringAccountConfig(string key)
         {
@@ -42,9 +42,9 @@ namespace GenshinImpact_Lanucher.Models
         }
 
 
-        public  Account ReadGameAccount(bool IsConfig)
+        public GenshinAccount ReadGameAccount(bool IsConfig)
         {
-            Account acc = new Account();
+            GenshinAccount acc = new GenshinAccount();
             acc.Name = this.Name;
             acc.AccountUser = ReadUser();
             acc.AccountConfig = IsConfig ? ReadConfig():"Null";

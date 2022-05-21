@@ -32,8 +32,8 @@ namespace GenshinImpact_Lanucher.ViewModels
             HeightGameSizeTextChanged = new RelayCommand<string >((txt) => heightchanged(txt));
             WidthGameSizeTextChanged = new RelayCommand<string>((txt) => widthchanged(txt));
             WindowCheck = new RelayCommand(() => windowcheck());
-
-
+            SaveCookie = new RelayCommand(() => savecookie());
+            CookieText = myini.IniReadValue("MyLanucherConfig", "Cookie");
             _ServerPath = string.IsNullOrWhiteSpace(
                 myini.IniReadValue("MyLanucherConfig", "Port"))?
                 "": myini.IniReadValue("MyLanucherConfig", "Port");
@@ -60,10 +60,24 @@ namespace GenshinImpact_Lanucher.ViewModels
             }
         }
 
+        private void savecookie()
+        {
+            myini.IniWriteValue("MyLanucherConfig", "Cookie", _CookieText);
+        }
+
         private void selectserverpath()
         {
             myini.IniWriteValue("MyLanucherConfig", "Port", _ServerPath);
         }
+
+        private string CookieText;
+
+        public string _CookieText
+        {
+            get => CookieText;
+            set => SetProperty(ref CookieText, value);
+        }
+
 
 
         private void popopen()
@@ -160,6 +174,7 @@ namespace GenshinImpact_Lanucher.ViewModels
         public RelayCommand SelectServerPath { get; set; }
         public RelayCommand<string> WidthGameSizeTextChanged { get; set; }
         public RelayCommand SelectGamePath { get; private set; }
+        public RelayCommand SaveCookie { get; private set; }
         Launcher_Ini myini { get; set; }
         Launcher_Ini GameIni { get; set; }
         private StartAgument startargs;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GenshinImpact_Lanucher.Pages.GenshinControls;
+using GenshinImpact_Lanucher.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,20 @@ namespace GenshinImpact_Lanucher.Pages
         public GenshinPage()
         {
             InitializeComponent();
+            this.DataContext = new GenshinVM();
+            Loaded += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace((DataContext as GenshinVM).myini.IniReadValue("MyLanucherConfig", "Cookie")))
+                {
+                    this.Content = new GenshinCookieCard();
+
+                }
+                else
+                {
+                    this.Content = new MainGenshin();
+                    MiHaYouAPI.MiHaYouArgs.Cookie = (DataContext as GenshinVM).myini.IniReadValue("MyLanucherConfig", "Cookie");
+                }
+            };
         }
     }
 }

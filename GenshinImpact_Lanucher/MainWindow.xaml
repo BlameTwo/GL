@@ -41,21 +41,17 @@
             <wpfui:NavigationStore
                 HorizontalAlignment="Left"
                 SelectedPageIndex="0"
-                
+                x:FieldModifier="public"
+                x:Name="MyNavigation"
                 Frame="{Binding ElementName=RootFrame}">
                 <wpfui:Navigation.Items>
                     <wpfui:NavigationItem Content="首页" Icon="Home28" Page="{x:Type pages:Home}"/>
                     <wpfui:NavigationItem Content="游戏" Icon="Games16" Page="{x:Type pages:DefaultGame}"/>
                     <wpfui:NavigationItem Content="服务器" Icon="Server24" Page="{x:Type pages:DefaultServer}"/>
                     <wpfui:NavigationItem Content="官方公告" Icon="Note16" Page="{x:Type pages:NotifyGamePage}"/>
-
+                    <wpfui:NavigationItem Content="原神" Icon="AppGeneric24" Page="{x:Type pages:GenshinPage}"/>
                     <wpfui:NavigationItem Content="设置" Icon="Settings28" Page="{x:Type pages:SettingApp}"/>
-
                 </wpfui:Navigation.Items>
-                
-                <!--<wpfui:NavigationCompact.Footer>-->
-                <!--</wpfui:NavigationCompact.Footer>-->
-
             </wpfui:NavigationStore>
             <Grid
                 Grid.Row="1"
