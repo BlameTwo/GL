@@ -1,4 +1,5 @@
-﻿using GenshinImpact_Lanucher.Model;
+﻿
+using GenshinImpact_Lanucher.Model;
 using GenshinImpact_Lanucher.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;

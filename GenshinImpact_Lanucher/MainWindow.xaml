@@ -11,10 +11,10 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:pages="clr-namespace:GenshinImpact_Lanucher.Pages"
         x:Name="Home"
-        Title="MainWindow" Height="600" Width="1000"
+        Title="原神启动器" Height="600" Width="1000"
         Foreground="{DynamicResource TextFillColorTertiaryBrush}"
         Style="{DynamicResource UiWindowNoResize}">
-   
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>

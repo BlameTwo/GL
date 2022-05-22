@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,6 +16,8 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
     {
         public static string Cookie { get; set; }
     }
+
+    //原神树脂API
 
     public static class API
     {
@@ -87,24 +90,31 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
 
 
         /// <summary>
-        /// 获得米哈游账号信息，需要Cookie
+        /// Get方法
         /// </summary>
         /// <returns></returns>
-        static Task<JObject> GetMhy_Account_JObject()
+        static Task<JObject> Get(string url,string body)
         {
             return Task.Run(() =>
             {
-                return Request(x => x.DownloadString("https://bbs-api.mihoyo.com/user/wapi/getUserFullInfo?gids=2"),
-                    CreateDynamicSecret("https://bbs-api.mihoyo.com/user/wapi/getUserFullInfo?gids=2", ""));
+                return Request(x => x.DownloadString(url),
+                    CreateDynamicSecret(url, body));
             });
         }
 
 
+
+        /// <summary>
+        /// MHY账号数据
+        /// </summary>
+        /// <returns></returns>
         public static Task<MiHaYouAccountArgs> GetMiHaYouAccount()
         {
             return Task.Run(async () =>
             {
-                JObject jo = await GetMhy_Account_JObject();
+                JObject jo = await Get(
+                    "https://bbs-api.mihoyo.com/user/wapi/getUserFullInfo?gids=2"
+                    ,"");
                 MiHaYouAccountArgs args = new MiHaYouAccountArgs()
                 {
                      Uid = jo["data"]["user_info"]["uid"].ToString(),
@@ -112,9 +122,54 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
                      AccountImage = jo["data"]["user_info"]["avatar_url"].ToString()
                 };
                 return args;
+                //game_id=2得项目为原神，此后增加原神经验值查询
+            });
+        }
+
+        /// <summary>
+        /// 获得用户账号等级
+        /// </summary>
+        /// <returns></returns>
+        public static Task<ObservableCollection< GenshinAccountArgs>> GetGenshinAccount()
+        {
+            return Task.Run(async () =>
+            {
+                JObject jo = await Get(
+                    "https://api-takumi.mihoyo.com/binding/api/getUserGameRolesByCookie?game_biz=hk4e_cn", "");
+                ObservableCollection <GenshinAccountArgs> args = new ObservableCollection<GenshinAccountArgs>();
+                JArray ja = JArray.Parse(jo["data"]["list"].ToString());
+                foreach (var item in ja)
+                {
+                    args.Add(new GenshinAccountArgs()
+                    {
+                         Level = item["level"].ToString(),
+                         Name = item["nickname"].ToString(),
+                         OwnerServer = item["region"].ToString(),
+                         ServerName = item["region_name"].ToString(),
+                         Uid = item["game_uid"].ToString()
+                    });
+                }
+                return args;
             });
         }
 
 
+        public static Task<GenshinDayArgs> GenDay(string server,string uid)
+        {
+            return Task.Run(async () =>
+            {
+                var args = new GenshinDayArgs();
+                string url = $"https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/dailyNote?server={server}&role_id={uid}";
+                JObject jo = await Get(url, "");
+                args.Current_resion = jo["data"]["current_resin"].ToString();
+                args.max_resion = jo["data"]["max_resin"].ToString();
+                args.Days = new ObservableCollection<DayTask>();
+                foreach (var item in JArray.Parse( jo["data"]["expeditions"].ToString()))
+                {
+                    args.Days.Add(new DayTask() { IconPath = item["avatar_side_icon"].ToString(), status = item["status"].ToString(), end_Time = item["remained_time"].ToString() });
+                }
+                return args;
+            });
+        }
     }
 }

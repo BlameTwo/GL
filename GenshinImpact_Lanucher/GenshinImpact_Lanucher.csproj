@@ -241,6 +241,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Style\ProgressBarStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\AddServer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -306,6 +310,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\iconfont.ttf" />
     <None Include="Resources\PCGameSDK.dll" />
   </ItemGroup>
   <ItemGroup>

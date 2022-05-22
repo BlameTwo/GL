@@ -1,4 +1,5 @@
-﻿using GenshinImpact_Lanucher.EventArgs;
+﻿
+using GenshinImpact_Lanucher.EventArgs;
 using GenshinImpact_Lanucher.Model;
 using GenshinImpact_Lanucher.Utils;
 using Microsoft.Toolkit.Mvvm.Messaging;

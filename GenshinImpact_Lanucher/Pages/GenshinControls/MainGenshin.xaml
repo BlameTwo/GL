@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GenshinImpact_Lanucher.Pages.GenshinControls" xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d" 
-              xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+    </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
@@ -17,7 +19,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
@@ -31,7 +33,103 @@
                            Margin="10"
                            Text="{Binding _MyAccount.AccountName}"/>
             </StackPanel>
-            <ComboBox Grid.Column="1" Margin="0 0 15 0"/>
+            <ComboBox x:Name="Combo1"  
+                      Height="80"
+                      ItemsSource="{Binding _GenshinAccounts,Mode=TwoWay}" 
+                      Grid.Column="1" Margin="0 0 15 0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="{StaticResource GenshinIcon}"
+                                       FontSize="30"
+                                       Margin="0 10"
+                                       Text="&#xe61c;"/>
+                            <TextBlock Text="等级：" FontSize="15" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Level}" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text=" [ " VerticalAlignment="Center" FontSize="15"/>
+                            <TextBlock Text="{Binding ServerName}" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            <TextBlock Text=" ] " VerticalAlignment="Center" FontSize="15"/>
+                            <TextBlock Text="--- 名称：" VerticalAlignment="Center" FontSize="15"/>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" VerticalAlignment="Center" FontSize="15"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding _GetDay}" CommandParameter="{Binding ElementName=Combo1,Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <wpfui:Card Margin="10"
+                                   VerticalContentAlignment="Center" 
+                                   HorizontalContentAlignment="Center">
+                    <StackPanel>
+                        <TextBlock Text="实时树脂"
+                                   FontSize="20"/>
+                        <Grid Margin="0 15 0 0">
+                            <ProgressBar  x:Name="Pro1"  Maximum="{Binding _MyData.max_resion}" Height="45">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Loaded">
+                                        <i:InvokeCommandAction Command="{Binding ValueChanged}" CommandParameter="{Binding ElementName=Pro1}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ProgressBar>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                <TextBlock VerticalAlignment="Center">
+                                    <Run Text="脆弱树脂：" FontSize="15" FontWeight="Bold"/>
+                                    <Run Text="{Binding _MyData.Current_resion}"/>
+                                    <Run Text="/"/>
+                                    <Run Text="{Binding _MyData.max_resion}"/>
+                                </TextBlock>
+                            </StackPanel>
+
+                        </Grid>
+                        <TextBlock Text="每日委托"
+                                   FontSize="20" Margin="0 15 0 0"/>
+                        <Grid Margin="0 15 0 0">
+                            <ItemsControl HorizontalAlignment="Center"  ItemsSource="{Binding _MyData.Days}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate
+                                        xmlns:convert="clr-namespace:GenshinImpact_Lanucher.Convert">
+                                        <DataTemplate.Resources>
+                                            <convert:GenshinConvert x:Key="DaysStues"/>
+                                        </DataTemplate.Resources>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <Image Height="60" Width="60"
+                                                   Source="{Binding IconPath}"/>
+                                            <TextBlock VerticalAlignment="Center" 
+                                                       Grid.Row="1"
+                                                       HorizontalAlignment="Center" 
+                                                       Text="{Binding status,Converter={StaticResource DaysStues}}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            
+                        </Grid>
+                    </StackPanel>
+                </wpfui:Card>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

@@ -1,6 +1,4 @@
 ﻿using GenshinImpact_Lanucher.Model;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +13,8 @@ using System.Windows;
 using GenshinImpact_Lanucher.Utils;
 using System.IO;
 using GenshinImpact_Lanucher.Models;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace GenshinImpact_Lanucher.ViewModels
 {

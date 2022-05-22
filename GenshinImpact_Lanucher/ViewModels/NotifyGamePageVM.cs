@@ -1,7 +1,5 @@
 using GenshinImpact_Lanucher.GameNotifys;
 using GenshinImpact_Lanucher.Utils;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GenshinImpact_Lanucher.Models;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace GenshinImpact_Lanucher.ViewModels
 {
