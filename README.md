@@ -23,7 +23,7 @@
     - [ ] 便捷的命令生成/执行 即参考 [jie65535/GrasscutterCommandGenerator](https://github.com/jie65535/GrasscutterCommandGenerator) 项目的功能
     - [ ] 账户操作相关（注册、登录）
   - [ ] 游戏相关
-    - [ ] 实时便笺
+    - [x] 实时便笺
     - [ ] 解锁帧率
   - [ ] 其他待增加的功能
     - [ ] 自定义背景图
