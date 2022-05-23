@@ -28,6 +28,7 @@
   - [ ] 其他待增加的功能
     - [ ] 自定义背景图
     - [ ] 显示布局优化
+    - [x] 跟随系统以及自定义主题
 
 
 ### 程序获取请到程序 [Realease](https://github.com/123456fsdaf/GenshinImpact_Lanucher/releases) 下载
@@ -40,3 +41,5 @@
 图片引用地址[wallhaven.cc](https://wallhaven.cc/w/3z9wv3)
 <br/>
 解锁帧率：[DGP.Genshin.FPSunlocking](https://github.com/DGP-Studio/DGP.Genshin.FPSUnlocking)
+<br/>
+WPF-UI：[WPF-UI（稍做了一些更改）](https://github.com/lepoco/wpfui)
