@@ -15,6 +15,7 @@ using System.IO;
 using GenshinImpact_Lanucher.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using WPFUI.Appearance;
 
 namespace GenshinImpact_Lanucher.ViewModels
 {
@@ -37,17 +38,12 @@ namespace GenshinImpact_Lanucher.ViewModels
             _ServerPath = string.IsNullOrWhiteSpace(
                 myini.IniReadValue("MyLanucherConfig", "Port"))?
                 "": myini.IniReadValue("MyLanucherConfig", "Port");
-
-
+            _MyColors = new RelayCommand<object>((str) =>
+            {
+                ChangedColor(str);
+            });
             SelectServerPath = new RelayCommand(() => selectserverpath());
-            //xml = new ProxyXml($@"{docpath}\GSIConfig\Config\Proxy.xml");
             var b = myini.IniReadValue("MyLanucherConfig", "ProxyPath");
-            //if (!string.IsNullOrWhiteSpace(b))
-            //{
-            //    File.CreateText(xml.Path).Dispose();
-            //    xml.CreateHeader();
-            //    _ServerPath = xml.Path;
-            //}
             SelectGamePath = new RelayCommand(()=>selectpath());
             WindowPop = new RelayCommand(() => popopen());
             if(StartArgs.GameServer == Server.B站)
@@ -58,6 +54,60 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 Server1 = true;
             }
+            switch (myini.IniReadValue("Style","Theme"))
+            {
+                case "Auto":
+                    _ColorSelect = 0;
+                    break;
+                case "Light":
+                    _ColorSelect = 1;
+                    break;
+                case "Dark":
+                    _ColorSelect = 2;
+                    break;
+            }
+        }
+
+        private void ChangedColor(object str)
+        {
+            string swstr;
+            if (str is ComboBoxItem)
+                swstr = (str as ComboBoxItem).Content.ToString();
+            else
+                swstr = str.ToString();
+            switch (swstr)
+            {
+                case "跟随系统":
+                    MainWindow main = (System.Windows.Application.Current.MainWindow as MainWindow);
+                    WPFUI.Appearance.Watcher.Watch(main, BackgroundType.Mica, true, true);
+                    myini.IniWriteValue("Style", "Theme", "Auto");
+                    _ColorSelect = 0;
+                    break;
+                case "浅色":
+                    WPFUI.Appearance.Theme.Apply(
+                    ThemeType.Light,
+                    backgroundEffect: WPFUI.Appearance.BackgroundType.Mica,
+                    true,
+                    true);
+                    myini.IniWriteValue("Style", "Theme", "Light");
+                    break;
+                case "深色":
+                    WPFUI.Appearance.Theme.Apply(
+                    ThemeType.Dark,
+                    backgroundEffect: WPFUI.Appearance.BackgroundType.Mica,
+                    true,
+                    true);
+                    myini.IniWriteValue("Style", "Theme", "Dark");
+                    break;
+            }
+        }
+
+        private int ColorSelect;
+
+        public int _ColorSelect
+        {
+            get => ColorSelect;
+            set => SetProperty(ref ColorSelect, value);
         }
 
         private void savecookie()
@@ -120,6 +170,8 @@ namespace GenshinImpact_Lanucher.ViewModels
             myini.IniWriteValue("MyLanucherConfig", "Width", txt);
             StartArgs.GameWidth = txt;
         }
+
+
         private  void setradio()
         {
             if(Server1 == true)
@@ -160,13 +212,9 @@ namespace GenshinImpact_Lanucher.ViewModels
         {
             get { return ServerPath; }
             set { ServerPath = value; OnPropertyChanged(); }
-        }       
-
-
-
+        }
 
         public RelayCommand RadServerCheck { get; set; }
-
         public RelayCommand WindowCheck { get; private set; }
         public RelayCommand WindowPop { get; private set; }
         public RelayCommand<string> HeightGameSizeTextChanged { get; set; }
@@ -190,5 +238,8 @@ namespace GenshinImpact_Lanucher.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public RelayCommand<object> _MyColors { get; set; }
+
     }
 }

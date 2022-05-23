@@ -194,10 +194,16 @@
                 
                 Margin="0 10 0 0">
                     <wpfui:CardExpander.HeaderContent>
-                        <ComboBox SelectedIndex="0" Width="100" Margin="0 0 15 0">
+                        <ComboBox SelectedIndex="{Binding _ColorSelect,Mode=TwoWay}"  x:Name="ColorCom" Width="100" Margin="0 0 15 0" >
                             <ComboBoxItem Content="跟随系统"/>
                             <ComboBoxItem Content="浅色"/>
                             <ComboBoxItem Content="深色"/>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding _MyColors}"
+                                                           CommandParameter="{Binding ElementName=ColorCom,Path=SelectedItem}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                         </ComboBox>
                     </wpfui:CardExpander.HeaderContent>
                     <Grid>

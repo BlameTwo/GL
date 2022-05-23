@@ -8,8 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/WPFUI;component/Styles/Theme/Light.xaml  " />
                 <ResourceDictionary Source="pack://application:,,,/WPFUI;component/Styles/WPFUI.xaml" />
-
-                <ResourceDictionary Source="Style/ProgressBarStyle.xaml"/>
+                <ResourceDictionary Source="Style/WPF-UI.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="GenshinIcon">pack://application:,,,/Resources/#GenshinIcon</FontFamily>
         </ResourceDictionary>

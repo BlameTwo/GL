@@ -43,14 +43,33 @@ namespace GenshinImpact_Lanucher
             this.DataContext = new MainWinVM();
             Loaded += MainWindow_Loaded;
             win = this;
+
+            myini = new Launcher_Ini($@"{Resource.docpath}/GSIConfig/Config/LauncherConfig.ini");
         }
 
+        Launcher_Ini myini { get; set; }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Theme.Changed += Theme_Changed;    //Window11
             //设置上自动修改颜色，背景材质为默认
-            WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
+            switch (myini.IniReadValue("Style", "Theme"))
+            {
+                case "Auto":
+                    WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
+                    break;
+                case "Dark":
+                    WPFUI.Appearance.Theme.Apply(
+                        ThemeType.Dark,
+                        backgroundEffect: WPFUI.Appearance.BackgroundType.Mica, true, true);
+                    break;
+                case "Light":
+                    WPFUI.Appearance.Theme.Apply(
+                        ThemeType.Light,
+                        backgroundEffect: WPFUI.Appearance.BackgroundType.Mica, true, true);
+                    break;
+            }
+            
             Console.WriteLine("完成启动器启动。");
         }
 
