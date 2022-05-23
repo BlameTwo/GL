@@ -153,7 +153,12 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
             });
         }
 
-
+        /// <summary>
+        /// 获得每日详情
+        /// </summary>
+        /// <param name="server"></param>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         public static Task<GenshinDayArgs> GenDay(string server,string uid)
         {
             return Task.Run(async () =>
@@ -164,10 +169,22 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
                 args.Current_resion = jo["data"]["current_resin"].ToString();
                 args.max_resion = jo["data"]["max_resin"].ToString();
                 args.Days = new ObservableCollection<DayTask>();
-                foreach (var item in JArray.Parse( jo["data"]["expeditions"].ToString()))
+                foreach (var item in JArray.Parse(jo["data"]["expeditions"].ToString()))
                 {
                     args.Days.Add(new DayTask() { IconPath = item["avatar_side_icon"].ToString(), status = item["status"].ToString(), end_Time = item["remained_time"].ToString() });
                 }
+                args.home_money = jo["data"]["current_home_coin"].ToString();
+                args.max_home_money = jo["data"]["max_home_coin"].ToString();
+                args.max_boss = jo["data"]["resin_discount_num_limit"].ToString();
+                args.boss = jo["data"]["remain_resin_discount_num"].ToString();
+                args.truetransoformer = System.Convert.ToBoolean(jo["data"]["transformer"]["obtained"].ToString());
+                args.transformer =System.Convert.ToBoolean( jo["data"]["transformer"]["recovery_time"]["reached"].ToString());
+                int day = int.Parse(jo["data"]["transformer"]["recovery_time"]["Day"].ToString());
+                int hour = int.Parse(jo["data"]["transformer"]["recovery_time"]["Hour"].ToString());
+                int minute = int.Parse(jo["data"]["transformer"]["recovery_time"]["Minute"].ToString());
+                int second = int.Parse(jo["data"]["transformer"]["recovery_time"]["Second"].ToString());
+                //做一个转换，只要整数部分
+                args.transformertime =long.Parse( ((new TimeSpan(day,hour,minute,second).Ticks)/ 864000000000).ToString());
                 return args;
             });
         }

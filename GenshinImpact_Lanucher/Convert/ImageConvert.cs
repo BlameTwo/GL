@@ -39,11 +39,11 @@ namespace GenshinImpact_Lanucher.Convert
             {
                 case "Ongoing":
                     {
-                        return false;
+                        return "未完成";
                     }
                 case "Finished":
                     {
-                        return true;
+                        return "完成";
                     }
                 default:
                     return false;
@@ -52,13 +52,17 @@ namespace GenshinImpact_Lanucher.Convert
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(System.Convert.ToBoolean(value))
+            if(System.Convert.ToString(value) == "完成")
             {
                 return "Finished";
             }
-            else
+            else if(System.Convert.ToString(value) == "未完成")
             {
                 return "Ongoing";
+            }
+            else
+            {
+                return null;
             }
         }
     }

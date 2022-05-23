@@ -34,29 +34,34 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
         /// <summary>
         /// 树脂
         /// </summary>
-        public string Current_resion { get; set; }
+        public string Current_resion { get; set; } = "0";
         /// <summary>
         /// 最大树脂
         /// </summary>
-        public string max_resion { get; set; }
+        public string max_resion { get; set; } = "160";
         /// <summary>
         /// 每日委托完成度
         /// </summary>
-        public string resin_Day { get; set; }
+        public string resin_Day { get; set; } = "0";
         /// <summary>
         /// 最大每日委托
         /// </summary>
-        public string max_resion_day { get; set; }
+        public string max_resion_day { get; set; } = "4";
 
         /// <summary>
         /// 周本
         /// </summary>
-        public string boss { get; set; }
+        public string boss { get; set; } = "0";
+
+        /// <summary>
+        /// 周本数量
+        /// </summary>
+        public string max_boss { get; set; } = "3";
 
         /// <summary>
         /// 洞天宝钱
         /// </summary>
-        public string home_money { get; set; }
+        public string home_money { get; set; } = "0";
 
         /// <summary>
         /// 每日委托
@@ -66,7 +71,22 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
         /// <summary>
         /// 最大洞天宝钱
         /// </summary>
-        public string max_home_money { get; set; }
+        public string max_home_money { get; set; } = "1600";
+
+        /// <summary>
+        /// 质变仪状态
+        /// </summary>
+        public bool transformer { get; set; } = false;
+
+        /// <summary>
+        /// 是否已经获得质变仪
+        /// </summary>
+        public bool truetransoformer { get; set; } = false;
+
+        /// <summary>
+        /// 剩余可用时间
+        /// </summary>
+        public long transformertime { get; set; } = 0;
     }
 
     public class DayTask

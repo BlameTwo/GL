@@ -17,17 +17,14 @@ namespace GenshinImpact_Lanucher
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-
-
             AppDomain currentDomain = AppDomain.CurrentDomain;
             // 当前作用域出现未捕获异常时，使用MyHandler函数响应事件
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
             base.OnStartup(e);
-
-
-
-
         }
+
+        
+
 
         static void MyHandler(object sender, UnhandledExceptionEventArgs args)
         {

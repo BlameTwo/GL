@@ -75,7 +75,7 @@
                                    VerticalContentAlignment="Center" 
                                    HorizontalContentAlignment="Center">
                     <StackPanel>
-                        <TextBlock Text="实时树脂"
+                        <TextBlock Text="数据"
                                    FontSize="20"/>
                         <Grid Margin="0 15 0 0">
                             <ProgressBar  x:Name="Pro1"  Maximum="{Binding _MyData.max_resion}" Height="45">
@@ -95,9 +95,68 @@
                             </StackPanel>
 
                         </Grid>
+                        <Grid Margin="0 15 0 0">
+                            <ProgressBar x:Name="Pro2" Minimum="0" Maximum="{Binding _MyData.max_home_money}" Height="45">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Loaded">
+                                        <i:InvokeCommandAction Command="{Binding ValueChanged2}" CommandParameter="{Binding ElementName=Pro2}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ProgressBar>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" >
+                                <TextBlock VerticalAlignment="Center" >
+                                    <Run Text="洞天宝钱：" FontSize="15" FontWeight="Bold"/>
+                                    <Run Text="{Binding _MyData.home_money}"/>
+                                    <Run Text="/"/>
+                                    <Run Text="{Binding _MyData.max_home_money}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Margin="0 15 0 0">
+                            <ProgressBar x:Name="Pro3" Minimum="0" Maximum="{Binding _MyData.max_boss}" Height="45">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Loaded">
+                                        <i:InvokeCommandAction Command="{Binding ValueChanged3}" CommandParameter="{Binding ElementName=Pro3}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ProgressBar>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" >
+                                <TextBlock VerticalAlignment="Center" >
+                                    <Run Text="周本减半：" FontSize="15" FontWeight="Bold"/>
+                                    <Run Text="{Binding _MyData.boss}"/>
+                                    <Run Text="/"/>
+                                    <Run Text="{Binding _MyData.max_boss}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Margin="0 15 0 0" x:Name="transoformer">
+                            <ProgressBar x:Name="Pro4" Minimum="0" Maximum="7" Height="45">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Loaded">
+                                        <i:InvokeCommandAction Command="{Binding ValueChanged4}" CommandParameter="{Binding ElementName=Pro4}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ProgressBar>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" >
+                                <TextBlock VerticalAlignment="Center" >
+                                    <Run Text="质变仪器：" FontSize="15" FontWeight="Bold"/>
+                                    <Run Text="{Binding _MyData.transformertime}"/>
+                                    <Run Text="/"/>
+                                    <Run Text="7"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
                         <TextBlock Text="每日委托"
                                    FontSize="20" Margin="0 15 0 0"/>
-                        <Grid Margin="0 15 0 0">
+                        <Grid Margin="0 5 0 0">
                             <ItemsControl HorizontalAlignment="Center"  ItemsSource="{Binding _MyData.Days}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -110,23 +169,29 @@
                                         <DataTemplate.Resources>
                                             <convert:GenshinConvert x:Key="DaysStues"/>
                                         </DataTemplate.Resources>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                            </Grid.RowDefinitions>
-                                            <Image Height="60" Width="60"
+                                        <wpfui:CardControl Padding="0" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Image Height="45" Width="45"
                                                    Source="{Binding IconPath}"/>
-                                            <TextBlock VerticalAlignment="Center" 
+                                                <TextBlock VerticalAlignment="Center" 
                                                        Grid.Row="1"
+                                                       Margin="0 10 0 0"
                                                        HorizontalAlignment="Center" 
                                                        Text="{Binding status,Converter={StaticResource DaysStues}}"/>
-                                        </Grid>
+                                            </Grid>
+                                        </wpfui:CardControl>
+                                       
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-                            
+
                         </Grid>
+                        
+
                     </StackPanel>
                 </wpfui:Card>
             </Grid>

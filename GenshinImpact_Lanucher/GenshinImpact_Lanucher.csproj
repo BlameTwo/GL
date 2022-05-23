@@ -331,7 +331,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Account\" />
     <Folder Include="Dialogs\" />
     <Folder Include="Welcome\" />
   </ItemGroup>

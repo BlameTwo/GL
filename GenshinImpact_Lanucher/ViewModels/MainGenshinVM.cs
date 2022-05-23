@@ -31,6 +31,21 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 currpro = pro;
             });
+
+            ValueChanged2 = new RelayCommand<ProgressBar>((pro) =>
+            {
+                menoypro = pro;
+            });
+
+            ValueChanged3 = new RelayCommand<ProgressBar>((pro) =>
+            {
+                bosspro = pro;
+            });
+
+            ValueChanged4 = new RelayCommand<ProgressBar>((pro) =>
+            {
+                transoformer = pro;
+            });
         }
 
 
@@ -38,24 +53,67 @@ namespace GenshinImpact_Lanucher.ViewModels
         /// 脆弱数值的控件
         /// </summary>
         ProgressBar currpro = new ProgressBar();
-
+        /// <summary>
+        /// 洞天宝钱的控件
+        /// </summary>
+        ProgressBar menoypro = new ProgressBar();
+        /// <summary>
+        /// 周本减免
+        /// </summary>
+        ProgressBar bosspro = new ProgressBar();
+        /// <summary>
+        /// 质变仪
+        /// </summary>
+        ProgressBar transoformer = new ProgressBar();
         public async void getday(GenshinAccountArgs args)
         {
             if (args == null)
                 return;
             _MyData = await  MiHaYouAPI.API.GenDay(args.OwnerServer, args.Uid);
-            Ref(currpro);
+            Ref(currpro, RefArgs.Current);
+            Ref(menoypro, RefArgs.Menoy);
+            Ref(bosspro, RefArgs.Boss);
+            Ref(transoformer, RefArgs.transoformer);
+        }
+
+        public enum RefArgs
+        {
+            Current,
+            Menoy,
+            Boss,
+            transoformer
         }
         
-        public void Ref(ProgressBar pro1)
+        public void Ref(ProgressBar pro1, RefArgs arg)
         {
-            DoubleAnimation da = new DoubleAnimation() { From = 0, To =double.Parse( MyData.Current_resion)};
+            ProgressBar pro = new ProgressBar();
+            double to = 0;
+            switch (arg)
+            {
+                case RefArgs.Current:
+                    pro = currpro;
+                    to = Double.Parse( _MyData.Current_resion);
+                    break;
+                case RefArgs.Menoy:
+                    pro = menoypro;
+                    to = Double.Parse(_MyData.home_money);
+                    break;
+                case RefArgs.Boss:
+                    pro = bosspro;
+                    to = double.Parse(_MyData.boss);
+                    break;
+                case RefArgs.transoformer:
+                    pro = transoformer;
+                    to = _MyData.transformertime;
+                    break;
+            }
+            DoubleAnimation da = new DoubleAnimation() { From = 0, To =to};
             da.EasingFunction = new CubicEase()
             {
                 EasingMode = EasingMode.EaseOut
             };
             da.Duration = new Duration(new TimeSpan(0, 0, 0, 1, 500));
-            pro1.BeginAnimation(ProgressBar.ValueProperty, da);
+            pro.BeginAnimation(ProgressBar.ValueProperty, da);
         }
 
         private GenshinDayArgs MyData;
@@ -79,7 +137,9 @@ namespace GenshinImpact_Lanucher.ViewModels
 
         public RelayCommand<GenshinAccountArgs> _GetDay { get; private set; }
         public RelayCommand<ProgressBar> ValueChanged { get; private set; }
-
+        public RelayCommand<ProgressBar> ValueChanged2 { get; set; }
+        public RelayCommand<ProgressBar> ValueChanged3 { get; set; }
+        public RelayCommand<ProgressBar> ValueChanged4 { get; set; }
         private ObservableCollection<GenshinAccountArgs> GenshinAccounts;
 
         public ObservableCollection<GenshinAccountArgs> _GenshinAccounts
