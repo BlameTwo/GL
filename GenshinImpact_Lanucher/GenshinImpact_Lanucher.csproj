@@ -53,6 +53,9 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\q2jymr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="HtmlAgilityPack">
       <Version>1.11.42</Version>
     </PackageReference>
@@ -88,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\iconfont.ttf" />
+    <Resource Include="Resources\q2jymr.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

@@ -52,6 +52,7 @@
                         FontSize="15"
                         Text="如果计算机断网请关闭功能，并重启计算机"/>
                     <ui:Button Margin="0 10" Padding="10 " Content="关闭连接" Command="{Binding CloseProxy}"/>
+                    <ui:Button Padding="10 " Content="启动游戏！" Command="{Binding Start}"/>
                 </StackPanel>
             </ui:CardControl>
         </ui:Dialog>

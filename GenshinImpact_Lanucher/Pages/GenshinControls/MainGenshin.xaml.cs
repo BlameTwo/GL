@@ -27,8 +27,15 @@ namespace GenshinImpact_Lanucher.Pages.GenshinControls
         {
             InitializeComponent();
             this.DataContext = new MainGenshinVM();
+            this.Unloaded += MainGenshin_Unloaded;
         }
 
-        
+        private void MainGenshin_Unloaded(object sender, RoutedEventArgs e)
+        {
+           if( this.FindName("MyControl") != null)
+                this.UnregisterName("MyControl");
+        }
+
+
     }
 }

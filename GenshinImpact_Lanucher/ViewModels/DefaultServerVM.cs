@@ -44,6 +44,19 @@ namespace GenshinImpact_Lanucher.ViewModels
                 //在本体发送消息，就直接调用方法
                 Receive(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
             });
+            Start = new RelayCommand(async () =>
+            {
+                StartGame startAgument = new StartGame();
+                string a = await startAgument.GO(myini.GetAgument());
+                if (a == "1")
+                {
+                    TipWindow.Show("游戏已经启动", "从外部启动游戏成功！如果出现闪退请检查游戏文件夹", WPFUI.Common.SymbolRegular.CheckmarkCircle24);
+                }
+                else
+                {
+                    TipWindow.Show("游戏启动失败", "请检查游戏路径是否设置正确", WPFUI.Common.SymbolRegular.ErrorCircle24);
+                };
+            });
         }
         ProxyController Proxy { get; set; }
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -61,6 +74,7 @@ namespace GenshinImpact_Lanucher.ViewModels
         public RelayCommand AddServer { get; set; }
         public RelayCommand Loaded { get; set; }
         public RelayCommand Unloaded { get; set; }
+        public RelayCommand Start { get; set; }
 
         private bool DialogShow;
 
@@ -105,10 +119,11 @@ namespace GenshinImpact_Lanucher.ViewModels
                 case ServerStuate.Runing:
                     {
                         //这里重启一下服务器
-                        Proxy = new ProxyController(myini.IniReadValue("MyLanucherConfig", "Port"), message.Proxy.Host);
-                        if(await MyHttpClient.GetJson($@"https://{message.Proxy.Host}/status/server") != null)
+                        ProxyController.port = myini.IniReadValue("MyLanucherConfig", "Port");
+                        ProxyController.fakeHost = message.Proxy.Host;
+                        if (await MyHttpClient.GetJson($@"https://{message.Proxy.Host}/status/server") != null)
                         {
-                            Proxy.Start();
+                            ProxyController.Start();
                             _DialogShow = true;
                            TipWindow.Show("代理启动成功", "如果无法连接请联系服务器管理人员", WPFUI.Common.SymbolRegular.CalendarMail16);
                             break;
@@ -120,8 +135,7 @@ namespace GenshinImpact_Lanucher.ViewModels
                     {
                         //服务器停滞状态
                         _DialogShow = false;
-                        if (Proxy != null)
-                            Proxy.Stop();
+                        ProxyController.Stop();
                         Proxy = null;
                         break;
                     }

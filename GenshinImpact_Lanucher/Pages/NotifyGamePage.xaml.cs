@@ -26,6 +26,13 @@ namespace GenshinImpact_Lanucher.Pages
         {
             InitializeComponent();
             this.DataContext = new NotifyGamePageVM();
+            this.Unloaded += NotifyGamePage_Unloaded;
+        }
+
+        private void NotifyGamePage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (this.FindName("pages") != null)
+                this.UnregisterName("pages");
         }
 
         private void NotifiMoreDialog_ButtonRightClick(object sender, RoutedEventArgs e)

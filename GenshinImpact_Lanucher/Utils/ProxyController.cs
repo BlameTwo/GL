@@ -21,30 +21,24 @@ namespace GenshinImpact_Lanucher.Utils
 
     public class ProxyController
     {
-        ProxyServer proxyServer;
-        ExplicitProxyEndPoint explicitEndPoint;
-        private string port;
-        private string fakeHost;
+        public static ProxyServer proxyServer;
+        static ExplicitProxyEndPoint explicitEndPoint;
+        public static string port;
+        public static string fakeHost;
 
-        public ProxyController(string port, string host)
-        {
-            this.port = port;
-            this.fakeHost = host;
+        private static bool IsRun;
 
-
-        }
-
-        private bool IsRun;
-
-        public bool _IsRun
+        public static bool _IsRun
         {
             get { return proxyServer.ProxyRunning; }
             set { IsRun = value; }
         }
 
 
-        public void Start()
+        public static void Start()
         {
+            if (port == null || fakeHost == null)
+                return;
             proxyServer = new ProxyServer();
             proxyServer.CertificateManager.EnsureRootCertificate();
 
@@ -81,7 +75,7 @@ namespace GenshinImpact_Lanucher.Utils
 
 
 
-        public void Stop()
+        public static void Stop()
         {
             try
             {
@@ -101,28 +95,24 @@ namespace GenshinImpact_Lanucher.Utils
                 if (proxyServer.ProxyRunning)
                 {
                     proxyServer.Stop();
-
                 }
                 else
                 {
                 }
-
             }
 
         }
 
-        public void UninstallCertificate()
+        public static void UninstallCertificate()
         {
-
+            proxyServer = new ProxyServer();
             proxyServer.CertificateManager.RemoveTrustedRootCertificate();
             proxyServer.CertificateManager.RemoveTrustedRootCertificateAsAdmin();
-
-
         }
 
 
 
-        private async Task OnBeforeTunnelConnectRequest(object sender, TunnelConnectSessionEventArgs e)
+        private static async Task OnBeforeTunnelConnectRequest(object sender, TunnelConnectSessionEventArgs e)
         {
             string hostname = e.WebSession.Request.RequestUri.Host;
             if (hostname.EndsWith(".yuanshen.com") |
@@ -139,7 +129,7 @@ namespace GenshinImpact_Lanucher.Utils
         }
 
 
-        private async Task OnRequest(object sender, SessionEventArgs e)
+        private static async Task OnRequest(object sender, SessionEventArgs e)
         {
             Uri uri1 = new Uri(GameNitify.Url); Uri uri2 = new Uri(GameNitify.MoreUrl);
             Uri uri3 = new Uri("https://uploadstatic.mihoyo.com");
@@ -156,7 +146,7 @@ namespace GenshinImpact_Lanucher.Utils
         }
 
         // Allows overriding default certificate validation logic
-        private Task OnCertificateValidation(object sender, CertificateValidationEventArgs e)
+        private static Task OnCertificateValidation(object sender, CertificateValidationEventArgs e)
         {
             // set IsValid to true/false based on Certificate Errors
             //if (e.SslPolicyErrors == System.Net.Security.SslPolicyErrors.None)

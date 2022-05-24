@@ -42,7 +42,7 @@ namespace GenshinImpact_Lanucher
             {
                 if(StartGame.Controller != null)
                 {
-                    StartGame.Controller.Stop();
+                    ProxyController.Stop();
                 }
             }
             catch (Exception){ Console.Write(e.ApplicationExitCode); }

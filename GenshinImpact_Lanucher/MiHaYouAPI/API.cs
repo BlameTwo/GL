@@ -166,6 +166,7 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
                 var args = new GenshinDayArgs();
                 string url = $"https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/dailyNote?server={server}&role_id={uid}";
                 JObject jo = await Get(url, "");
+                //Data Not exists
                 args.Current_resion = jo["data"]["current_resin"].ToString();
                 args.max_resion = jo["data"]["max_resin"].ToString();
                 args.Days = new ObservableCollection<DayTask>();

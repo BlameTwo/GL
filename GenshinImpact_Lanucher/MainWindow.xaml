@@ -9,12 +9,15 @@
         Background='White'
         xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:pages="clr-namespace:GenshinImpact_Lanucher.Pages"
+        xmlns:pages="clr-namespace:GenshinImpact_Lanucher.Pages" xmlns:convert="clr-namespace:GenshinImpact_Lanucher.Convert"
         x:Name="Home"
         Title="原神启动器" Height="600" Width="1000"
         Foreground="{DynamicResource TextFillColorTertiaryBrush}"
         Style="{DynamicResource UiWindowNoResize}">
+    <Window.Resources>
 
+        <convert:ImageConvert x:Key="ImageConvert1"/>
+    </Window.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Loaded}"/>
@@ -25,8 +28,13 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-       
-       
+
+        <Image Grid.RowSpan="2" x:Name="BackImage" x:FieldModifier="public" Stretch="UniformToFill">
+            <Image.Effect>
+                <BlurEffect x:FieldModifier="public" x:Name="WindowBlur"/>
+            </Image.Effect>
+        </Image>
+
         <wpfui:TitleBar 
             Title="原神启动器"
             CanMaximize="False"

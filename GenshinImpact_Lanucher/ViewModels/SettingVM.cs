@@ -16,11 +16,14 @@ using GenshinImpact_Lanucher.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using WPFUI.Appearance;
+using System.Windows.Media.Imaging;
 
 namespace GenshinImpact_Lanucher.ViewModels
 {
+
     public class SettingVM: ObservableRecipient
     {
+        ProxyController proxy = new ProxyController();
         ProxyJson xml { get; set; }
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public SettingVM()
@@ -32,6 +35,21 @@ namespace GenshinImpact_Lanucher.ViewModels
             RadServerCheck = new RelayCommand(() => setradio());
             HeightGameSizeTextChanged = new RelayCommand<string >((txt) => heightchanged(txt));
             WidthGameSizeTextChanged = new RelayCommand<string>((txt) => widthchanged(txt));
+            SaveImage = new RelayCommand(() =>
+            {
+                Microsoft.Win32.OpenFileDialog open = new Microsoft.Win32.OpenFileDialog()
+                {
+                    Title = "选择一张图片"
+                };
+                if(open.ShowDialog() == true)
+                {
+                    myini.IniWriteValue("Style", "BackImage", open.FileName);
+                    var bitmap = new BitmapImage(new Uri(open.FileName));
+                    bitmap.DecodePixelHeight = 1000;
+                    bitmap.DecodePixelWidth = 1000;
+                    (System.Windows.Application.Current.MainWindow as MainWindow).BackImage.Source = bitmap;
+                }
+            });
             WindowCheck = new RelayCommand(() => windowcheck());
             SaveCookie = new RelayCommand(() => savecookie());
             CookieText = myini.IniReadValue("MyLanucherConfig", "Cookie");
@@ -41,6 +59,18 @@ namespace GenshinImpact_Lanucher.ViewModels
             _MyColors = new RelayCommand<object>((str) =>
             {
                 ChangedColor(str);
+            });
+
+            BlurChanged = new RelayCommand<double>((number) =>
+            {
+                (System.Windows.Application.Current.MainWindow as MainWindow).WindowBlur.Radius = number; ;
+                myini.IniWriteValue("Style", "Blur", number.ToString());
+                
+            });
+            TranChanged = new RelayCommand<double>((number) =>
+            {
+                myini.IniWriteValue("Style", "Tran", number.ToString());
+                (System.Windows.Application.Current.MainWindow as MainWindow).BackImage.Opacity = number;
             });
             SelectServerPath = new RelayCommand(() => selectserverpath());
             var b = myini.IniReadValue("MyLanucherConfig", "ProxyPath");
@@ -66,7 +96,52 @@ namespace GenshinImpact_Lanucher.ViewModels
                     _ColorSelect = 2;
                     break;
             }
+            _Tran =   double.Parse(myini.IniReadValue("Style", "Tran"));
+            _Blur =  double.Parse(myini.IniReadValue("Style", "Blur"));
+            OpenPfx = new RelayCommand(() =>
+            {
+                ProxyController.proxyServer = new Titanium.Web.Proxy.ProxyServer();
+                ProxyController.proxyServer.CertificateManager.EnsureRootCertificate();
+            });
+
+            ClosePfx = new RelayCommand(() =>
+            {
+                ProxyController.proxyServer = new Titanium.Web.Proxy.ProxyServer();
+                ProxyController.UninstallCertificate();
+            });
+
+            RepairPfx = new RelayCommand(() =>
+            {
+                ProxyController.port = "11451";
+                ProxyController.fakeHost = "127.0.0.1";
+                ProxyController.Start();
+                ProxyController.Stop();
+                WindowTip.TipShow("修复完毕", "请尝试打开浏览器并验证，如果还是不行，请先卸载证书，随后再次修复！", WPFUI.Common.SymbolRegular.Earth16);
+            });
         }
+
+
+
+
+        private double Blur;
+
+        public double _Blur
+        {
+            get => Blur;
+            set => SetProperty(ref Blur,value);
+        }
+
+
+
+        private double Tran;
+
+        public double _Tran
+        {
+            get => Tran;
+            set => SetProperty(ref Tran, value);
+        }
+
+
 
         private void ChangedColor(object str)
         {
@@ -219,10 +294,16 @@ namespace GenshinImpact_Lanucher.ViewModels
         public RelayCommand WindowPop { get; private set; }
         public RelayCommand<string> HeightGameSizeTextChanged { get; set; }
         public RelayCommand SaveServer { get; set; }
+        public RelayCommand SaveImage { get; set; }
         public RelayCommand SelectServerPath { get; set; }
+        public RelayCommand<double> BlurChanged { get; set; }
+        public RelayCommand<double> TranChanged { get; set; }
         public RelayCommand<string> WidthGameSizeTextChanged { get; set; }
         public RelayCommand SelectGamePath { get; private set; }
         public RelayCommand SaveCookie { get; private set; }
+        public RelayCommand OpenPfx { get; set; }
+        public RelayCommand ClosePfx { get; set; }
+        public RelayCommand RepairPfx { get; set; }
         Launcher_Ini myini { get; set; }
         Launcher_Ini GameIni { get; set; }
         private StartAgument startargs;

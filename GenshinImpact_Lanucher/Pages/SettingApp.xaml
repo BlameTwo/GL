@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GenshinImpact_Lanucher.Pages"
       mc:Ignorable="d" 
+      Background="Transparent"
       d:DesignHeight="450" d:DesignWidth="800"
       xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI"
       Title="SettingApp" Foreground="{DynamicResource TextFillColorTertiaryBrush}"
@@ -14,7 +15,7 @@
     <Page.Resources>
     </Page.Resources>
     <ScrollViewer>
-        <wpfui:Card Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
+        <wpfui:Card Background="Transparent">
             <StackPanel >
                 <wpfui:CardExpander Icon="Games16" Header="游戏设置">
                     <Grid HorizontalAlignment="Stretch"  VerticalAlignment="Center"  >
@@ -194,17 +195,22 @@
                 
                 Margin="0 10 0 0">
                     <wpfui:CardExpander.HeaderContent>
-                        <ComboBox SelectedIndex="{Binding _ColorSelect,Mode=TwoWay}"  x:Name="ColorCom" Width="100" Margin="0 0 15 0" >
-                            <ComboBoxItem Content="跟随系统"/>
-                            <ComboBoxItem Content="浅色"/>
-                            <ComboBoxItem Content="深色"/>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding _MyColors}"
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="颜色"
+                                       VerticalAlignment="Center" 
+                                       FontSize="15" FontWeight="Bold" Margin="0 0 10 0"/>
+                            <ComboBox Style="{DynamicResource ComboBoxStyle1}" SelectedIndex="{Binding _ColorSelect,Mode=TwoWay}"  x:Name="ColorCom" Width="100" Margin="0 0 15 0" >
+                                <ComboBoxItem Content="跟随系统"/>
+                                <ComboBoxItem Content="浅色"/>
+                                <ComboBoxItem Content="深色"/>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding _MyColors}"
                                                            CommandParameter="{Binding ElementName=ColorCom,Path=SelectedItem}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </ComboBox>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
+                        </StackPanel>
                     </wpfui:CardExpander.HeaderContent>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -238,12 +244,34 @@
                             <TextBox VerticalAlignment="Center" />
                             <wpfui:Button Grid.Column="1"
                                           Padding="20 10"
-                                      Content="更换" Margin="10 5"/>
+                                      Content="更换" Margin="10 5"
+                                          Command="{Binding SaveImage}"/>
                         </Grid>
-                        <Slider  Grid.Row="1" Grid.Column="1" TickFrequency="5" TickPlacement="BottomRight" Margin="25 10" Maximum="30" Minimum="0"/>
-                        <Slider Grid.Row="2" Grid.Column="1" TickFrequency="0.05" TickPlacement="BottomRight" Margin="25 10" Maximum="1" Minimum="0"/>
+                        <Slider  x:Name="BlurSlider"  Grid.Row="1" Grid.Column="1" Value="{Binding _Blur,Mode=TwoWay}" TickFrequency="5" TickPlacement="BottomRight" Margin="25 10" Maximum="15" Minimum="0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="ValueChanged">
+                                    <i:InvokeCommandAction Command="{Binding BlurChanged}" CommandParameter="{Binding ElementName=BlurSlider,Path=Value}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Slider>
+                        <Slider x:Name="TranSlider" Grid.Row="2" Grid.Column="1" Value="{Binding _Tran,Mode=TwoWay}" TickFrequency="0.05" TickPlacement="BottomRight" Margin="25 10" Maximum="1" Minimum="0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="ValueChanged">
+                                    <i:InvokeCommandAction Command="{Binding TranChanged}" CommandParameter="{Binding ElementName=TranSlider,Path=Value}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Slider>
 
                     </Grid>
+                </wpfui:CardExpander>
+                <wpfui:CardExpander Margin="0 15 0 0"
+                                    Header="代理证书" Icon="Book24">
+                    <StackPanel HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+                        <wpfui:Button Content="安装证书" Command="{Binding OpenPfx}" Margin="10"/>
+                        <wpfui:Button Content="卸载证书" Command="{Binding ClosePfx}" Margin="10"/>
+                        <wpfui:Button Content="修复联网" Command="{Binding RepairPfx}" Margin="10"/>
+                    </StackPanel>
                 </wpfui:CardExpander>
                 <TextBlock Text="其他功能正在开发中o(*￣▽￣*)ブ" HorizontalAlignment="Center" Margin="0 10 0 0"/>
 

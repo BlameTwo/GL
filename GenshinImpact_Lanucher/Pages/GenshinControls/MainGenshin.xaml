@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GenshinImpact_Lanucher.Pages.GenshinControls" xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d" 
+             x:Name="MyControl"
               xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
