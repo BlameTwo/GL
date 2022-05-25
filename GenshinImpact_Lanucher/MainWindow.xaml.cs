@@ -69,26 +69,30 @@ namespace GenshinImpact_Lanucher
                         backgroundEffect: WPFUI.Appearance.BackgroundType.Mica, true, true);
                     break;
             }
-
-            BackImage.Opacity = double.Parse(myini.IniReadValue("Style", "Tran"));
-            WindowBlur.Radius = double.Parse(myini.IniReadValue("Style","Blur"));
-            try
+            if(string.IsNullOrWhiteSpace(myini.IniReadValue("Style", "IsMica")))
             {
-                var bitmap = new BitmapImage(new Uri(myini.IniReadValue("Style", "BackImage")));
-                bitmap.DecodePixelHeight = 1000;
-                bitmap.DecodePixelWidth = 1000;
-                BackImage.Source = bitmap;
+                myini.IniWriteValue("Style","IsMica","True");
             }
-            catch (Exception)
+            var boo = System.Convert.ToBoolean(myini.IniReadValue("Style", "IsMica"));
+            if (boo == true)
+                return;
+            else
             {
+                BackImage.Opacity = double.Parse(myini.IniReadValue("Style", "Tran"));
+                WindowBlur.Radius = double.Parse(myini.IniReadValue("Style", "Blur"));
+
+                try
+                {
+                    var bitmap = new BitmapImage(new Uri(myini.IniReadValue("Style", "BackImage")));
+                    bitmap.DecodePixelHeight = 1000;
+                    bitmap.DecodePixelWidth = 1000;
+                    BackImage.Source = bitmap;
+                }
+                catch (Exception)
+                {
+                }
+                Console.WriteLine("完成启动器启动。");
             }
-            Console.WriteLine("完成启动器启动。");
-
-            //调试过程中如果项目退出触发了无法联网的BUG，可以尝试取消注释下面的代码
-            //ProxyController Proxy = new ProxyController("11451","127.0.0.1");
-            //Proxy.Start();
-            //Proxy.Stop();
-
         }
 
         private void Theme_Changed(ThemeType currentTheme, Color systemAccent)

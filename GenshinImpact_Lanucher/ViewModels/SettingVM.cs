@@ -120,6 +120,19 @@ namespace GenshinImpact_Lanucher.ViewModels
                 ProxyController.Stop();
                 WindowTip.TipShow("修复完毕", "请尝试打开浏览器并验证，如果还是不行，请先卸载证书，随后再次修复！", WPFUI.Common.SymbolRegular.Earth16);
             });
+
+            _IsMica = System.Convert.ToBoolean(myini.IniReadValue("Style", "IsMica"));
+
+            MicaChanged = new RelayCommand(() =>
+            {
+                if (_IsMica)
+                {
+                    MainWindow main = (System.Windows.Application.Current.MainWindow as MainWindow);
+                    WPFUI.Appearance.Watcher.Watch(main, BackgroundType.Mica, true, true);
+                    main.BackImage.Source = null;
+                }
+                myini.IniWriteValue("Style", "IsMica",_IsMica.ToString());
+            });
         }
 
 
@@ -131,6 +144,15 @@ namespace GenshinImpact_Lanucher.ViewModels
         {
             get => Blur;
             set => SetProperty(ref Blur,value);
+        }
+
+
+        private bool isMica;
+
+        public bool _IsMica
+        {
+            get { return isMica; }
+            set { isMica = value; }
         }
 
 
@@ -313,6 +335,7 @@ namespace GenshinImpact_Lanucher.ViewModels
         public RelayCommand OpenPfx { get; set; }
         public RelayCommand ClosePfx { get; set; }
         public RelayCommand RepairPfx { get; set; }
+        public RelayCommand MicaChanged { get; set; }
         Launcher_Ini myini { get; set; }
         Launcher_Ini GameIni { get; set; }
         private StartAgument startargs;

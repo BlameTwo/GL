@@ -13,6 +13,7 @@
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:server1="clr-namespace:GenshinImpact_Lanucher.Convert">
     <Page.Resources>
+        <server1:MicaConvert x:Key="MyConvert"/>
     </Page.Resources>
     <ScrollViewer>
         <wpfui:Card Background="Transparent">
@@ -192,7 +193,6 @@
                 <wpfui:CardExpander 
                 Header="效果"
                 Icon="PictureInPicture16"
-                
                 Margin="0 10 0 0">
                     <wpfui:CardExpander.HeaderContent>
                         <StackPanel Orientation="Horizontal">
@@ -238,15 +238,30 @@
                         Text="透明度"/>
                         <Grid Grid.Column="1">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
+                            <CheckBox x:Name="Mica" IsChecked="{Binding _IsMica,Mode=TwoWay}" Content="Mica背景" Margin="0 0 10 0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <i:InvokeCommandAction Command="{Binding MicaChanged}"
+                                                               />
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="Unchecked">
+                                        <i:InvokeCommandAction Command="{Binding MicaChanged}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
                             <TextBox
+                                IsEnabled="{Binding ElementName=Mica,Path=IsChecked,Converter={StaticResource MyConvert}}"
+                                Grid.Column="1"
                                 Text="{Binding _ImagePath}"
                                 VerticalAlignment="Center" />
-                            <wpfui:Button Grid.Column="1"
+                            <wpfui:Button Grid.Column="2"
                                           Padding="20 10"
-                                      Content="更换" Margin="10 5"
+                                          IsEnabled="{Binding ElementName=Mica,Path=IsChecked,Converter={StaticResource MyConvert}}"
+                                          Content="更换" Margin="10 5"
                                           Command="{Binding SaveImage}"/>
                         </Grid>
                         <Slider  x:Name="BlurSlider"  Grid.Row="1" Grid.Column="1" Value="{Binding _Blur,Mode=TwoWay}" TickFrequency="5" TickPlacement="BottomRight" Margin="25 10" Maximum="15" Minimum="0">

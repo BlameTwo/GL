@@ -9,24 +9,16 @@ using static GenshinImpact_Lanucher.Model.Launcher_Ini;
 
 namespace GenshinImpact_Lanucher.Convert
 {
-    public class ServerConvert : IValueConverter
+    public class MicaConvert : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Server server = (Server)Enum.Parse(typeof(Server),value.ToString());
-            if(server == Server.官服)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return !(System.Convert.ToBoolean(value));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Server.B站;
+            return !(System.Convert.ToBoolean(value));
         }
     }
 
