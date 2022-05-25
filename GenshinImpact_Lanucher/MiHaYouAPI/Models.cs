@@ -108,5 +108,154 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
     }
 
 
+
+    public class GenshinMore
+    {
+        /// <summary>
+        /// 活跃天数
+        /// </summary>
+        public string happyday { get; set; }
+
+        /// <summary>
+        /// 成就达成数
+        /// </summary>
+        public string gamecount { get; set; }
+        /// <summary>
+        /// 人物数量
+        /// </summary>
+        public string peoplecount { get; set; }
+
+        /// <summary>
+        /// 深渊挑战
+        /// </summary>
+        public string Challengecount { get; set; }
+
+        /// <summary>
+        /// 传送点
+        /// </summary>
+        public string movecount { get; set; }
+
+        /// <summary>
+        /// 解锁的秘境
+        /// </summary>
+        public string bosscopy { get; set; }
+
+        /// <summary>
+        /// 华丽宝箱
+        /// </summary>
+        public string Level1 { get; set; }
+        /// <summary>
+        /// 珍贵宝箱
+        /// </summary>
+        public string Level2 { get; set; }
+        /// <summary>
+        /// 精致宝箱
+        /// </summary>
+        public string Level3 { get; set; }
+        /// <summary>
+        /// 普通宝箱
+        /// </summary>
+        public string Level4 { get; set; }
+        /// <summary>
+        /// 家具宝箱
+        /// </summary>
+        public string Last_Level { get; set; }
+        /// <summary>
+        /// 风神瞳
+        /// </summary>
+        public string eye1 { get; set; }
+        /// <summary>
+        /// 岩神瞳
+        /// </summary>
+        public string eye2 { get; set; }
+        /// <summary>
+        /// 雷神瞳
+        /// </summary>
+        public string eye3 { get; set; }
+
+        public ObservableCollection<GenshinWorld> Worlds { get; set; } = new ObservableCollection<GenshinWorld>();
+
+        public ObservableCollection<GenshinHome> Homes { get; set; } = new ObservableCollection<GenshinHome>();
+
+        
+    }
+
+
+    public class GenshinWorld
+    {
+        /// <summary>
+        /// 等级
+        /// </summary>
+        public string Level { get; set; }
+        /// <summary>
+        /// 进度
+        /// </summary>
+        public double Progess { get; set; }
+
+        /// <summary>
+        /// 地图图标
+        /// </summary>
+        public string Icon { get; set; }
+
+        /// <summary>
+        /// 背景图片
+        /// </summary>
+        public string BackImage { get; set; }
+
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name { get; set; }
+
+
+        public ObservableCollection<WorldOffire> Offire { get; set; } = new ObservableCollection<WorldOffire>();
+    }
+
+
+    public class WorldOffire
+    {
+        public string Name { get; set; }
+        public string Level { get; set; }
+        public string Icon { get; set; }
+    }
+
+
+    public class GenshinHome
+    {
+        /// <summary>
+        /// 等级
+        /// </summary>
+        public string Level { get; set; }
+
+        /// <summary>
+        /// 访问人数
+        /// </summary>
+        public string peoplecount { get; set; }
+
+        /// <summary>
+        /// 最高仙力
+        /// </summary>
+        public string power { get; set; }
+
+        /// <summary>
+        /// 摆件数量
+        /// </summary>
+        public string bluecount { get; set; }
+
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 背景图片
+        /// </summary>
+        public string BackImage { get; set; }
+
+        /// <summary>
+        /// 文字等级
+        /// </summary>
+        public string StringLevel { get; set; }
+    }
     
 }

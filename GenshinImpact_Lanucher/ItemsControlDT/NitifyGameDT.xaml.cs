@@ -26,7 +26,6 @@ namespace GenshinImpact_Lanucher.ItemsControlDT
         public NitifyGameDT()
         {
             InitializeComponent();
-            
         }
 
 

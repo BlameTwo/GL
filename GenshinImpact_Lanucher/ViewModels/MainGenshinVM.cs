@@ -24,7 +24,10 @@ namespace GenshinImpact_Lanucher.ViewModels
                 _MyAccount = await API.GetMiHaYouAccount();
 
                 _GenshinAccounts = await API.GetGenshinAccount();
+
             });
+
+
             _GetDay = new RelayCommand<GenshinAccountArgs>((args) =>getday(args));
 
             ValueChanged = new RelayCommand<ProgressBar>((pro) =>
@@ -70,6 +73,7 @@ namespace GenshinImpact_Lanucher.ViewModels
             if (args == null)
                 return;
             _MyData = await  MiHaYouAPI.API.GenDay(args.OwnerServer, args.Uid);
+            _MyGenshinMore = await API.GetGenshinMore(args.OwnerServer, args.Uid);
             Ref(currpro, RefArgs.Current);
             Ref(menoypro, RefArgs.Menoy);
             Ref(bosspro, RefArgs.Boss);
@@ -132,6 +136,15 @@ namespace GenshinImpact_Lanucher.ViewModels
             get { return MyAccount; }
             set { MyAccount = value; OnPropertyChanged(); }
         }
+
+        private GenshinMore MyGenshinMore;
+
+        public GenshinMore _MyGenshinMore
+        {
+            get => MyGenshinMore;
+            set => SetProperty(ref MyGenshinMore, value);
+        }
+
 
         public RelayCommand Loaded { get; private set; }
 

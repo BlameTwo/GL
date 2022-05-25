@@ -52,6 +52,15 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Dialogs\**" />
+    <EmbeddedResource Remove="Dialogs\**" />
+    <None Remove="Dialogs\**" />
+    <Page Remove="Dialogs\**" />
+  </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\q2jymr.jpg" />
   </ItemGroup>
@@ -106,7 +115,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dialogs\" />
     <Folder Include="Welcome\" />
   </ItemGroup>
   <ItemGroup>

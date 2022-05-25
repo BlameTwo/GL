@@ -153,6 +153,68 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
             });
         }
 
+        //https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/index?server=cn_qd01&role_id=500934368
+        public static async Task<GenshinMore> GetGenshinMore(string server,string uid)
+        {
+            return await Task.Run(async () =>
+            {
+                GenshinMore arg = new GenshinMore();
+                string url = $"https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/index?server={server}&role_id={uid}";
+                JObject jo = await Get(url, "");
+                if (!(jo["message"].ToString() != "ok"))
+                    return arg;
+                arg.peoplecount = JArray.Parse(jo["data"]["avatars"].ToString()).Count.ToString();
+                arg.happyday = jo["data"]["stats"]["active_day_number"].ToString();
+                arg.gamecount = jo["data"]["stats"]["achievement_number"].ToString();
+                arg.Challengecount = jo["data"]["stats"]["spiral_abyss"].ToString();
+                arg.movecount = jo["data"]["stats"]["way_point_number"].ToString();
+                arg.bosscopy = jo["data"]["stats"]["domain_number"].ToString();
+                arg.Level1 = jo["data"]["stats"]["luxurious_chest_number"].ToString();
+                arg.Level2 = jo["data"]["stats"]["precious_chest_number"].ToString();
+                arg.Level3 = jo["data"]["stats"]["exquisite_chest_number"].ToString();
+                arg.Level4 = jo["data"]["stats"]["common_chest_number"].ToString();
+                arg.Last_Level = jo["data"]["stats"]["magic_chest_number"].ToString();
+                arg.eye1 = jo["data"]["stats"]["anemoculus_number"].ToString();
+                arg.eye2 = jo["data"]["stats"]["geoculus_number"].ToString();
+                arg.eye3 = jo["data"]["stats"]["electroculus_number"].ToString();
+                foreach (var world in JArray.Parse( jo["data"]["world_explorations"].ToString()))
+                {
+                    GenshinWorld arg1 = new GenshinWorld() {
+                        Level = world["level"].ToString(),
+                        Progess = double.Parse(world["exploration_percentage"].ToString()) / 10
+                        ,Icon = world["icon"].ToString(),
+                        Name = world["name"].ToString(),
+                         BackImage = world["background_image"].ToString(),
+                     };
+                    foreach (var item in JArray.Parse(world["offerings"].ToString()))
+                    {
+                        arg1.Offire.Add(new WorldOffire()
+                        {
+                            Icon = item["icon"].ToString(),
+                            Level = item["level"].ToString(),
+                            Name = item["name"].ToString()
+                        });
+                    }
+                    arg.Worlds.Add(arg1);
+                }
+
+                foreach (var home   in JArray.Parse(jo["data"]["homes"].ToString()))
+                {
+                    arg.Homes.Add(new GenshinHome()
+                    {
+                        BackImage = home["icon"].ToString(),
+                        Level = home["level"].ToString(),
+                        peoplecount = home["visit_num"].ToString(),
+                        power = home["comfort_num"].ToString(),
+                        Name = home["name"].ToString(),
+                        StringLevel = home["comfort_level_name"].ToString(),
+                        bluecount = home["item_num"].ToString()
+                    }); ;
+                }
+                return arg;
+            });
+        }
+
         /// <summary>
         /// 获得每日详情
         /// </summary>
@@ -186,6 +248,8 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
                 int second = int.Parse(jo["data"]["transformer"]["recovery_time"]["Second"].ToString());
                 //做一个转换，只要整数部分
                 args.transformertime =long.Parse( ((new TimeSpan(day,hour,minute,second).Ticks)/ 864000000000).ToString());
+
+
                 return args;
             });
         }

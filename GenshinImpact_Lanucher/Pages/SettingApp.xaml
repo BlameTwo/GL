@@ -241,7 +241,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox VerticalAlignment="Center" />
+                            <TextBox
+                                Text="{Binding _ImagePath}"
+                                VerticalAlignment="Center" />
                             <wpfui:Button Grid.Column="1"
                                           Padding="20 10"
                                       Content="更换" Margin="10 5"

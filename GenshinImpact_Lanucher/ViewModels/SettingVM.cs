@@ -48,6 +48,7 @@ namespace GenshinImpact_Lanucher.ViewModels
                     bitmap.DecodePixelHeight = 1000;
                     bitmap.DecodePixelWidth = 1000;
                     (System.Windows.Application.Current.MainWindow as MainWindow).BackImage.Source = bitmap;
+                    ImagePath = open.FileName;
                 }
             });
             WindowCheck = new RelayCommand(() => windowcheck());
@@ -61,6 +62,7 @@ namespace GenshinImpact_Lanucher.ViewModels
                 ChangedColor(str);
             });
 
+            ImagePath  = myini.IniReadValue("Style", "BackImage");
             BlurChanged = new RelayCommand<double>((number) =>
             {
                 (System.Windows.Application.Current.MainWindow as MainWindow).WindowBlur.Radius = number; ;
@@ -141,6 +143,13 @@ namespace GenshinImpact_Lanucher.ViewModels
             set => SetProperty(ref Tran, value);
         }
 
+        private string ImagePath;
+
+        public string _ImagePath
+        {
+            get => ImagePath;
+            set => SetProperty(ref ImagePath, value);
+        }
 
 
         private void ChangedColor(object str)
