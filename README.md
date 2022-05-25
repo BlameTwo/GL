@@ -29,6 +29,12 @@
     - [x] 自定义背景图
     - [x] 显示布局优化
     - [x] 跟随系统以及自定义主题
+  - [ ]米哈游API
+    - [x] 米游社绑定信息
+    - [x] 原神账户信息
+    - [ ] 深渊记录
+    - [ ] 原神账号记录
+    - [ ] 人物及圣遗物分配
 
 
 ### 程序获取请到程序 [Realease](https://github.com/123456fsdaf/GenshinImpact_Lanucher/releases) 下载
