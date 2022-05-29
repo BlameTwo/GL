@@ -37,9 +37,8 @@ namespace GenshinImpact_Lanucher
             {
                 return true;
             };
-            //ProxyController Proxy = new ProxyController("11451","127.0.0.1");
-            //Proxy.Start();
-            //Proxy.Stop();
+
+
             this.DataContext = new MainWinVM();
             Loaded += MainWindow_Loaded;
             win = this;
@@ -48,39 +47,47 @@ namespace GenshinImpact_Lanucher
         }
 
         Launcher_Ini myini { get; set; }
-
+        string Themes = "";
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Theme.Changed += Theme_Changed;    //Window11
-            //设置上自动修改颜色，背景材质为默认
+            string IsMica = "";
+            var ismaica = System.Convert.ToBoolean(myini.IniReadValue("Style", "IsMica"));
+
             switch (myini.IniReadValue("Style", "Theme"))
             {
                 case "Auto":
-                    WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Mica, true, true);
+                    Themes = "Auto";
                     break;
                 case "Dark":
-                    WPFUI.Appearance.Theme.Apply(
-                        ThemeType.Dark,
-                        backgroundEffect: WPFUI.Appearance.BackgroundType.Mica, true, true);
+                    Themes = "Dark";
                     break;
                 case "Light":
-                    WPFUI.Appearance.Theme.Apply(
-                        ThemeType.Light,
-                        backgroundEffect: WPFUI.Appearance.BackgroundType.Mica, true, true);
+                    Themes = "Light";
                     break;
             }
-            if(string.IsNullOrWhiteSpace(myini.IniReadValue("Style", "IsMica")))
+            if (ismaica == true)
             {
-                myini.IniWriteValue("Style","IsMica","True");
-            }
-            var boo = System.Convert.ToBoolean(myini.IniReadValue("Style", "IsMica"));
-            if (boo == true)
+                //这一段是专门对于Win11，且开启Mica特效
+                Theme.Apply(
+                        Themes == "Dark"? ThemeType.Dark: ThemeType.Light,
+                        BackgroundType.Mica, true, true);
                 return;
+            }
             else
             {
+                if(Themes =="Auto")
+                    WPFUI.Appearance.Watcher.Watch(this, BackgroundType.Auto, true, true);
+                else
+                {
+                    Theme.Apply(
+                        Themes == "Dark" ? ThemeType.Dark : ThemeType.Light,
+                        BackgroundType.Auto, true, true);
+                }
+                
+                
                 BackImage.Opacity = double.Parse(myini.IniReadValue("Style", "Tran"));
                 WindowBlur.Radius = double.Parse(myini.IniReadValue("Style", "Blur"));
-
                 try
                 {
                     var bitmap = new BitmapImage(new Uri(myini.IniReadValue("Style", "BackImage")));

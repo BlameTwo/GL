@@ -17,6 +17,8 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using WPFUI.Appearance;
 using System.Windows.Media.Imaging;
+using Microsoft.VisualBasic.Devices;
+
 
 namespace GenshinImpact_Lanucher.ViewModels
 {
@@ -47,7 +49,9 @@ namespace GenshinImpact_Lanucher.ViewModels
                     var bitmap = new BitmapImage(new Uri(open.FileName));
                     bitmap.DecodePixelHeight = 1000;
                     bitmap.DecodePixelWidth = 1000;
-                    (System.Windows.Application.Current.MainWindow as MainWindow).BackImage.Source = bitmap;
+                    var win = (System.Windows.Application.Current.MainWindow as MainWindow);
+                    WPFUI.Appearance.Watcher.Watch(win, BackgroundType.Unknown, true, true);
+                    win.BackImage.Source = bitmap;
                     ImagePath = open.FileName;
                 }
             });
@@ -127,9 +131,22 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 if (_IsMica)
                 {
-                    MainWindow main = (System.Windows.Application.Current.MainWindow as MainWindow);
-                    WPFUI.Appearance.Watcher.Watch(main, BackgroundType.Mica, true, true);
-                    main.BackImage.Source = null;
+                    var version = new ComputerInfo().OSFullName;
+
+                    if(version.IndexOf("11") != -1)   //为真的时候的条件
+                    {
+                        WindowTip.TipShow("Win11以下计算机不支持开启Mica"
+                            , "当前只能使用图片背景哦！",
+                            WPFUI.Common.SymbolRegular.Eraser20);
+                        isMica = false;
+                    }
+                    else
+                    {
+                        MainWindow main = (System.Windows.Application.Current.MainWindow as MainWindow);
+                        WPFUI.Appearance.Watcher.Watch(main, BackgroundType.Mica, true, true);
+                        main.BackImage.Source = null;
+                    }
+
                 }
                 myini.IniWriteValue("Style", "IsMica",_IsMica.ToString());
             });

@@ -244,6 +244,10 @@ namespace GenshinImpact_Lanucher.Model
             {
                 var setting = SettingArgs.DefaultSettingArgs();
                 WriteMyLauncherConfig(setting.GameHeight, setting.GameWidth, setting.IsFul, setting.server);
+                IniWriteValue("Style", "Theme", "Dark");
+                IniWriteValue("Style", "Tran", "0");
+                IniWriteValue("Style", "Blur", "0");
+                IniWriteValue("Style", "IsMica", "False");
                 return true;
             }
             catch (Exception)
