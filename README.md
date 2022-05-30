@@ -40,7 +40,7 @@
 ### 程序获取请到程序 [Realease](https://github.com/123456fsdaf/GenshinImpact_Lanucher/releases) 下载
 ### 想体验新功能？请到 [Actions](https://github.com/123456fsdaf/GenshinImpact_Lanucher/actions) 下载最近编译的版本。
 
-### 目前仅支持Win7以上计算机运行该程序
+### 目前仅支持Win10以上系统支持
 
 
 # 项目引用
