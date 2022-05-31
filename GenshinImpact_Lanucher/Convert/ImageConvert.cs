@@ -17,10 +17,13 @@ namespace GenshinImpact_Lanucher.Convert
         {
             string str = value as string;
             BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.UriSource = new System.Uri(str);
-            image.EndInit();
-            image.DecodePixelWidth = Number;
+            if (!string.IsNullOrWhiteSpace(str))
+            {
+                image.BeginInit();
+                image.UriSource = new System.Uri(str);
+                image.EndInit();
+                image.DecodePixelWidth = Number;
+            }
             return image;
         }
 
