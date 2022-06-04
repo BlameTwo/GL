@@ -3,6 +3,7 @@
 
 ### 最新Release已知BUG
 公告页面会闪退，原因为APi请求参数对不上。
+.Net6框架安装后无法运行，此BUG目前无法解决，只能[安装](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.203-windows-x64-installer)SDK才可以。
 
 ## 特性
 
