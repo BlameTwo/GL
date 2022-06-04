@@ -3,6 +3,7 @@
 
 ### 最新Release已知BUG
 公告页面会闪退，原因为APi请求参数对不上。
+.Net6框架安装后无法运行，此BUG目前无法解决，只能[安装](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.203-windows-x64-installer)SDK才可以。
 
 ## 特性
 
@@ -25,9 +26,9 @@
     - [x] 服务器状态查看
     - [ ] 便捷的命令生成/执行 即参考 [jie65535/GrasscutterCommandGenerator](https://github.com/jie65535/GrasscutterCommandGenerator) 项目的功能
     - ~~[ ] 账户操作相关（注册、登录）~~
-  - [ ] 游戏相关
+  - [x] 游戏相关
     - [x] 实时便笺
-    - [ ] 解锁帧率
+    - [x] 解锁帧率
   - [x] 其他待增加的功能
     - [x] 自定义背景图
     - [x] 显示布局优化
