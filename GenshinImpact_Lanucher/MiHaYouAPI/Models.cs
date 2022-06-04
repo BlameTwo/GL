@@ -258,4 +258,11 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
         public string StringLevel { get; set; }
     }
     
+
+    public class PostArgs
+    {
+        public string act_id { get; set; }
+        public string region { get; set; }
+        public string uid { get; set; }
+    }
 }

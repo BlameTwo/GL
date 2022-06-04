@@ -34,10 +34,11 @@ namespace GenshinImpact_Lanucher.Model
         static  Launcher_Ini myini { get; set; }
         public static string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         /// <summary>
-        /// 修复SDK，前提是在本启动器的方法下拥有该文件
+        /// 修复SDK
         /// </summary>
+        /// <param name="flage">是否删除</param>
         /// <returns></returns>
-        public static  bool BilibiliSDK()
+        public static  bool BilibiliSDK(bool flage)
         {
             myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
             string path = myini.IniReadValue("MyLanucherConfig", "GamePath");
@@ -45,7 +46,8 @@ namespace GenshinImpact_Lanucher.Model
             {
                 return false;
             }
-            if (!File.Exists(path + @"\YuanShen_Data\Plugins\PCGameSDK.dll"))
+            bool fileexis = File.Exists(path + @"\YuanShen_Data\Plugins\PCGameSDK.dll");
+            if (flage == true && fileexis == false)
             {
                 string sdk = "PCGameSDK.dll";
                 FileStream fs = new FileStream(sdk, FileMode.Create, FileAccess.ReadWrite);
@@ -59,6 +61,10 @@ namespace GenshinImpact_Lanucher.Model
                     File.Delete("PCGameSDK.dll");
                     return true;
                 }
+            }
+            else if(flage == false && fileexis == true)
+            {
+                File.Delete(path + @"\YuanShen_Data\Plugins\PCGameSDK.dll");
             }
             return true;
         }

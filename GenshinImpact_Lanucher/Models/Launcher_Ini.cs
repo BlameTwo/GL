@@ -204,6 +204,8 @@ namespace GenshinImpact_Lanucher.Model
                 agument.GameServer = Server.官服;
             }
 
+            agument.IsFPS =System.Convert.ToBoolean(IniReadValue("MyLanucherConfig", "FPS"));
+
             agument.GamePath = IniReadValue("MyLanucherConfig", "GamePath");
 
             return agument;
@@ -248,6 +250,7 @@ namespace GenshinImpact_Lanucher.Model
                 IniWriteValue("Style", "Tran", "0");
                 IniWriteValue("Style", "Blur", "0");
                 IniWriteValue("Style", "IsMica", "False");
+                IniWriteValue("MyLanucherConfig", "FPS", "False");
                 return true;
             }
             catch (Exception)
@@ -276,14 +279,14 @@ namespace GenshinImpact_Lanucher.Model
         {
             if (server == Server.B站)        //为B服
             {
-                if (Resource.BilibiliSDK() == true)
+                if (Resource.BilibiliSDK(true) == true)
                 {
                     WindowTip.TipShow("区服切换成B服", "区服已经切换成功啦！", WPFUI.Common.SymbolRegular.CheckmarkCircle24);
                     WritePrivateProfileString("General", "cps", "bilibili", LauncherPath);
                     WritePrivateProfileString("General", "sub_channel", "0", LauncherPath);
                     WritePrivateProfileString("General", "channel", "14", LauncherPath);
                     return true;
-                }else if (Resource.BilibiliSDK() == false)            //严谨一点好
+                }else if (Resource.BilibiliSDK(true) == false)            //严谨一点好
                 {
                     WindowTip.TipShow("区服切换失败", "旅行者似乎没有配置游戏路径呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
                     return false;

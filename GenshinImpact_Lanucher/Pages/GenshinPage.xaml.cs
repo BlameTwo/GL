@@ -36,7 +36,8 @@ namespace GenshinImpact_Lanucher.Pages
                 else
                 {
                     this.Content = new MainGenshin();
-                    MiHaYouAPI.MiHaYouArgs.Cookie = (DataContext as GenshinVM).myini.IniReadValue("MyLanucherConfig", "Cookie");
+                    string cookie = (DataContext as GenshinVM).myini.IniReadValue("MyLanucherConfig", "Cookie");
+                    MiHaYouAPI.MiHaYouArgs.Cookie = cookie;
                 }
             };
         }

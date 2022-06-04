@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,6 +41,9 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
             }
 
         }
+
+        
+
 
         private static string CreateDynamicSecret(string url, string body)
         {
@@ -102,6 +106,14 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
             });
         }
 
+
+        static Task<JObject>Post(string url,string body)
+        {
+            return Task.Run(() =>
+            {
+                return Request(x => x.UploadString(url, body), CreateDynamicSecret(url, body));
+            });
+        }
 
 
         /// <summary>
@@ -251,6 +263,21 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
 
 
                 return args;
+            });
+        }
+
+
+        //https://api-takumi.mihoyo.com/event/bbs_sign_reward/sign
+        public static async Task<Object> GenshinSign(string uid,string server)
+        {
+            return await Task.Run(() =>
+            {
+                return Post("https://api-takumi.mihoyo.com/event/bbs_sign_reward/sign", JsonConvert.SerializeObject(
+                    new PostArgs
+                    {
+                        uid = uid
+                        , act_id = "e202009291139501", region = server
+                    }));
             });
         }
     }

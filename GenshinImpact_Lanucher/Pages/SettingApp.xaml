@@ -25,6 +25,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
@@ -71,12 +72,30 @@
                                 </i:Interaction.Triggers>
                             </RadioButton>
                         </StackPanel>
+                        <TextBlock Text="游戏性"
+                                   Grid.Row="3"
+                                   VerticalAlignment="Center" 
+                                   Margin="0 10 0 0"/>
+                        <wpfui:ToggleSwitch Grid.Row="3"
+                                            IsChecked="{Binding _OpenFps,Mode=TwoWay}"
+                                            Margin="10 10 0 0"
+                                            Content="解锁帧率"
+                                            Grid.Column="1">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <i:InvokeCommandAction Command="{Binding FPSCheck}"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Unchecked">
+                                    <i:InvokeCommandAction Command="{Binding FPSCheck}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </wpfui:ToggleSwitch>
                         <TextBlock 
                         Text="游戏文件夹" 
-                        Grid.Row="3"
+                        Grid.Row="4"
                         VerticalAlignment="Center" 
                         Margin="0 10 0 0"/>
-                        <StackPanel Margin="10 10 0 0" Grid.Row="3" Grid.Column="1" >
+                        <StackPanel Margin="10 10 0 0" Grid.Row="4" Grid.Column="1" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>

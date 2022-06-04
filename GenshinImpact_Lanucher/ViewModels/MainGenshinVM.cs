@@ -16,6 +16,8 @@ namespace GenshinImpact_Lanucher.ViewModels
 {
     public class MainGenshinVM: ObservableRecipient
     {
+
+        public GenshinAccountArgs NowAccountArgs { get; private set; }
         public MainGenshinVM()
         {
             API.GetMiHaYouAccount();
@@ -27,6 +29,7 @@ namespace GenshinImpact_Lanucher.ViewModels
 
             });
 
+            Sign = new RelayCommand(() => sign());
 
             _GetDay = new RelayCommand<GenshinAccountArgs>((args) =>getday(args));
 
@@ -49,6 +52,11 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                 transoformer = pro;
             });
+        }
+
+        private async  void sign()
+        {
+             var list =  await API.GenshinSign(NowAccountArgs.Uid, NowAccountArgs.OwnerServer);
         }
 
 
@@ -74,6 +82,7 @@ namespace GenshinImpact_Lanucher.ViewModels
                 return;
             _MyData = await  MiHaYouAPI.API.GenDay(args.OwnerServer, args.Uid);
             _MyGenshinMore = await API.GetGenshinMore(args.OwnerServer, args.Uid);
+            NowAccountArgs = args;
             Ref(currpro, RefArgs.Current);
             Ref(menoypro, RefArgs.Menoy);
             Ref(bosspro, RefArgs.Boss);
@@ -153,8 +162,9 @@ namespace GenshinImpact_Lanucher.ViewModels
         public RelayCommand<ProgressBar> ValueChanged2 { get; set; }
         public RelayCommand<ProgressBar> ValueChanged3 { get; set; }
         public RelayCommand<ProgressBar> ValueChanged4 { get; set; }
+        public RelayCommand Sign { get; set; }
         private ObservableCollection<GenshinAccountArgs> GenshinAccounts;
-
+        
         public ObservableCollection<GenshinAccountArgs> _GenshinAccounts
         {
             get => GenshinAccounts;

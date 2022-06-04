@@ -1,4 +1,5 @@
-﻿using GenshinImpact_Lanucher.Utils;
+﻿using GenshinImpact_Lanucher.FPS;
+using GenshinImpact_Lanucher.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,6 +19,8 @@ namespace GenshinImpact_Lanucher.Model
         public string GameHeight { get; set; }
 
         public bool IsPop { get; set; }
+
+        public bool IsFPS { get; set; }
 
         /// <summary>
         /// 游戏宽度
@@ -59,7 +62,7 @@ namespace GenshinImpact_Lanucher.Model
     {
         public async Task<string> GO(StartAgument args)
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
                 try
                 {
@@ -71,16 +74,10 @@ namespace GenshinImpact_Lanucher.Model
                         {
                             pop = "-popupwindow 1";
                         }
-
-
                         if(File.Exists(Path.Combine(args.GamePath , "YuanShen.exe"))){
                             p.StartInfo = new ProcessStartInfo()
                             {
                                 FileName =Path.Combine( args.GamePath , "YuanShen.exe"),
-
-
-
-
                                 Verb = "runas",
                                 Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
                                 $" -screen-width {args.GameWidth} {pop}",
@@ -94,10 +91,6 @@ namespace GenshinImpact_Lanucher.Model
                             p.StartInfo = new ProcessStartInfo()
                             {
                                 FileName =Path.Combine( args.GamePath ,"GenshinImpact.exe"),
-
-
-
-
                                 Verb = "runas",
                                 Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
                                 $" -screen-width {args.GameWidth} {pop}",
@@ -106,7 +99,17 @@ namespace GenshinImpact_Lanucher.Model
                             };
 
                         }
-                        p.Start();
+                        if(args.IsFPS == true)
+                        {
+                            Unlocker unlocker = new(p, 144);
+                            p.Start();
+                            var result = await unlocker.StartProcessAndUnlockAsync();
+                            return "1";
+                        }
+                        else
+                        {
+                            p.Start();
+                        }
                         return "1";
                     }
                 }
@@ -118,6 +121,8 @@ namespace GenshinImpact_Lanucher.Model
         }
         public static ProxyController Controller;
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+
         public async Task<string> ServerGo( bool flage, StartAgument args)
         {
             return await Task.Run(() =>

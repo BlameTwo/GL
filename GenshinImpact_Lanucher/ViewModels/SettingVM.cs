@@ -66,6 +66,11 @@ namespace GenshinImpact_Lanucher.ViewModels
                 ChangedColor(str);
             });
 
+            FPSCheck = new RelayCommand(() =>
+            {
+                Openfps();
+            });
+
             ImagePath  = myini.IniReadValue("Style", "BackImage");
             BlurChanged = new RelayCommand<double>((number) =>
             {
@@ -152,8 +157,10 @@ namespace GenshinImpact_Lanucher.ViewModels
             });
         }
 
-
-
+        private void Openfps()
+        {
+            myini.IniWriteValue("MyLanucherConfig", "FPS", _OpenFps.ToString());
+        }
 
         private double Blur;
 
@@ -300,12 +307,14 @@ namespace GenshinImpact_Lanucher.ViewModels
             if(Server1 == true)
             {
                  GameIni.GameLauncherWrite( Launcher_Ini.Server.官服);
-                myini.GameLauncherWrite(Server.官服);
+                 myini.GameLauncherWrite(Server.官服);
+                 GenshinImpact_Lanucher.Model.Resource.BilibiliSDK(false);
             }
             else
             {
                 GameIni.GameLauncherWrite(Launcher_Ini.Server.B站);
                 myini.GameLauncherWrite(Server.B站);
+                GenshinImpact_Lanucher.Model.Resource.BilibiliSDK(true);
             }
 
         }
@@ -317,6 +326,15 @@ namespace GenshinImpact_Lanucher.ViewModels
         {
             get => server1;
             set=>SetProperty(ref server1, value);
+        }
+
+
+        private bool OpenFps;
+
+        public bool _OpenFps
+        {
+            get { return OpenFps; }
+            set => SetProperty(ref OpenFps, value);
         }
 
 
@@ -339,6 +357,7 @@ namespace GenshinImpact_Lanucher.ViewModels
 
         public RelayCommand RadServerCheck { get; set; }
         public RelayCommand WindowCheck { get; private set; }
+        public RelayCommand FPSCheck { get; private set; }
         public RelayCommand WindowPop { get; private set; }
         public RelayCommand<string> HeightGameSizeTextChanged { get; set; }
         public RelayCommand SaveServer { get; set; }
