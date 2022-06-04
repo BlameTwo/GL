@@ -175,20 +175,49 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
                 JObject jo = await Get(url, "");
                 if (!(jo["message"].ToString() != "ok"))
                     return arg;
-                arg.peoplecount = JArray.Parse(jo["data"]["avatars"].ToString()).Count.ToString();
+
                 arg.happyday = jo["data"]["stats"]["active_day_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "活跃天数", Value = arg.happyday });
+
+                arg.peoplecount = JArray.Parse(jo["data"]["avatars"].ToString()).Count.ToString();
+                arg.DataList.Add(new GenshinList() { Name = "人物数量", Value = arg.peoplecount });
+
                 arg.gamecount = jo["data"]["stats"]["achievement_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "成就数量", Value = arg.gamecount });
+
                 arg.Challengecount = jo["data"]["stats"]["spiral_abyss"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "深渊层数", Value = arg.Challengecount });
+
                 arg.movecount = jo["data"]["stats"]["way_point_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "传送点", Value = arg.movecount });
+
                 arg.bosscopy = jo["data"]["stats"]["domain_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "秘境", Value = arg.bosscopy });
+
                 arg.Level1 = jo["data"]["stats"]["luxurious_chest_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "华丽宝箱", Value = arg.Level1 });
+
                 arg.Level2 = jo["data"]["stats"]["precious_chest_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "珍贵宝箱", Value = arg.Level2 });
+
                 arg.Level3 = jo["data"]["stats"]["exquisite_chest_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "精致宝箱", Value = arg.Level3 });
+
                 arg.Level4 = jo["data"]["stats"]["common_chest_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "普通宝箱", Value = arg.Level4 });
+
                 arg.Last_Level = jo["data"]["stats"]["magic_chest_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "家具宝箱", Value = arg.Last_Level });
+
                 arg.eye1 = jo["data"]["stats"]["anemoculus_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "风神瞳", Value = arg.eye1 });
+
                 arg.eye2 = jo["data"]["stats"]["geoculus_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "岩神瞳", Value = arg.eye2 });
+
                 arg.eye3 = jo["data"]["stats"]["electroculus_number"].ToString();
+                arg.DataList.Add(new GenshinList() { Name = "雷神瞳", Value = arg.eye3 });
+
                 foreach (var world in JArray.Parse( jo["data"]["world_explorations"].ToString()))
                 {
                     GenshinWorld arg1 = new GenshinWorld() {

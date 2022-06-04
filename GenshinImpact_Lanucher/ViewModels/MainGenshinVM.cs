@@ -87,6 +87,8 @@ namespace GenshinImpact_Lanucher.ViewModels
             Ref(menoypro, RefArgs.Menoy);
             Ref(bosspro, RefArgs.Boss);
             Ref(transoformer, RefArgs.transoformer);
+
+            _Genshinmore = await API.GetGenshinMore(args.OwnerServer, args.Uid);
         }
 
         public enum RefArgs
@@ -153,6 +155,15 @@ namespace GenshinImpact_Lanucher.ViewModels
             get => MyGenshinMore;
             set => SetProperty(ref MyGenshinMore, value);
         }
+
+        private GenshinMore Genshinmore;
+
+        public GenshinMore _Genshinmore
+        {
+            get { return Genshinmore; }
+            set => SetProperty(ref Genshinmore, value);
+        }
+
 
 
         public RelayCommand Loaded { get; private set; }

@@ -107,6 +107,11 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
         public string end_Time { get; set; }
     }
 
+    public class GenshinList
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+    }
 
 
     public class GenshinMore
@@ -115,6 +120,12 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
         /// 活跃天数
         /// </summary>
         public string happyday { get; set; }
+
+        /// <summary>
+        /// 数据量
+        /// </summary>
+        public ObservableCollection<GenshinList> DataList { get; set; } = new ObservableCollection<GenshinList>();
+
 
         /// <summary>
         /// 成就达成数
