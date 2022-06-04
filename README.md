@@ -1,6 +1,9 @@
 # GenshinImpact_Lanucher
 > 一个原神启动器项目，正在完善，界面基于WPF-UI制作，采用微软MVVM框架。
 
+### 最新Release已知BUG
+公告页面会闪退，原因为APi请求参数对不上。
+
 ## 特性
 
  + 自带代理系统 [基于 titanium-web-proxy 项目](https://github.com/justcoding121/titanium-web-proxy)（服务端仅需开启服务器即可，无需开启mitmproxy等其他代理）
