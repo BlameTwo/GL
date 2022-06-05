@@ -87,7 +87,6 @@ namespace GenshinImpact_Lanucher.ViewModels
             Ref(menoypro, RefArgs.Menoy);
             Ref(bosspro, RefArgs.Boss);
             Ref(transoformer, RefArgs.transoformer);
-
             _Genshinmore = await API.GetGenshinMore(args.OwnerServer, args.Uid);
         }
 

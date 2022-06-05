@@ -11,6 +11,11 @@
                 <ResourceDictionary Source="Style/WPF-UI.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="GenshinIcon">pack://application:,,,/Resources/#GenshinIcon</FontFamily>
+            <ControlTemplate x:Key="ItemsControlStyle" TargetType="ItemsControl">
+                <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}"  HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="Auto">
+                    <ItemsPresenter/>
+                </ScrollViewer>
+            </ControlTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

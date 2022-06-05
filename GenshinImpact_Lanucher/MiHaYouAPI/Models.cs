@@ -184,8 +184,14 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
         /// </summary>
         public string eye3 { get; set; }
 
+        /// <summary>
+        /// 大世界探索
+        /// </summary>
         public ObservableCollection<GenshinWorld> Worlds { get; set; } = new ObservableCollection<GenshinWorld>();
 
+        /// <summary>
+        /// 尘歌壶
+        /// </summary>
         public ObservableCollection<GenshinHome> Homes { get; set; } = new ObservableCollection<GenshinHome>();
 
         

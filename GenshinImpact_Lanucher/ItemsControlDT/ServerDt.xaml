@@ -14,7 +14,7 @@
 
         </ContextMenu>
     </UserControl.ContextMenu>
-    <wpfui:Card>
+    <wpfui:Card Style="{DynamicResource CardStyle1}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

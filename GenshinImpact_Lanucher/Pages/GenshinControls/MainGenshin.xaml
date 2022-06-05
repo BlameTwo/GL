@@ -10,11 +10,7 @@
               xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <ControlTemplate x:Key="ItemsControlStyle" TargetType="ItemsControl">
-            <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}"  HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="Auto">
-                <ItemsPresenter/>
-            </ScrollViewer>
-        </ControlTemplate>
+       
     </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -196,24 +192,37 @@
             <wpfui:Card
                 Style="{DynamicResource CardStyle1}" Margin="10"
                 Grid.Column="1">
-                <StackPanel >
-                    <TextBlock Text="总览"
+                <ScrollViewer>
+                    <StackPanel >
+                        <TextBlock Text="总览"
                                 FontSize="20"/>
-                    <ListView ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}"
+                        <ListView ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"   
                         ItemsSource="{Binding _Genshinmore.DataList}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <dt:GenshinDataListDT MyData="{Binding}"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                </StackPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <dt:GenshinDataListDT MyData="{Binding}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                        <TextBlock Text="大世界"
+                                FontSize="20"/>
+                        <ItemsControl 
+                        ItemsSource="{Binding _Genshinmore.Worlds}"
+                        Template="{StaticResource  ItemsControlStyle}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <dt:WroldDT MyData="{Binding}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
             </wpfui:Card>
         </Grid>
     </Grid>
