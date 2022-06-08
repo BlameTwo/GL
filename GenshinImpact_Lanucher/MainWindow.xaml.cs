@@ -1,6 +1,6 @@
-﻿using GenshinImpact_Lanucher.Model;
-using GenshinImpact_Lanucher.Utils;
-using GenshinImpact_Lanucher.ViewModels;
+﻿using GenshinImpact_Lanuncher.Model;
+using GenshinImpact_Lanuncher.Utils;
+using GenshinImpact_Lanuncher.ViewModels;
 using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFUI.Appearance;
 
-namespace GenshinImpact_Lanucher
+namespace GenshinImpact_Lanuncher
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑

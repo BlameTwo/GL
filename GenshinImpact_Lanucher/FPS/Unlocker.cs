@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static GenshinImpact_Lanucher.FPS.NativeMethods;
+using static GenshinImpact_Lanuncher.FPS.NativeMethods;
 
-namespace GenshinImpact_Lanucher.FPS
+namespace GenshinImpact_Lanuncher.FPS
 {
     /// <summary>
     /// FPS Unlocker

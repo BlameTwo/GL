@@ -1,5 +1,5 @@
-﻿using GenshinImpact_Lanucher.GameNotifys;
-using GenshinImpact_Lanucher.Models;
+﻿using GenshinImpact_Lanuncher.GameNotifys;
+using GenshinImpact_Lanuncher.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFUI.Controls;
-namespace GenshinImpact_Lanucher.UserControls
+namespace GenshinImpact_Lanuncher.UserControls
 {
     /// <summary>
     /// NotifyMoreMessage.xaml 的交互逻辑

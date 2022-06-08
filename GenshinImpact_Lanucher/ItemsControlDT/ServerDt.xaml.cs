@@ -1,8 +1,8 @@
 ﻿
-using GenshinImpact_Lanucher.EventArgs;
-using GenshinImpact_Lanucher.Model;
-using GenshinImpact_Lanucher.Models;
-using GenshinImpact_Lanucher.Utils;
+using GenshinImpact_Lanuncher.EventArgs;
+using GenshinImpact_Lanuncher.Model;
+using GenshinImpact_Lanuncher.Models;
+using GenshinImpact_Lanuncher.Utils;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
 using System;
@@ -20,7 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GenshinImpact_Lanucher.ItemsControlDT
+namespace GenshinImpact_Lanuncher.ItemsControlDT
 {
     /// <summary>
     /// ServerDt.xaml 的交互逻辑

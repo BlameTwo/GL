@@ -1,7 +1,7 @@
-﻿<Application x:Class="GenshinImpact_Lanucher.App"
+﻿<Application x:Class="GenshinImpact_Lanuncher.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:GenshinImpact_Lanucher"
+    xmlns:local="clr-namespace:GenshinImpact_Lanuncher"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>

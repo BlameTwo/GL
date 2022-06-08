@@ -1,5 +1,5 @@
 
-using GenshinImpact_Lanucher.Models;
+using GenshinImpact_Lanuncher.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -11,7 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenshinImpact_Lanucher.GameNotifys
+namespace GenshinImpact_Lanuncher.GameNotifys
 {
     public static class GameNitify
     {

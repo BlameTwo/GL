@@ -1,7 +1,7 @@
 ﻿
-using GenshinImpact_Lanucher.EventArgs;
-using GenshinImpact_Lanucher.Model;
-using GenshinImpact_Lanucher.Utils;
+using GenshinImpact_Lanuncher.EventArgs;
+using GenshinImpact_Lanuncher.Model;
+using GenshinImpact_Lanuncher.Utils;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ using System.Windows.Shapes;
 using WPFUI.Appearance;
 using WPFUI.Controls;
 
-namespace GenshinImpact_Lanucher.UserControls
+namespace GenshinImpact_Lanuncher.UserControls
 {
     /// <summary>
     /// AddServer.xaml 的交互逻辑

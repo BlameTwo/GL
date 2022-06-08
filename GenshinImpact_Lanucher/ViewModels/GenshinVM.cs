@@ -1,6 +1,6 @@
 ﻿
-using GenshinImpact_Lanucher.Model;
-using GenshinImpact_Lanucher.Properties;
+using GenshinImpact_Lanuncher.Model;
+using GenshinImpact_Lanuncher.Properties;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace GenshinImpact_Lanucher.ViewModels
+namespace GenshinImpact_Lanuncher.ViewModels
 {
     public class GenshinVM: ObservableRecipient
     {

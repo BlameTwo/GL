@@ -1,4 +1,4 @@
-﻿namespace GenshinImpact_Lanucher.FPS
+﻿namespace GenshinImpact_Lanuncher.FPS
 {
     /// <summary>
     /// 解锁结果

@@ -13,7 +13,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 
-namespace GenshinImpact_Lanucher.Models
+namespace GenshinImpact_Lanuncher.Models
 {
     public class GenshinAccount
     {

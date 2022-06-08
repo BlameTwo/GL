@@ -1,6 +1,6 @@
-﻿using GenshinImpact_Lanucher.GameNotifys;
-using GenshinImpact_Lanucher.Pages;
-using GenshinImpact_Lanucher.UserControls;
+﻿using GenshinImpact_Lanuncher.GameNotifys;
+using GenshinImpact_Lanuncher.Pages;
+using GenshinImpact_Lanuncher.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GenshinImpact_Lanucher.ItemsControlDT
+namespace GenshinImpact_Lanuncher.ItemsControlDT
 {
     /// <summary>
     /// NitifyGameDT.xaml 的交互逻辑

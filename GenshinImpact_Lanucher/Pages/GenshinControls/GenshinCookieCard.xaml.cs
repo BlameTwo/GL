@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFUI.Controls;
 
-namespace GenshinImpact_Lanucher.Pages.GenshinControls
+namespace GenshinImpact_Lanuncher.Pages.GenshinControls
 {
     /// <summary>
     /// GenshinCookieCard.xaml 的交互逻辑

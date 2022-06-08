@@ -1,5 +1,5 @@
 ﻿
-using GenshinImpact_Lanucher.MiHaYouAPI;
+using GenshinImpact_Lanuncher.MiHaYouAPI;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
@@ -12,7 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace GenshinImpact_Lanucher.ViewModels
+namespace GenshinImpact_Lanuncher.ViewModels
 {
     public class MainGenshinVM: ObservableRecipient
     {

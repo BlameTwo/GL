@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Drawing;
-using static GenshinImpact_Lanucher.Model.Launcher_Ini;
+using static GenshinImpact_Lanuncher.Model.Launcher_Ini;
 
-namespace GenshinImpact_Lanucher.Model
+namespace GenshinImpact_Lanuncher.Model
 {
     public class Resource
     {

@@ -1,5 +1,5 @@
-﻿using GenshinImpact_Lanucher.GameNotifys;
-using GenshinImpact_Lanucher.Models;
+﻿using GenshinImpact_Lanuncher.GameNotifys;
+using GenshinImpact_Lanuncher.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Models;
 
-namespace GenshinImpact_Lanucher.Utils
+namespace GenshinImpact_Lanuncher.Utils
 { 
     //public static class Global
     //{

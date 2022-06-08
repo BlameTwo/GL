@@ -1,5 +1,5 @@
-﻿using GenshinImpact_Lanucher.FPS;
-using GenshinImpact_Lanucher.Utils;
+﻿using GenshinImpact_Lanuncher.FPS;
+using GenshinImpact_Lanuncher.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,9 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static GenshinImpact_Lanucher.Model.Launcher_Ini;
+using static GenshinImpact_Lanuncher.Model.Launcher_Ini;
 
-namespace GenshinImpact_Lanucher.Model
+namespace GenshinImpact_Lanuncher.Model
 {
     public class StartAgument
     {

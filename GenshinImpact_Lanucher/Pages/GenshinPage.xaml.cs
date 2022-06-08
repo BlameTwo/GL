@@ -1,5 +1,5 @@
-﻿using GenshinImpact_Lanucher.Pages.GenshinControls;
-using GenshinImpact_Lanucher.ViewModels;
+﻿using GenshinImpact_Lanuncher.Pages.GenshinControls;
+using GenshinImpact_Lanuncher.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GenshinImpact_Lanucher.Pages
+namespace GenshinImpact_Lanuncher.Pages
 {
     /// <summary>
     /// GenshinPage.xaml 的交互逻辑

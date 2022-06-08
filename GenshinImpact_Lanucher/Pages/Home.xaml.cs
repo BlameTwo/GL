@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GenshinImpact_Lanucher.Pages
+namespace GenshinImpact_Lanuncher.Pages
 {
     /// <summary>
     /// Home.xaml 的交互逻辑

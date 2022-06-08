@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace GenshinImpact_Lanucher.FPS
+namespace GenshinImpact_Lanuncher.FPS
 {
     /// <summary>
     /// 本机方法

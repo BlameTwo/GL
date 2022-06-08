@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Xml;
 
-namespace GenshinImpact_Lanucher.Models
+namespace GenshinImpact_Lanuncher.Models
 {
     public static class HtmlFormat
     {

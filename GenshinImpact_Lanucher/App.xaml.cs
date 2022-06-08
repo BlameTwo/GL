@@ -1,5 +1,5 @@
-﻿using GenshinImpact_Lanucher.Model;
-using GenshinImpact_Lanucher.Utils;
+﻿using GenshinImpact_Lanuncher.Model;
+using GenshinImpact_Lanuncher.Utils;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace GenshinImpact_Lanucher
+namespace GenshinImpact_Lanuncher
 {
     /// <summary>
     /// App.xaml 的交互逻辑

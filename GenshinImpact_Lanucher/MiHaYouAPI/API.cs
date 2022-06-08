@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenshinImpact_Lanucher.MiHaYouAPI
+namespace GenshinImpact_Lanuncher.MiHaYouAPI
 {
 
     public static class MiHaYouArgs

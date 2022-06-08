@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GenshinImpact_Lanucher.Properties
+namespace GenshinImpact_Lanuncher.Properties
 {
 
 

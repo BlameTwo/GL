@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static GenshinImpact_Lanucher.Model.Launcher_Ini;
+using static GenshinImpact_Lanuncher.Model.Launcher_Ini;
 
 namespace GameLauncherPrism.Event
 {

@@ -1,16 +1,16 @@
-using GenshinImpact_Lanucher.GameNotifys;
-using GenshinImpact_Lanucher.Utils;
+using GenshinImpact_Lanuncher.GameNotifys;
+using GenshinImpact_Lanuncher.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GenshinImpact_Lanucher.Models;
+using GenshinImpact_Lanuncher.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace GenshinImpact_Lanucher.ViewModels
+namespace GenshinImpact_Lanuncher.ViewModels
 {
     public class NotifyGamePageVM: ObservableRecipient
     {

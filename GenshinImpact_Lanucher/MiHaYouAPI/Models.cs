@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenshinImpact_Lanucher.MiHaYouAPI
+namespace GenshinImpact_Lanuncher.MiHaYouAPI
 {
     /// <summary>
     /// 米游社账号信息

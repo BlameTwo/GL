@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenshinImpact_Lanucher.Models
+namespace GenshinImpact_Lanuncher.Models
 {
     public class StaticResource
     {

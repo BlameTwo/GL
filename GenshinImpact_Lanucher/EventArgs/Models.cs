@@ -1,12 +1,12 @@
-﻿using GenshinImpact_Lanucher.GameNotifys;
-using GenshinImpact_Lanucher.Utils;
+﻿using GenshinImpact_Lanuncher.GameNotifys;
+using GenshinImpact_Lanuncher.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenshinImpact_Lanucher.EventArgs
+namespace GenshinImpact_Lanuncher.EventArgs
 {
     public class Models
     {

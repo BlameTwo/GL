@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using static GenshinImpact_Lanucher.Model.Launcher_Ini;
+using static GenshinImpact_Lanuncher.Model.Launcher_Ini;
 
-namespace GenshinImpact_Lanucher.Convert
+namespace GenshinImpact_Lanuncher.Convert
 {
     public class MicaConvert : IValueConverter
     {

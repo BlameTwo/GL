@@ -5,7 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenshinImpact_Lanucher.Utils
+namespace GenshinImpact_Lanuncher.Utils
 {
     public class Request
     {

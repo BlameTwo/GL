@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Windows;
 using GameLauncherPrism.Event;
-using GenshinImpact_Lanucher.Models;
+using GenshinImpact_Lanuncher.Models;
 
-namespace GenshinImpact_Lanucher.Model
+namespace GenshinImpact_Lanuncher.Model
 {
     public class Launcher_Ini
     {

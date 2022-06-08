@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenshinImpact_Lanucher.Model
+namespace GenshinImpact_Lanuncher.Model
 {
     /// <summary>
     /// 启动器的注册表方法

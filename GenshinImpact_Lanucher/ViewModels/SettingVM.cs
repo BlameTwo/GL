@@ -1,18 +1,18 @@
-﻿using GenshinImpact_Lanucher.Model;
+﻿using GenshinImpact_Lanuncher.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using static GenshinImpact_Lanucher.Model.Launcher_Ini;
+using static GenshinImpact_Lanuncher.Model.Launcher_Ini;
 using Microsoft.Win32;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows;
-using GenshinImpact_Lanucher.Utils;
+using GenshinImpact_Lanuncher.Utils;
 using System.IO;
-using GenshinImpact_Lanucher.Models;
+using GenshinImpact_Lanuncher.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using WPFUI.Appearance;
@@ -20,7 +20,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.VisualBasic.Devices;
 
 
-namespace GenshinImpact_Lanucher.ViewModels
+namespace GenshinImpact_Lanuncher.ViewModels
 {
 
     public class SettingVM: ObservableRecipient
@@ -308,13 +308,13 @@ namespace GenshinImpact_Lanucher.ViewModels
             {
                  GameIni.GameLauncherWrite( Launcher_Ini.Server.官服);
                  myini.GameLauncherWrite(Server.官服);
-                 GenshinImpact_Lanucher.Model.Resource.BilibiliSDK(false);
+                 GenshinImpact_Lanuncher.Model.Resource.BilibiliSDK(false);
             }
             else
             {
                 GameIni.GameLauncherWrite(Launcher_Ini.Server.B站);
                 myini.GameLauncherWrite(Server.B站);
-                GenshinImpact_Lanucher.Model.Resource.BilibiliSDK(true);
+                GenshinImpact_Lanuncher.Model.Resource.BilibiliSDK(true);
             }
 
         }

@@ -1,4 +1,4 @@
-﻿using GenshinImpact_Lanucher.MiHaYouAPI;
+﻿using GenshinImpact_Lanuncher.MiHaYouAPI;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace GenshinImpact_Lanucher.Convert
+namespace GenshinImpact_Lanuncher.Convert
 {
     internal class ImageConvert : IValueConverter
     {

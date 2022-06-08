@@ -1,4 +1,4 @@
-﻿using GenshinImpact_Lanucher.MiHaYouAPI;
+﻿using GenshinImpact_Lanuncher.MiHaYouAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GenshinImpact_Lanucher.ItemsControlDT
+namespace GenshinImpact_Lanuncher.ItemsControlDT
 {
     /// <summary>
     /// HomeDT.xaml 的交互逻辑

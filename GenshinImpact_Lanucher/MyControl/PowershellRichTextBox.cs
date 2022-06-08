@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 
-namespace GenshinImpact_Lanucher.MyControl
+namespace GenshinImpact_Lanuncher.MyControl
 {
     public class PowershellRichTextBox:RichTextBox
     {
