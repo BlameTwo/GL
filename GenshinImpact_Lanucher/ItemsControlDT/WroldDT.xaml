@@ -40,8 +40,8 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Margin="5 0 0 0" FontSize="12" VerticalAlignment="Top">
-                        <Run Text="Level:" />
+                    <TextBlock Grid.Row="0" Margin="5 0 0 0" FontSize="13" VerticalAlignment="Top">
+                        <Run Text="声望等级:" />
                         <Run Text="{Binding Level}"/>
                     </TextBlock>
                     <TextBlock 

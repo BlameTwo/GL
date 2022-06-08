@@ -221,6 +221,14 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+                        <TextBlock Text="家园" FontSize="20"/>
+                        <ItemsControl Template="{DynamicResource ItemsControlStyle}" ItemsSource="{Binding _Genshinmore.Homes,Mode=TwoWay}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <dt:HomeDT MyData="{Binding}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </ScrollViewer>
             </wpfui:Card>

@@ -254,6 +254,8 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
         /// </summary>
         public string power { get; set; }
 
+        public string Icon { get; set; }
+
         /// <summary>
         /// 摆件数量
         /// </summary>

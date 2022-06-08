@@ -249,8 +249,9 @@ namespace GenshinImpact_Lanucher.MiHaYouAPI
                         power = home["comfort_num"].ToString(),
                         Name = home["name"].ToString(),
                         StringLevel = home["comfort_level_name"].ToString(),
-                        bluecount = home["item_num"].ToString()
-                    }); ;
+                        bluecount = home["item_num"].ToString(),
+                        Icon = home["comfort_level_icon"].ToString()
+                     });
                 }
                 return arg;
             });
