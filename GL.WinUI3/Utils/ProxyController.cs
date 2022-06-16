@@ -19,7 +19,7 @@ namespace GL.WinUI3.Utils
     //    public static ProxyController controller { get; set; }
     //}
 
-    public class ProxyController
+    public static class ProxyController
     {
         public static ProxyServer proxyServer;
         static ExplicitProxyEndPoint explicitEndPoint;

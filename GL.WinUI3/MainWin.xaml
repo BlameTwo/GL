@@ -11,6 +11,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <TeachingTip x:FieldModifier="public" x:Name="Tip"/>
         <Border x:Name="AppTitleBar" Grid.Column="1" VerticalAlignment="Top">
             <TextBlock x:Name="AppTitle" Text="原神启动器" VerticalAlignment="Top" Margin="10" />
         </Border>
@@ -23,7 +24,7 @@
                 <NavigationViewItem Content="原神" Icon="List" x:Name="MiHaYou"/>
             </NavigationView.MenuItems>
             <NavigationView.Content>
-                <Frame Grid.Row="1" x:FieldModifier="public" x:Name="MyFrame">
+                <Frame Background="Transparent" Grid.Row="1" x:FieldModifier="public" x:Name="MyFrame">
                     <Frame.ContentTransitions>
                         <TransitionCollection>
                             <NavigationThemeTransition  />

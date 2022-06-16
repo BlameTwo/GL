@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="MyApp1.View.DefaultGame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyApp1.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
+    Background="Transparent">
+
+    <Grid>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 25 25"
+                Command="{x:Bind vm.StartGame}"  Style="{ThemeResource  ButtonRevealStyle}"
+                
+                Padding="15"
+                FontSize="25"
+                >
+            <Button.Content>
+                <StackPanel Orientation="Horizontal" >
+                    <SymbolIcon Symbol="Play" Margin="0 5 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                                RenderTransformOrigin="0.5,0.5">
+                        <SymbolIcon.RenderTransform>
+                            <CompositeTransform ScaleX="1.5" ScaleY="1.5"/>
+                        </SymbolIcon.RenderTransform>
+                    </SymbolIcon>
+                    <TextBlock Text="开始游戏" Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Border CornerRadius="5" Padding="30" 
+                Background="{ThemeResource  BackButtonPointerOverBackgroundThemeBrush}" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+            >
+            <StackPanel  >
+                <TextBlock FontSize="25" Text="😁点击右下角的“启动游戏”开始游戏吧！"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

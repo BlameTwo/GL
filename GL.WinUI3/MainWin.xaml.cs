@@ -43,8 +43,9 @@ namespace GL.WinUI3
             Window window = App.MainWindow;
             this.ExtendsContentIntoTitleBar = true;  // enable custom titlebar
             this.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
-            SetBackdrop(BackdropType.Mica);
+            SetBackdrop(BackdropType.DesktopAcrylic);
             MyFrame.Navigate(typeof(MainPage));
+            
         }
 
 
@@ -206,9 +207,16 @@ namespace GL.WinUI3
                 return;
             }
             Type type =null;
-            if(args.SelectedItem! == Home!)
+            if(args.SelectedItem as NavigationViewItem == Home!)
             {
                 type = typeof(HomePage);
+            }
+            if (args.SelectedItem as NavigationViewItem == StartGame!)
+            {
+                type = typeof(DefaultGame);
+            }
+            if (args.SelectedItem as NavigationViewItem == Server!)
+            {
             }
             Navigation.Header = (args.SelectedItem as NavigationViewItem).Content.ToString();
             Navigation.PaneTitle = (args.SelectedItem as NavigationViewItem).Content.ToString();

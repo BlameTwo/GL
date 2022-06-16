@@ -4,19 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MyApp1.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="using:MyApp1.SettingExpander"
     mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
     Background="Transparent">
 
     <StackPanel  Margin="10">
-        <Expander Margin="0 10"  HorizontalAlignment="Stretch">
-            <Expander.Header>
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Play" />
-                    <TextBlock  Text ="游戏设置" Margin="15 0 0 0"/>
-                </StackPanel>
-            </Expander.Header>
-        </Expander>
+        <control:GameExpander Margin="0 10"  HorizontalAlignment="Stretch">
+        </control:GameExpander>
         <Expander Margin="0 10"  HorizontalAlignment="Stretch">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">

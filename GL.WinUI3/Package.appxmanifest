@@ -8,11 +8,11 @@
 
   <Identity
     Name="86143d46-9a0b-4662-9298-14e5a6482b65"
-    Publisher="CN=30140"
-    Version="1.0.0.0" />
+    Publisher="CN=怪"
+    Version="0.0.1.0" />
 
   <Properties>
-    <DisplayName>MyApp1</DisplayName>
+    <DisplayName>GL</DisplayName>
     <PublisherDisplayName>30140</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -32,7 +32,7 @@
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
         DisplayName="GL"
-        Description="MyApp1"
+        Description="一个原神的工具集集合"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">

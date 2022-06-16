@@ -43,16 +43,16 @@ namespace GL.WinUI3.Model
             bool fileexis = File.Exists(path + @"\YuanShen_Data\Plugins\PCGameSDK.dll");
             if (flage == true && fileexis == false)
             {
-                string sdk = "PCGameSDK.dll";
+                string sdk = System.Environment.GetFolderPath( Environment.SpecialFolder.Templates)+ "PCGameSDK.dll";
                 FileStream fs = new FileStream(sdk, FileMode.Create, FileAccess.ReadWrite);
                 byte[] buffer = Resources.PCGameSDK;
                 fs.Write(buffer, 0, buffer.Length);
                 fs.Close();
                 fs.Dispose();
                 File.Move(sdk, path + @"\YuanShen_Data\Plugins\PCGameSDK.dll");
-                if (File.Exists("PCGameSDK.dll"))
+                if (File.Exists(sdk))
                 {
-                    File.Delete("PCGameSDK.dll");
+                    File.Delete(sdk);
                     return true;
                 }
             }

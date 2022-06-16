@@ -282,9 +282,9 @@ namespace GL.WinUI3.Model
                 if (Resource.BilibiliSDK(true) == true)
                 {
                     //TipWindow.Show("区服切换成B服", "区服已经切换成功啦！", WPFUI.Common.SymbolRegular.CheckmarkCircle24);
-                    //WritePrivateProfileString("General", "cps", "bilibili", LauncherPath);
-                    //WritePrivateProfileString("General", "sub_channel", "0", LauncherPath);
-                    //WritePrivateProfileString("General", "channel", "14", LauncherPath);
+                    WritePrivateProfileString("General", "cps", "bilibili", LauncherPath);
+                    WritePrivateProfileString("General", "sub_channel", "0", LauncherPath);
+                    WritePrivateProfileString("General", "channel", "14", LauncherPath);
                     return true;
                 }else if (Resource.BilibiliSDK(true) == false)            //严谨一点好
                 {

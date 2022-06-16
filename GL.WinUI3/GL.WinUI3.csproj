@@ -10,10 +10,23 @@
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>33B4A6F8928E7702F3AE483AE3B96C4CF6233184</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="MainWin.xaml" />
+    <None Remove="SettingExpander\GameExpander.xaml" />
+    <None Remove="View\DefaultGame.xaml" />
     <None Remove="View\HomePage.xaml" />
+    <None Remove="View\ServerGame.xaml" />
     <None Remove="View\SettingPage.xaml" />
   </ItemGroup>
 
@@ -58,6 +71,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="View\ServerGame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\DefaultGame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="View\SettingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -69,6 +92,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SettingExpander\GameExpander.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
