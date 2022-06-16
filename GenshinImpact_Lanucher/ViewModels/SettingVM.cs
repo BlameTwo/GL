@@ -127,7 +127,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
                 ProxyController.fakeHost = "127.0.0.1";
                 ProxyController.Start();
                 ProxyController.Stop();
-                WindowTip.TipShow("修复完毕", "请尝试打开浏览器并验证，如果还是不行，请先卸载证书，随后再次修复！", WPFUI.Common.SymbolRegular.Earth16);
+                TipWindow.Show("修复完毕", "请尝试打开浏览器并验证，如果还是不行，请先卸载证书，随后再次修复！", WPFUI.Common.SymbolRegular.Earth16);
             });
 
             _IsMica = System.Convert.ToBoolean(myini.IniReadValue("Style", "IsMica"));
@@ -140,7 +140,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
 
                     if(version.IndexOf("11") != -1)   //为真的时候的条件
                     {
-                        WindowTip.TipShow("Win11以下计算机不支持开启Mica"
+                        TipWindow.Show("Win11以下计算机不支持开启Mica"
                             , "当前只能使用图片背景哦！",
                             WPFUI.Common.SymbolRegular.Eraser20);
                         isMica = false;

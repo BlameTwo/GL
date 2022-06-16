@@ -281,14 +281,14 @@ namespace GenshinImpact_Lanuncher.Model
             {
                 if (Resource.BilibiliSDK(true) == true)
                 {
-                    WindowTip.TipShow("区服切换成B服", "区服已经切换成功啦！", WPFUI.Common.SymbolRegular.CheckmarkCircle24);
+                    TipWindow.Show("区服切换成B服", "区服已经切换成功啦！", WPFUI.Common.SymbolRegular.CheckmarkCircle24);
                     WritePrivateProfileString("General", "cps", "bilibili", LauncherPath);
                     WritePrivateProfileString("General", "sub_channel", "0", LauncherPath);
                     WritePrivateProfileString("General", "channel", "14", LauncherPath);
                     return true;
                 }else if (Resource.BilibiliSDK(true) == false)            //严谨一点好
                 {
-                    WindowTip.TipShow("区服切换失败", "旅行者似乎没有配置游戏路径呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
+                    TipWindow.Show("区服切换失败", "旅行者似乎没有配置游戏路径呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
                     return false;
                 }
                     return false;
@@ -298,10 +298,10 @@ namespace GenshinImpact_Lanuncher.Model
                 Launcher_Ini myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
                 if (myini.IniReadValue("MyLanucherConfig", "GamePath") == null || myini.IniReadValue("MyLanucherConfig", "GamePath").Equals(""))
                 {
-                    WindowTip.TipShow("区服切换失败", "旅行者似乎没有配置游戏路径呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
+                    TipWindow.Show("区服切换失败", "旅行者似乎没有配置游戏路径呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
                     return false;
                 }
-                WindowTip.TipShow("区服切换成官服", "区服已经切换成功啦！", WPFUI.Common.SymbolRegular.CheckmarkCircle24);
+                TipWindow.Show("区服切换成官服", "区服已经切换成功啦！", WPFUI.Common.SymbolRegular.CheckmarkCircle24);
                 WritePrivateProfileString("General", "cps", "pcadbdpz", LauncherPath);
                 WritePrivateProfileString("General", "sub_channel", "1", LauncherPath);
                 WritePrivateProfileString("General", "channel", "1", LauncherPath);

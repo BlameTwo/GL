@@ -70,6 +70,7 @@
     <Page Remove="Dialogs\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Resources\image.png" />
     <None Remove="Resources\q2jymr.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +122,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\image.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Welcome\" />

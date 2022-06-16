@@ -106,5 +106,15 @@ namespace GenshinImpact_Lanuncher
         {
            
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Show();
+        }
     }
 }

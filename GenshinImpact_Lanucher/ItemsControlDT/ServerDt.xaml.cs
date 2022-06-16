@@ -91,14 +91,14 @@ namespace GenshinImpact_Lanuncher.ItemsControlDT
             if (await Refallt(this, MyData))
             {
                 StateServer.Foreground = new SolidColorBrush(Colors.Green);
-                WindowTip.TipShow("状态刷新成功", "服务器状态正常", WPFUI.Common.SymbolRegular.InprivateAccount16);
+                TipWindow.Show("状态刷新成功", "服务器状态正常", WPFUI.Common.SymbolRegular.InprivateAccount16);
 
             }
             else
             {
                 this.PeopleCount.Text = "Null";
                 this.ServerVersion.Text = "服务器寄了";
-                WindowTip.TipShow("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
+                TipWindow.Show("无法连接", "无法连接到服务器！", WPFUI.Common.SymbolRegular.ErrorCircle24);
             };
 
         }

@@ -44,7 +44,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
             _NotiMiHaYo = await GameNitify.GetTwoAsync();
             if (NotiGame == null || _NotiMiHaYo == null)
             {
-                WindowTip.TipShow("公告加载失败", "旅行者似乎网络出现错误了呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
+                TipWindow.Show("公告加载失败", "旅行者似乎网络出现错误了呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
 
             }
         }
