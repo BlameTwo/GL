@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="GL.WinUI3.App"
+    x:Class="MyApp1.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:GL.WinUI3">
+    xmlns:local="using:MyApp1">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

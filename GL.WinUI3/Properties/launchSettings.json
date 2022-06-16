@@ -1,9 +1,9 @@
 {
   "profiles": {
-    "GL.WinUI3 (Package)": {
+    "MyApp1 (Package)": {
       "commandName": "MsixPackage"
     },
-    "GL.WinUI3 (Unpackaged)": {
+    "MyApp1 (Unpackaged)": {
       "commandName": "Project"
     }
   }
