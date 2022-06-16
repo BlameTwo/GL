@@ -1,9 +1,9 @@
 # GenshinImpact_Lanucher
 > 一个原神启动器项目，正在完善，界面基于WPF-UI制作，采用微软MVVM框架。
 
-### 最新Release已知BUG
-公告页面会闪退，原因为APi请求参数对不上。
-.Net6框架安装后无法运行，此BUG目前无法解决，只能[安装](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.203-windows-x64-installer)SDK才可以。
+### 公告
+1.5开始向WinUI3进行迁移，master分支会一直保留WPF版本，等到WinUi3完善之后就正式合并。
+
 
 ## 特性
 
