@@ -119,7 +119,6 @@ namespace GL.WinUI3.Model
                 }
             });
         }
-        public static ProxyController Controller;
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
 

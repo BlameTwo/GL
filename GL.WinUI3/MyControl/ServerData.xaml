@@ -1,0 +1,28 @@
+﻿<UserControl
+    x:Class="MyApp1.MyControl.ServerData"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyApp1.MyControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    HorizontalAlignment="Stretch" Margin="10">
+    <UserControl.ContextFlyout>
+        <MenuFlyout>
+            <MenuFlyout.Items>
+                <MenuFlyoutItem Text="删除" Click="MenuFlyoutItem_Click">
+                </MenuFlyoutItem>
+            </MenuFlyout.Items>
+        </MenuFlyout>
+    </UserControl.ContextFlyout>
+    <Border CornerRadius="5" Background="{ThemeResource  BackButtonPointerOverBackgroundThemeBrush}" Padding="15">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{x:Bind MyData.Name}"/>
+            <TextBlock>
+                <Run Text="["/>
+                <Run Text="{x:Bind MyData.Host}"/>
+                <Run Text="]"/>
+            </TextBlock>
+        </StackPanel>
+    </Border>
+</UserControl>

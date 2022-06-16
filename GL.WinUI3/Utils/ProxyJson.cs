@@ -38,34 +38,22 @@ namespace GenshinImpact_Lanuncher.Utils
         public ProxyJson(string XmlPath)
         {
             Path = XmlPath;
-            ReadValue();
+            ReadValue(XmlPath);
         }
 
 
 
-        public void ReadValue()
+        public void ReadValue(string path)
         {
+            var profiles = File.ReadAllText(Path);
+            try
+            {
+                ServerProfiles = JsonConvert.DeserializeObject<ObservableCollection<ProxyArgs>>(profiles);
 
-            if (String.IsNullOrEmpty(Path))
-            {
-                Path = "Proxy.json";
             }
-            if (!File.Exists(Path))
+            catch (Exception ex)
             {
-                File.Create(Path).Close();
-            }
-            else
-            {
-                var profiles = File.ReadAllText(Path);
-                try
-                {
-                    ServerProfiles = JsonConvert.DeserializeObject<ObservableCollection<ProxyArgs>>(profiles);
-
-                }
-                catch (Exception ex)
-                {
-                    ServerProfiles = new ObservableCollection<ProxyArgs>();
-                }
+                ServerProfiles = new ObservableCollection<ProxyArgs>();
             }
 
             if (ServerProfiles == null)

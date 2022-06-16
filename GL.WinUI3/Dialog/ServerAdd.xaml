@@ -1,0 +1,31 @@
+﻿<ContentDialog
+    x:Class="MyApp1.Dialog.ServerAdd"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyApp1.Dialog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonText="添加"
+    CornerRadius="0"
+    CloseButtonText="关闭"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="服务器名称：" VerticalAlignment="Center" Margin="10" />
+        <TextBlock Text="服务器地址：" Grid.Row="1" VerticalAlignment="Center" Margin="10" />
+        <TextBox MaxWidth="300" x:Name="ServerName" Grid.Column="1" Margin="10 5" VerticalAlignment="Center"  />
+        <TextBlock x:Name="TipText" Foreground="Red" FontWeight="Bold" FontSize="15"/>
+        <TextBox Grid.Column="1" x:Name="ServerIP" Grid.Row="1" Margin="10 5" VerticalAlignment="Center" />
+    </Grid>
+</ContentDialog>

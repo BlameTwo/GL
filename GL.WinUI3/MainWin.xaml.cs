@@ -217,9 +217,12 @@ namespace GL.WinUI3
             }
             if (args.SelectedItem as NavigationViewItem == Server!)
             {
+                type = typeof(ServerGame);
             }
-            Navigation.Header = (args.SelectedItem as NavigationViewItem).Content.ToString();
+            Navigation.AlwaysShowHeader = false;
             Navigation.PaneTitle = (args.SelectedItem as NavigationViewItem).Content.ToString();
+            Navigation.IsTitleBarAutoPaddingEnabled = false;
+            //Navigation.PaneTitle = (args.SelectedItem as NavigationViewItem).Content.ToString();
             if(type != null)
                 MyFrame.Navigate(type, new DrillInNavigationTransitionInfo());
         }

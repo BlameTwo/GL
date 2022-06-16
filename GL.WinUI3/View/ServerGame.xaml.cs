@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MyApp1.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,16 @@ namespace MyApp1.View
         public ServerGame()
         {
             this.InitializeComponent();
+        }
+
+        ServerGameViewModel vm = new ServerGameViewModel();
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if ( this.MyGridView.Items.Count == 0)
+            {
+                vm.Page_Loaded(null, null);
+            }
         }
     }
 }

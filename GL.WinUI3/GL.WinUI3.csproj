@@ -22,7 +22,9 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Dialog\ServerAdd.xaml" />
     <None Remove="MainWin.xaml" />
+    <None Remove="MyControl\ServerData.xaml" />
     <None Remove="SettingExpander\GameExpander.xaml" />
     <None Remove="View\DefaultGame.xaml" />
     <None Remove="View\HomePage.xaml" />
@@ -97,6 +99,16 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="SettingExpander\GameExpander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MyControl\ServerData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dialog\ServerAdd.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
