@@ -42,7 +42,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
             CloseProxy = new RelayCommand(() =>
             {
                 //在本体发送消息，就直接调用方法
-                Receive(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
+                ReceiveAsync(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
             });
             Start = new RelayCommand(async () =>
             {
@@ -89,7 +89,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
         /// 处理消息
         /// </summary>
         /// <param name="message">消息</param>
-        public void Receive(ProxyEvnetArgs message)
+        public void ReceiveAsync(ProxyEvnetArgs message)
         {
             switch (message.Stuate)
             {
@@ -112,7 +112,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
         /// 服务器状态
         /// </summary>
         /// <param name="message">服务器状态</param>
-        public async void Receive(ServerStuatePorxy message)
+        public async void ReceiveAsync(ServerStuatePorxy message)
         {
             switch (message.State)
             {

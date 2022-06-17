@@ -70,19 +70,17 @@ namespace GenshinImpact_Lanuncher.Utils
         {
             return await Task.Run(() =>
             {
-                //foreach (var item in ServerProfiles)
-                //{
-                //    if (item.Name == args.Name)
-                //    {
-                //        ServerProfiles.Remove(args);
-                //        SaveProfiles();
-                //        return true;
-                //    }
-                //}
-                //return false;
-                var r= ServerProfiles.Remove(args);
+                foreach (var item in ServerProfiles)
+                {
+                    if(item.Name == args.Name)
+                    {
+                        var r = ServerProfiles.Remove(item);
+                        SaveProfiles();
+                        return r;
+                    }
+                }
                 SaveProfiles();
-                return !r;
+                return false;
             });
         }
 

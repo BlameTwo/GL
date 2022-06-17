@@ -20,6 +20,7 @@ using MyApp1.WindowHelper;
 using GL.WinUI3.View;
 using MyApp1.View;
 using Microsoft.UI.Xaml.Media.Animation;
+using System.Net;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,7 +33,11 @@ namespace GL.WinUI3
     {
         public MainWin()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();//过滤证书
+            ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, error) =>
+            {
+                return true;
+            };
             var res = Microsoft.UI.Xaml.Application.Current.Resources;
             res["WindowCaptionBackground"] = Colors.Transparent;
             res["WindowCaptionBackgroundDisabled"] = Colors.Transparent;

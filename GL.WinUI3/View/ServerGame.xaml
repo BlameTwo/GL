@@ -14,28 +14,62 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Center"  
-                Margin="10 10 0 0"
+        <StackPanel Orientation="Horizontal"
+                Margin="10 10 0 0">
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"  
                 Style="{ThemeResource  ButtonRevealStyle}"
                 Padding="10"
                 Command="{x:Bind vm.Serveradd}"
                 FontSize="15"
                 >
-            <Button.Content>
-                <StackPanel Orientation="Horizontal" >
-                    <SymbolIcon Symbol="Add" Margin="0 0 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
-                                >
-                        <!--<SymbolIcon.RenderTransform> RenderTransformOrigin="0.5,0.5"
-                            <CompositeTransform ScaleX="1" ScaleY="1"/>
-                        </SymbolIcon.RenderTransform>-->
-                    </SymbolIcon>
-                    <TextBlock Text="添加连接"
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal" >
+                        <SymbolIcon Symbol="Add" Margin="0 0 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                                />
+                        <TextBlock Text="添加连接"
                                Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
-                </StackPanel>
-            </Button.Content>
-        </Button>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"  
+                Style="{ThemeResource  ButtonRevealStyle}"
+                Padding="10"
+                    Margin="10 0 0 0"
+                FontSize="15"
+                >
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal" >
+                        <SymbolIcon Symbol="Add" Margin="0 0 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                                />
+                        <TextBlock Text="开始游戏"
+                               Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"  
+                Style="{ThemeResource  ButtonRevealStyle}"
+                Padding="10"
+                Margin="10 0 0 0"
+                FontSize="15"
+                >
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal" >
+                        <SymbolIcon Symbol="Add" Margin="0 0 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                                />
+                        <TextBlock Text="断开连接"
+                               Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
+                <Ellipse Fill="Red" Margin="0 3 0 0" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0"  Text="未连接"/>
+            </StackPanel>
+        </StackPanel>
         <ItemsControl
-            
+            IsEnabled="{x:Bind vm._ItemsEnable}"
             ItemsSource="{x:Bind vm._Lists,Mode=TwoWay}"
             Grid.Row="1"
             x:Name="MyGridView"

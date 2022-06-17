@@ -1,6 +1,7 @@
 ﻿using GenshinImpact_Lanuncher.Utils;
 using GL.WinUI3.EventArgs;
 using GL.WinUI3.Model;
+using GL.WinUI3.Models;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -9,6 +10,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -50,6 +52,36 @@ namespace MyApp1.MyControl
             ProxyJson ProxyJson = new ProxyJson(myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
             if (await ProxyJson.Delete(MyData))
                 WeakReferenceMessenger.Default.Send(new ProxyEvnetArgs() { Proxy = MyData, Stuate = XmlProxy.Remove });
+        }
+
+        private async  void Button_Click(object sender, RoutedEventArgs e)
+        {
+            await Refallt(this, MyData);
+        }
+
+        async static Task<bool> Refallt(ServerData dt, ProxyArgs args)
+        {
+            string json = await MyHttpClient.GetJson($@"https://{args.Host}/status/server");
+            if (json != null)
+            {
+                JObject jo = JObject.Parse(json);
+                dt.PeopleCount.Text = jo["status"]["playerCount"].ToString();
+                dt.GameVersion.Text = jo["status"]["version"].ToString();
+                return true;
+            }
+            return false;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ServerStuatePorxy arg = new ServerStuatePorxy()
+            {
+                State = ServerStuate.Runing,
+                Message = "连接到服务器成功！"
+                ,
+                Proxy = MyData
+            };
+            WeakReferenceMessenger.Default.Send(arg);
         }
     }
 }

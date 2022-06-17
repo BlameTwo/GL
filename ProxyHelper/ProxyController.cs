@@ -1,6 +1,4 @@
-﻿using GL.WinUI3.GameNotifys;
-using GL.WinUI3.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,12 +10,8 @@ using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Models;
 
-namespace GL.WinUI3.Utils
-{ 
-    //public static class Global
-    //{
-    //    public static ProxyController controller { get; set; }
-    //}
+namespace ProxyHelper
+{
 
     public static class ProxyController
     {
@@ -67,10 +61,7 @@ namespace GL.WinUI3.Utils
                 Console.WriteLine("Listening on '{0}' endpoint at Ip {1} and port: {2} ",
                     endPoint.GetType().Name, endPoint.IpAddress, endPoint.Port);
 
-            // Only explicit proxies can be set as system proxy!
-            proxyServer.SetAsSystemHttpProxy(explicitEndPoint);
             proxyServer.SetAsSystemHttpsProxy(explicitEndPoint);
-            
         }
 
 
@@ -127,11 +118,13 @@ namespace GL.WinUI3.Utils
                 e.DecryptSsl = false;
             }
         }
-
+        public const string MoreUrl = "https://hk4e-api.mihoyo.com/common/hk4e_cn/announcement/api/getAnnContent?game=hk4e&game_biz=hk4e_cn&lang=zh-cn&bundle_id=hk4e_cn&platform=pc&region=cn_gf01&level=55&uid=100000000";
+        public const string Url = "https://hk4e-api.mihoyo.com/common/hk4e_cn/announcement/api/getAnnList?game=hk4e&game_biz=hk4e_cn&lang=zh-cn&bundle_id=hk4e_cn&platform=pc&region=cn_gf01&level=55&uid=100000000";
 
         private static async Task OnRequest(object sender, SessionEventArgs e)
         {
-            Uri uri1 = new Uri(GameNitify.Url); Uri uri2 = new Uri(GameNitify.MoreUrl);
+
+            Uri uri1 = new Uri(MoreUrl); Uri uri2 = new Uri(Url);
             Uri uri3 = new Uri("https://uploadstatic.mihoyo.com");
             string hostname = e.WebSession.Request.RequestUri.Host;
             if (hostname == uri1.Host || hostname == uri2.Host || hostname == uri3.Host)
@@ -141,7 +134,9 @@ namespace GL.WinUI3.Utils
                hostname.EndsWith(".mihoyo.com"))
             {
                 string oHost = e.WebSession.Request.RequestUri.Host;
+                
                 e.HttpClient.Request.Url = e.HttpClient.Request.Url.Replace(oHost, fakeHost);
+                
             }
         }
 

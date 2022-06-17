@@ -5,7 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GL.WinUI3.Utils
+namespace GL.WinUI3.ProxyHelper
 {
     public class Request
     {

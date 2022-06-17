@@ -1,4 +1,4 @@
-﻿using GL.WinUI3.Utils;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -127,17 +127,12 @@ namespace GL.WinUI3.Model
             return await Task.Run(() =>
             {
                 Launcher_Ini ini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-                ProxyController.port = ini.IniReadValue("Server", "Host");
-                ProxyController.fakeHost = ini.IniReadValue("Server", "IP");
                 if (flage == true)
                 {
-                    ProxyController.Start();
                     Console.WriteLine("正在打开代理，并使用证书");
                 }
                 else
                 {
-
-                    ProxyController.Stop();
                     Console.WriteLine("正在关闭代理，并清除证书");
                     foreach (Process item in Process.GetProcesses())
                     {

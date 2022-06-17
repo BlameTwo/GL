@@ -16,13 +16,37 @@
         </MenuFlyout>
     </UserControl.ContextFlyout>
     <Border CornerRadius="5" Background="{ThemeResource  BackButtonPointerOverBackgroundThemeBrush}" Padding="15">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{x:Bind MyData.Name}"/>
-            <TextBlock>
-                <Run Text="["/>
-                <Run Text="{x:Bind MyData.Host}"/>
-                <Run Text="]"/>
-            </TextBlock>
-        </StackPanel>
+        <Grid >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock Text="{x:Bind MyData.Name}" FontSize="20"/>
+                    <TextBlock FontSize="20">
+                        <Run Text="["/>
+                        <Run Text="{x:Bind MyData.Host}"/>
+                        <Run Text="]"/> 
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Margin="0 10 0 0">
+                    <TextBlock>
+                        <Run Text="游戏版本:"/>
+                        <Run  x:Name="GameVersion"/>
+                        <Run Text="       游戏人数:"/>
+                        <Run  x:Name="PeopleCount"/>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="测试链接" Style="{ThemeResource AccentButtonStyle}" Padding="10" Click="Button_Click"/>
+                <Button Content="连接" Style="{ThemeResource AccentButtonStyle}" 
+                        Margin="10 0 0 0" 
+                        Padding="10" 
+                        Click="Button_Click_1"/>
+                
+            </StackPanel>
+        </Grid>
     </Border>
 </UserControl>
