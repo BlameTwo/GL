@@ -68,6 +68,7 @@ namespace GenshinImpact_Lanuncher.ItemsControlDT
         private async void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             ProxyJson ProxyJson = new ProxyJson(myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
+
             if (await ProxyJson.Delete(MyData))
                 WeakReferenceMessenger.Default.Send(new ProxyEvnetArgs() { Proxy = MyData, Stuate = XmlProxy.Remove });
             //else
