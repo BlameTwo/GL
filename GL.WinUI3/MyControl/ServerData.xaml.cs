@@ -2,6 +2,7 @@
 using GL.WinUI3.EventArgs;
 using GL.WinUI3.Model;
 using GL.WinUI3.Models;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -10,6 +11,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MyApp1.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -33,8 +35,11 @@ namespace MyApp1.MyControl
         {
             this.InitializeComponent();
             this.myini = new Launcher_Ini($@"{Resource.docpath}/GSIConfig/Config/LauncherConfig.ini");
+            time.Tick += Time_Tick;
         }
 
+
+        ProxyArgs NowProxy { get; set; }
 
 
         public ProxyArgs MyData
@@ -45,19 +50,25 @@ namespace MyApp1.MyControl
 
         // Using a DependencyProperty as the backing store for MyData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MyDataProperty =
-            DependencyProperty.Register("MyData", typeof(ProxyArgs), typeof(ServerData), new PropertyMetadata(default(ProxyArgs)));
+            DependencyProperty.Register("MyData", typeof(ProxyArgs), typeof(ServerData), new PropertyMetadata(null,new PropertyChangedCallback((s, e) =>
+            {
+                var pro = (s as ServerData);
+                pro.NowProxy = (e.NewValue as ProxyArgs);
+            })));
 
         private async void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
             ProxyJson ProxyJson = new ProxyJson(myini.IniReadValue("MyLanucherConfig", "ProxyPath"));
-            if (await ProxyJson.Delete(MyData))
+            if (await ProxyJson.Delete(NowProxy))
                 WeakReferenceMessenger.Default.Send(new ProxyEvnetArgs() { Proxy = MyData, Stuate = XmlProxy.Remove });
         }
 
         private async  void Button_Click(object sender, RoutedEventArgs e)
         {
-            await Refallt(this, MyData);
+            await Refallt(this, NowProxy);
         }
+
+
 
         async static Task<bool> Refallt(ServerData dt, ProxyArgs args)
         {
@@ -72,16 +83,63 @@ namespace MyApp1.MyControl
             return false;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async  void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (await MyHttpClient.GetJson($@"https://{NowProxy.Host}/status/server") != null)
+            {
+                App.helper = new CMD_Helper($@"{System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\GSIConfig\Proxy\ProxyHelper.exe");
+                App.helper.RunCMD($"start{NowProxy.Host}");
+                App.helper.Output += Helper_Output;
+                
+                time.Start();
+            };
+            
+        }
+        public bool IsOk = true;
+
+        DispatcherTimer time = new DispatcherTimer() { Interval = new TimeSpan(0,0,0,0,100)};
+
+        private void Helper_Output(string obj)
+        {
+            if(obj.IndexOf("连接成功")!= -1)
+            {
+                IsOk = true;
+            }
+            if(obj.IndexOf("断开连接")!= -1)
+            {
+                IsOk = false;
+            }
+        }
+
+        private void Time_Tick(object sender, object e)
+        {
+            if (IsOk)
+            {
+                OK();
+            }
+            else
+            {
+                ServerStuatePorxy arg = new ServerStuatePorxy()
+                {
+                    State = ServerStuate.Stop,
+                    Message = "服务器断开连接",
+                    Proxy = NowProxy
+                };
+                WeakReferenceMessenger.Default.Send(arg);
+            }
+        }
+
+        void OK()
         {
             ServerStuatePorxy arg = new ServerStuatePorxy()
             {
                 State = ServerStuate.Runing,
-                Message = "连接到服务器成功！"
-                ,
-                Proxy = MyData
+                Message = "连接到服务器成功！",
+                Proxy = NowProxy
             };
             WeakReferenceMessenger.Default.Send(arg);
+            WeakReferenceMessenger.Default.Send(new ServerChanged() { Host = arg.Proxy.Host, Message = "连接成功", Data = this});
         }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using GenshinImpact_Lanuncher.Utils;
 using GL.WinUI3.GameNotifys;
+using MyApp1.MyControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,14 @@ namespace GL.WinUI3.EventArgs
     public enum ServerStuate
     {
         Runing,Stop,Pause
+    }
+
+    public class ServerChanged
+    {
+        public string Host { get; set; }
+        public ServerData Data { get; set; }
+
+        public string Message { get; set; }
     }
 
     public class ServerStuatePorxy

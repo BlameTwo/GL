@@ -4,11 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MyApp1.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="using:MyApp1.MyControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="using:MyApp1.MyControl" xmlns:convert="using:MyApp1.Converter"
     mc:Ignorable="d"
     NavigationCacheMode="Required"
     Loaded="Page_Loaded">
     <!--Loaded="{x:Bind vm.Page_Loaded}"-->
+    <Page.Resources>
+        <convert:BooleanConvert x:Key="TrueConvert"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -35,7 +38,7 @@
             <Button HorizontalAlignment="Left" VerticalAlignment="Center"  
                 Style="{ThemeResource  ButtonRevealStyle}"
                 Padding="10"
-                    Margin="10 0 0 0"
+                Margin="10 0 0 0"
                 FontSize="15"
                 >
                 <Button.Content>
@@ -52,7 +55,9 @@
                 Style="{ThemeResource  ButtonRevealStyle}"
                 Padding="10"
                 Margin="10 0 0 0"
+                IsEnabled="{x:Bind MyGridView.IsEnabled,Converter={StaticResource TrueConvert},Mode=OneWay}"
                 FontSize="15"
+                Click="Button_Click"
                 >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal" >
@@ -64,13 +69,13 @@
                 </Button.Content>
             </Button>
             <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
-                <Ellipse Fill="Red" Margin="0 3 0 0" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Ellipse x:Name="ServerChangedEllipse" Fill="{x:Bind vm._Fill,Mode=OneWay}" Margin="0 3 0 0" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <TextBlock VerticalAlignment="Center" Margin="10 0 0 0"  Text="未连接"/>
             </StackPanel>
         </StackPanel>
         <ItemsControl
-            IsEnabled="{x:Bind vm._ItemsEnable}"
-            ItemsSource="{x:Bind vm._Lists,Mode=TwoWay}"
+            IsEnabled="{x:Bind vm._ItemsEnable,Mode=TwoWay}"
+            ItemsSource="{x:Bind vm._Lists,Mode=OneWay}"
             Grid.Row="1"
             x:Name="MyGridView"
             Style="{x:Null}">

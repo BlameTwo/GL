@@ -7,6 +7,8 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using MyApp1.Dialog;
 using MyApp1.Models;
 using System;
@@ -16,6 +18,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Background;
+using Windows.UI;
 
 namespace MyApp1.ViewModel
 {
@@ -36,7 +40,7 @@ namespace MyApp1.ViewModel
                 Receive(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
             });
             _ItemsEnable = true;
-            helper.filename = $@"{docpath}\GSIConfig\Proxy\ProxyHelper.exe";
+
         }
 
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -70,27 +74,44 @@ namespace MyApp1.ViewModel
             }
         }
 
-        CMD_Helper helper = new CMD_Helper($@"{System.Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments)}\GSIConfig\Proxy\ProxyHelper.exe");
-        public async void Receive(ServerStuatePorxy message)
+        private SolidColorBrush Fill;
+
+        public SolidColorBrush _Fill
+        {
+            get { return Fill; }
+            set => SetProperty(ref Fill, value);
+        }
+
+        private string SelectText;
+
+        public string _SelectText
+        {
+            get { return SelectText; }
+            set => SetProperty(ref SelectText, value);
+        }
+
+
+
+        public  void Receive(ServerStuatePorxy message)
         {
             switch (message.State)
             {
                 case ServerStuate.Runing:
                     {
-                        if (await MyHttpClient.GetJson($@"https://{message.Proxy.Host}/status/server") != null)
-                        {
-                            _ItemsEnable = false;
-                            helper.RunCMD("start127.0.0.1");
-                            helper.Output += Helper_Output;
-                            (App.MainWindow as MainWin).Title = "服务器连接成功";
-                            break;
-                        };
-                        (App.MainWindow as MainWin).Title = "服务器连接失败";
+                        _ItemsEnable = false;
+                        var win = (App.MainWindow as MainWin);
+                        win.Title = "连接服务器成功";
+                        _Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
+                        _SelectText = $"已经连接到{message.Proxy.Name}";
                         break;
                     }
                 case ServerStuate.Stop:
                     {
                         _ItemsEnable = true;
+                        var win = (App.MainWindow as MainWin);
+                        win.Title = "服务器断开连接";
+                        _Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                        _SelectText = "连接断开";
                         break;
                     }
                 case ServerStuate.Pause:
@@ -104,10 +125,6 @@ namespace MyApp1.ViewModel
             }
         }
 
-        private void Helper_Output(string obj)
-        {
-            
-        }
 
         private ObservableCollection<ProxyArgs> Lists;
 

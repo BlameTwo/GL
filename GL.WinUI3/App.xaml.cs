@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using MyApp1.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,6 +37,7 @@ namespace MyApp1
             this.InitializeComponent();
         }
         public static Window MainWindow { get; set; }
+        public static CMD_Helper helper { get; set; }
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
@@ -47,7 +49,6 @@ namespace MyApp1
             MainWindow = m_window;
             m_window.Activate();
         }
-
         private Window m_window;
     }
 }
