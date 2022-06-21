@@ -1,5 +1,4 @@
-﻿using GenshinImpact_Lanuncher.GameNotifys;
-using GenshinImpact_Lanuncher.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -131,11 +130,7 @@ namespace GenshinImpact_Lanuncher.Utils
 
         private static async Task OnRequest(object sender, SessionEventArgs e)
         {
-            Uri uri1 = new Uri(GameNitify.Url); Uri uri2 = new Uri(GameNitify.MoreUrl);
-            Uri uri3 = new Uri("https://uploadstatic.mihoyo.com");
             string hostname = e.WebSession.Request.RequestUri.Host;
-            if (hostname == uri1.Host || hostname == uri2.Host || hostname == uri3.Host)
-                return;
             if (hostname.EndsWith(".yuanshen.com") |
                hostname.EndsWith(".hoyoverse.com") |
                hostname.EndsWith(".mihoyo.com"))

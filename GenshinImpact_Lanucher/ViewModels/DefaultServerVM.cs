@@ -42,7 +42,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
             CloseProxy = new RelayCommand(() =>
             {
                 //在本体发送消息，就直接调用方法
-                ReceiveAsync(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
+                Receive(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
             });
             Start = new RelayCommand(async () =>
             {
@@ -58,7 +58,6 @@ namespace GenshinImpact_Lanuncher.ViewModels
                 };
             });
         }
-        ProxyController Proxy { get; set; }
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         Launcher_Ini myini { get; set; }
 
@@ -89,7 +88,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
         /// 处理消息
         /// </summary>
         /// <param name="message">消息</param>
-        public void ReceiveAsync(ProxyEvnetArgs message)
+        public void Receive(ProxyEvnetArgs message)
         {
             switch (message.Stuate)
             {
@@ -112,7 +111,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
         /// 服务器状态
         /// </summary>
         /// <param name="message">服务器状态</param>
-        public async void ReceiveAsync(ServerStuatePorxy message)
+        public async void Receive(ServerStuatePorxy message)
         {
             switch (message.State)
             {
@@ -137,7 +136,6 @@ namespace GenshinImpact_Lanuncher.ViewModels
                         //服务器停滞状态
                         _DialogShow = false;
                         ProxyController.Stop();
-                        Proxy = null;
                         (System.Windows.Application.Current.MainWindow as MainWindow).Title = "服务器切断连接";
                         break;
                     }
@@ -152,5 +150,7 @@ namespace GenshinImpact_Lanuncher.ViewModels
                     break;
             }
         }
+
+        
     }
 }

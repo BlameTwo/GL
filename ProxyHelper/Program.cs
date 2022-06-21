@@ -7,6 +7,7 @@ namespace ProxyHelper // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
+            ProxyController.UninstallCertificate();
             while (true)
             {
                 string command = Console.ReadLine()!;
@@ -18,19 +19,11 @@ namespace ProxyHelper // Note: actual namespace depends on the project name.
                 switch (command.ToLower().StartsWith("start"))
                 {
                     case true:
-                        ProxyController.fakeHost = command.ToLower().Substring(5);
+                        string str = command.ToLower().Substring(5);
+                        ProxyController.fakeHost = str;
                         ProxyController.port = "11451";
                         ProxyController.Start();
                         Console.WriteLine("连接成功");
-                        Process p = new Process();
-                        p.StartInfo = new ProcessStartInfo()
-                        {
-                            FileName = Path.Combine(@"D:\Genshin Impact\Genshin Impact Game", "YuanShen.exe"),
-                            Verb = "runas",
-                            WorkingDirectory = @"D:\Genshin Impact\Genshin Impact Game",
-                            UseShellExecute = true,
-                        };
-                        p.Start();
                         break;
                 }
 

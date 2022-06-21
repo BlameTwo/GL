@@ -8,6 +8,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml;
 using MyApp1.Dialog;
+using MyApp1.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,6 +36,7 @@ namespace MyApp1.ViewModel
                 Receive(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
             });
             _ItemsEnable = true;
+            helper.filename = $@"{docpath}\GSIConfig\Proxy\ProxyHelper.exe";
         }
 
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -68,6 +70,7 @@ namespace MyApp1.ViewModel
             }
         }
 
+        CMD_Helper helper = new CMD_Helper($@"{System.Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments)}\GSIConfig\Proxy\ProxyHelper.exe");
         public async void Receive(ServerStuatePorxy message)
         {
             switch (message.State)
@@ -77,19 +80,9 @@ namespace MyApp1.ViewModel
                         if (await MyHttpClient.GetJson($@"https://{message.Proxy.Host}/status/server") != null)
                         {
                             _ItemsEnable = false;
-                            System.Diagnostics.Process p = new System.Diagnostics.Process();
-                            p.StartInfo = new System.Diagnostics.ProcessStartInfo()
-                            {
-                                UseShellExecute = false ,
-                                FileName = $@"{docpath}\GSIConfig\Proxy\ProxyHelper.exe",
-                                CreateNoWindow = false,
-                            }; 
-                            p.StartInfo.RedirectStandardInput = true;
-                            p.StartInfo.RedirectStandardOutput = true;
-                            p.Start();
-                            p.StandardInput.WriteLine($@"start{message.Proxy.Host}");
+                            helper.RunCMD("start127.0.0.1");
+                            helper.Output += Helper_Output;
                             (App.MainWindow as MainWin).Title = "服务器连接成功";
-                            var output = p.StandardOutput.ReadToEnd();
                             break;
                         };
                         (App.MainWindow as MainWin).Title = "服务器连接失败";
@@ -109,6 +102,11 @@ namespace MyApp1.ViewModel
                 default:
                     break;
             }
+        }
+
+        private void Helper_Output(string obj)
+        {
+            
         }
 
         private ObservableCollection<ProxyArgs> Lists;
