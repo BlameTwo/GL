@@ -1,55 +1,23 @@
 # GenshinImpact_Lanucher
-> 一个原神启动器项目，正在完善，界面基于WPF-UI制作，采用微软MVVM框架。
+> 使用WinUI3开发！
 
-### 公告
-1.5开始向WinUI3进行迁移，master分支会一直保留WPF版本，等到WinUi3完善之后就正式合并。
+### 此分支为WinUI3分支，采用更流畅的设计，更加现代的UI，加上无缝的UI动画，呈现更好的效果。
 
+### WinUI3简介
+你可能使用过微软的UWP应用，比如说Win10的设置，Win11的应用商店等，都是基于UWP平台打造。但是对于开发人员来说有很多的缺点，比如说
 
-## 特性
+- 无法直接检索磁盘
+- 无法使用系统代理
+- 无法对系统进行外部设置，只能通过版本SDK。
+但是，新的UI框架出现了，他是微软多年来发布UWP以及WPF的结合体，集合了微软多年的桌面开发经验，对于系统层的UI进行解耦（继承WinUI2.8的UI），不与高版本的系统SDK产生依赖，只要是Win10 1809以上版本皆可直接运行WinUI3框架。
 
- + 自带代理系统 [基于 titanium-web-proxy 项目](https://github.com/justcoding121/titanium-web-proxy)（服务端仅需开启服务器即可，无需开启mitmproxy等其他代理）
- + 多服务器选择
- + 仅代理/解密 游戏相关域名的流量，不影响访问其他域名。
+## 基于WPF版的新特性特性
+- 原生的云母和亚克力效果切换
+- 采用纯页面导航，不采用缓存残留的方式，使运行时的内存降低到70-80mb左右。
 
-![](Preview/server.png)
+## 故障
+- WinUI3目前是1.1版本，还未引进系统代理，导致私服页面目前无法进行开发，但会去重新开一个项目来开启系统代理，目标框架为.Net framework或core。
 
+### 目前仅支持Win10 1890以上系统支持
 
-
-## TODO List
-  - [x] 启动游戏相关
-    - [x] 客户端切换（b服/官服）
-    - [x] 自定义启动窗口（大小/无边框）  
-    - [x] 自定义启动器背景
-  - [ ] 服务器相关
-    - [x] 自带代理，支持非默认端口，只需在ip后加上端口即可，例如: 127.0.0.1:25565
-    - [x] 多服务器切换
-    - [x] 服务器状态查看
-    - [ ] 便捷的命令生成/执行 即参考 [jie65535/GrasscutterCommandGenerator](https://github.com/jie65535/GrasscutterCommandGenerator) 项目的功能
-    - ~~[ ] 账户操作相关（注册、登录）~~
-  - [x] 游戏相关
-    - [x] 实时便笺
-    - [x] 解锁帧率
-  - [x] 其他待增加的功能
-    - [x] 自定义背景图
-    - [x] 显示布局优化
-    - [x] 跟随系统以及自定义主题
-  - [x] 米哈游API
-    - [x] 米游社绑定信息
-    - [x] 原神账户信息
-    - ~~[ ] 深渊记录~~
-    - [x] 原神账号记录
-    - ~~[ ] 人物及圣遗物分配~~
-
-
-### 程序获取请到程序 [Realease](https://github.com/123456fsdaf/GenshinImpact_Lanucher/releases) 下载
-### 想体验新功能？请到 [Actions](https://github.com/123456fsdaf/GenshinImpact_Lanucher/actions) 下载最近编译的版本。
-
-### 目前仅支持Win10以上系统支持
-
-
-# 项目引用
-图片引用地址[wallhaven.cc](https://wallhaven.cc/w/3z9wv3)
-<br/>
 解锁帧率：[DGP.Genshin.FPSunlocking](https://github.com/DGP-Studio/DGP.Genshin.FPSUnlocking)
-<br/>
-WPF-UI：[WPF-UI（稍做了一些更改）](https://github.com/lepoco/wpfui)
