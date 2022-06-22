@@ -1,4 +1,5 @@
 ﻿using GenshinImpact_Lanuncher.Utils;
+using GL.WinUI3;
 using GL.WinUI3.EventArgs;
 using GL.WinUI3.Model;
 using GL.WinUI3.Models;
@@ -36,8 +37,13 @@ namespace MyApp1.MyControl
             this.InitializeComponent();
             this.myini = new Launcher_Ini($@"{Resource.docpath}/GSIConfig/Config/LauncherConfig.ini");
             time.Tick += Time_Tick;
+            Loaded += ServerData_Loaded;
         }
 
+        private async  void ServerData_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Refallt(this, NowProxy);
+        }
 
         ProxyArgs NowProxy { get; set; }
 
@@ -65,7 +71,15 @@ namespace MyApp1.MyControl
 
         private async  void Button_Click(object sender, RoutedEventArgs e)
         {
-            await Refallt(this, NowProxy);
+            if(await Refallt(this, NowProxy))
+            {
+                TipWindow.Show("服务器连接正常！", "😊");
+            }
+            else
+            {
+                TipWindow.Show("服务器连接失败！", "😒，请联系服务器管理人员，很大一部分可能服务器寄了");
+            }
+            
         }
 
 
@@ -80,6 +94,9 @@ namespace MyApp1.MyControl
                 dt.GameVersion.Text = jo["status"]["version"].ToString();
                 return true;
             }
+
+            dt.PeopleCount.Text = "0人";
+            dt.GameVersion.Text = "查询不到服务器";
             return false;
         }
 
@@ -87,7 +104,7 @@ namespace MyApp1.MyControl
         {
             if (await MyHttpClient.GetJson($@"https://{NowProxy.Host}/status/server") != null)
             {
-                App.helper = new CMD_Helper($@"{System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\GSIConfig\Proxy\ProxyHelper.exe");
+                
                 App.helper.RunCMD($"start{NowProxy.Host}");
                 App.helper.Output += Helper_Output;
                 
@@ -141,5 +158,16 @@ namespace MyApp1.MyControl
             WeakReferenceMessenger.Default.Send(new ServerChanged() { Host = arg.Proxy.Host, Message = "连接成功", Data = this});
         }
 
+
+        private void UserControl_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            MySelect2.Begin();
+        }
+
+        private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+
+            MySelect.Begin();
+        }
     }
 }

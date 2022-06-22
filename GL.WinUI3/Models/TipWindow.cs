@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using MyApp1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +10,11 @@ namespace GL.WinUI3.Models
 {
     public static class TipWindow
     {
-        //public static void Show(string title, string subtitle, WPFUI.Common.SymbolRegular icon)
-        //{
-        //    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Message = subtitle;
-        //    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Icon = icon;
-        //    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Title = title;
-        //    (System.Windows.Application.Current.MainWindow as MainWindow).WindowTitler.Show();
-        //}
+        public static void Show(string title, string subtitle)
+        {
+            (App.MainWindow as MainWin).Tip.Title = title;
+            (App.MainWindow as MainWin).Tip.Subtitle = subtitle;
+            (App.MainWindow as MainWin).Tip.IsOpen = true;
+        }
     }
 }

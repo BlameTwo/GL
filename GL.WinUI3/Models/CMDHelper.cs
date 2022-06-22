@@ -69,7 +69,7 @@ namespace MyApp1.Models
         }
 
         //退出事件
-        private void _CMD_Exited(object sender, EventArgs e)
+        private void _CMD_Exited(object sender, System.EventArgs e)
         {
             Exited?.Invoke();
         }

@@ -10,6 +10,18 @@
     Background="Transparent">
 
     <Grid>
+        <Border CornerRadius="5" Padding="70 30" Background="{ThemeResource  BackButtonPointerOverBackgroundThemeBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 -100 0 0"
+            >
+            <StackPanel  >
+                <TextBlock Text="欢迎使用原神启动器！" Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                   FontFamily="等线" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold"/>
+                <HyperlinkButton Content="GitHub" HorizontalAlignment="Center" Margin="0 10 0 10"/>
+                <TextBlock Text="本项目联机功能基于Grasscutter的服务器！" FontSize="15" HorizontalAlignment="Center"/>
+                <TextBlock Text="Enjoy it!" FontSize="15" HorizontalAlignment="Center" Margin="10"/>
+                <TextBlock Text="By 怪、SC、misaka10843" FontSize="15" HorizontalAlignment="Center" Margin="0 5 0 0"/>
+                <TextBlock FontSize="18" Text="😁点击右下角的的按钮开始游戏吧！" Margin="0 5 0 0"/>
+            </StackPanel>
+        </Border>
         <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 25 25"
                 Command="{x:Bind vm.StartGame}"  Style="{ThemeResource  ButtonRevealStyle}"
                 
@@ -28,13 +40,5 @@
                 </StackPanel>
             </Button.Content>
         </Button>
-        <Border CornerRadius="5" Padding="30" 
-                Background="{ThemeResource  BackButtonPointerOverBackgroundThemeBrush}" 
-                HorizontalAlignment="Center" VerticalAlignment="Center" 
-            >
-            <StackPanel  >
-                <TextBlock FontSize="25" Text="😁点击右下角的“启动游戏”开始游戏吧！"/>
-            </StackPanel>
-        </Border>
     </Grid>
 </Page>

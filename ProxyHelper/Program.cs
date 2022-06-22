@@ -7,7 +7,6 @@ namespace ProxyHelper // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            ProxyController.UninstallCertificate();
             while (true)
             {
                 string command = Console.ReadLine()!;
@@ -30,8 +29,25 @@ namespace ProxyHelper // Note: actual namespace depends on the project name.
                 switch (command.ToLower().StartsWith("stop"))
                 {
                     case true:
-                        ProxyController.Stop();
+                        if (ProxyController._IsRun)
+                        {
+                            ProxyController.Stop();
+                        }
                         Console.WriteLine("断开连接");
+                        break;
+                }
+
+
+                switch (command.ToLower().StartsWith("setup"))
+                {
+                    case true:
+                        ProxyController.SetupCertficate();
+                        break;
+                }
+                switch (command.ToLower().StartsWith("unsetup"))
+                {
+                    case true:
+                        ProxyController.UninstallCertificate();
                         break;
                 }
                 continue;

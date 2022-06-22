@@ -18,7 +18,7 @@ namespace ProxyHelper
     //    public static ProxyController controller { get; set; }
     //}
 
-    public class ProxyController
+    public static class ProxyController
     {
         public static ProxyServer proxyServer;
         static ExplicitProxyEndPoint explicitEndPoint;
@@ -33,12 +33,16 @@ namespace ProxyHelper
             set { IsRun = value; }
         }
 
+        static ProxyController()
+        {
+            proxyServer = new ProxyServer();
+        }
+       
 
         public static void Start()
         {
             if (port == null || fakeHost == null)
                 return;
-            proxyServer = new ProxyServer();
             proxyServer.CertificateManager.EnsureRootCertificate();
 
 
@@ -109,6 +113,10 @@ namespace ProxyHelper
             proxyServer.CertificateManager.RemoveTrustedRootCertificateAsAdmin();
         }
 
+        public static void SetupCertficate()
+        {
+            proxyServer.CertificateManager.EnsureRootCertificate();
+        }
 
 
         private static async Task OnBeforeTunnelConnectRequest(object sender, TunnelConnectSessionEventArgs e)

@@ -40,7 +40,20 @@ namespace MyApp1.ViewModel
                 Receive(new ServerStuatePorxy() { State = ServerStuate.Stop, Message = "关闭服务器", Proxy = null });
             });
             _ItemsEnable = true;
+            PlayGame = new RelayCommand(async () =>
+            {
+                StartGame startAgument = new StartGame();
+                string a = await startAgument.GO(myini.GetAgument());
+                if (a == "1")
+                {
+                    TipWindow.Show("启动游戏成功！", "可以快乐的玩耍了");
+                }
+                else
+                {
 
+                    TipWindow.Show("启动游戏失败", "😒请检查游戏文件夹");
+                };
+            });
         }
 
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -147,6 +160,16 @@ namespace MyApp1.ViewModel
 
         public RelayCommand StopProxy { get; private set; }
 
+        public RelayCommand PlayGame { get; private set; }
 
+        public RelayCommand Setup_Book { get; private set; } = new RelayCommand(() =>
+        {
+            App.helper.RunCMD("setup");
+        });
+
+        public RelayCommand UnSetup_Book { get; private set; } = new RelayCommand(() =>
+        {
+            App.helper.RunCMD("unsetup");
+        });
     }
 }

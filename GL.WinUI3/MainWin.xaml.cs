@@ -17,10 +17,12 @@ using WinRT; // required to support Window.As<ICompositionSupportsSystemBackdrop
 using MyApp1;
 using Microsoft.UI;
 using MyApp1.WindowHelper;
-using GL.WinUI3.View;
 using MyApp1.View;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Net;
+using MyApp1.EventArgs;
+using Microsoft.Toolkit.Mvvm.Messaging;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -38,6 +40,7 @@ namespace GL.WinUI3
             {
                 return true;
             };
+            
             var res = Microsoft.UI.Xaml.Application.Current.Resources;
             res["WindowCaptionBackground"] = Colors.Transparent;
             res["WindowCaptionBackgroundDisabled"] = Colors.Transparent;
@@ -48,10 +51,10 @@ namespace GL.WinUI3
             Window window = App.MainWindow;
             this.ExtendsContentIntoTitleBar = true;  // enable custom titlebar
             this.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
-            SetBackdrop(BackdropType.DesktopAcrylic);
-            MyFrame.Navigate(typeof(MainPage));
-            
+            SetBackdrop(BackdropType.Mica);
         }
+
+        
 
 
         public enum BackdropType
@@ -205,17 +208,10 @@ namespace GL.WinUI3
         {
             if (args.IsSettingsSelected)
             {
-                MyFrame.Navigate(typeof(SettingPage),new DrillInNavigationTransitionInfo());
-
-                Navigation.Header = "设置";
-                Navigation.PaneTitle = "设置";
+                MyFrame.Navigate(typeof(SettingPage), new DrillInNavigationTransitionInfo());
                 return;
             }
-            Type type =null;
-            if(args.SelectedItem as NavigationViewItem == Home!)
-            {
-                type = typeof(HomePage);
-            }
+            Type type = null;
             if (args.SelectedItem as NavigationViewItem == StartGame!)
             {
                 type = typeof(DefaultGame);
@@ -225,11 +221,10 @@ namespace GL.WinUI3
                 type = typeof(ServerGame);
             }
             Navigation.AlwaysShowHeader = false;
-            Navigation.PaneTitle = (args.SelectedItem as NavigationViewItem).Content.ToString();
             Navigation.IsTitleBarAutoPaddingEnabled = false;
-            //Navigation.PaneTitle = (args.SelectedItem as NavigationViewItem).Content.ToString();
-            if(type != null)
+            if (type != null)
                 MyFrame.Navigate(type, new DrillInNavigationTransitionInfo());
+
         }
     }
 }

@@ -12,14 +12,7 @@
     <StackPanel  Margin="10">
         <control:GameExpander Margin="0 10"  HorizontalAlignment="Stretch">
         </control:GameExpander>
-        <Expander Margin="0 10"  HorizontalAlignment="Stretch">
-            <Expander.Header>
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="WebCam" />
-                    <TextBlock  Text ="代理配置" Margin="15 0 0 0"/>
-                </StackPanel>
-            </Expander.Header>
-        </Expander>
+        <control:ServerExpander Margin="0 10" HorizontalAlignment="Stretch"/>
         <Expander Margin="0 10"  HorizontalAlignment="Stretch">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">

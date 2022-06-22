@@ -1,5 +1,6 @@
 ﻿using GL.WinUI3;
 using GL.WinUI3.Model;
+using GL.WinUI3.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -59,9 +60,7 @@ namespace MyApp1.SettingExpander
                         GameIni.GameLauncherWrite(Launcher_Ini.Server.官服);
                         myini.GameLauncherWrite(Server.官服);
                         GL.WinUI3.Model.Resource.BilibiliSDK(false);
-                        (App.MainWindow as MainWin).Tip.Title = "修改官服成功！";
-                        (App.MainWindow as MainWin).Tip.Subtitle = "😊";
-                        (App.MainWindow as MainWin).Tip.IsOpen = true;
+                        TipWindow.Show("修改官服成功！", "😊");
                         return;
                     }
                     break;
@@ -71,17 +70,14 @@ namespace MyApp1.SettingExpander
                         GameIni.GameLauncherWrite(Launcher_Ini.Server.B站);
                         myini.GameLauncherWrite(Server.B站);
                         GL.WinUI3.Model.Resource.BilibiliSDK(true);
-                        (App.MainWindow as MainWin).Tip.Title = "修改B服成功！";
-                        (App.MainWindow as MainWin).Tip.Subtitle = "😊";
-                        (App.MainWindow as MainWin).Tip.IsOpen = true;
+
+                        TipWindow.Show("修改B服成功！", "😊");
                         return;
                     }
                     break;
             }
 
-            (App.MainWindow as MainWin).Tip.Title = "出现错误啦！";
-            (App.MainWindow as MainWin).Tip.Subtitle = "😒";
-            (App.MainWindow as MainWin).Tip.IsOpen = true;
+            TipWindow.Show("出现错误啦！！", "🤣");
         }
 
 
@@ -117,18 +113,17 @@ namespace MyApp1.SettingExpander
         {
             var window = new Microsoft.UI.Xaml.Window();
             var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
-            var folderPicker = new Windows.Storage.Pickers.FileOpenPicker();
+            var folderPicker = new Windows.Storage.Pickers.FolderPicker();
             folderPicker.FileTypeFilter.Add("*");
             WinRT.Interop.InitializeWithWindow.Initialize(folderPicker, hwnd);
-            var folder = await folderPicker.PickSingleFileAsync();
+            var folder = await folderPicker.PickSingleFolderAsync();
             if (folder != null)
             {
                 if (File.Exists(folder.Path + "YuanShen.exe")|| File.Exists(folder.Path + "GenshinImpact.exe"))
                 {
                     myini.IniWriteValue("MyLanucherConfig", "GamePath", folder.Path);
-                    (App.MainWindow as MainWin).Tip.Title = "设置成功！！";
-                    (App.MainWindow as MainWin).Tip.Subtitle = "😊，找到可执行文件啦！";
-                    (App.MainWindow as MainWin).Tip.IsOpen = true;
+
+                    TipWindow.Show("设置成功！！", "😊，找到可执行文件啦！");
                 }
             };
         }

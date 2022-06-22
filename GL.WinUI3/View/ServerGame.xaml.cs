@@ -1,4 +1,7 @@
-﻿using GL.WinUI3.EventArgs;
+﻿using GL.WinUI3;
+using GL.WinUI3.EventArgs;
+using GL.WinUI3.Model;
+using GL.WinUI3.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml;
@@ -7,7 +10,10 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
+using MyApp1.EventArgs;
+using MyApp1.Models;
 using MyApp1.MyControl;
 using MyApp1.ViewModel;
 using System;
@@ -33,6 +39,24 @@ namespace MyApp1.View
         {
             this.InitializeComponent();
             
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (!Directory.Exists(Resource.docpath + @"\GSIConfig\Proxy"))
+            {
+                TipWindow.Show(@"未设置服务器补丁包", @"请去设置页面设置服务器补丁包寻找服务器补丁包，并放置到指定位置");
+                this.IsEnabled = false;
+            }
+            else
+            {
+                if (File.Exists(Resource.docpath + @"\GSIConfig\Proxy\ProxyHelper.exe"))
+                {
+                    App.helper = new CMD_Helper($@"{System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\GSIConfig\Proxy\ProxyHelper.exe");
+                    App.helper.ReStart();
+                }
+            }
+            base.OnNavigatedTo(e);
         }
 
         ServerGameViewModel vm = new ServerGameViewModel();

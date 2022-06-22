@@ -1,0 +1,25 @@
+﻿<Expander
+    x:Class="MyApp1.SettingExpander.ServerExpander"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyApp1.SettingExpander"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Expander.Header>
+        <StackPanel Orientation="Horizontal">
+            <SymbolIcon Symbol="WebCam" />
+            <TextBlock  Text ="游戏设置" Margin="15 0 0 0"/>
+        </StackPanel>
+    </Expander.Header>
+    <Expander.Content>
+        <Grid HorizontalAlignment="Stretch" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox PlaceholderText="代理端口"/>
+            <Button IsEnabled="{x:Bind Exits()}" Content="服务器补丁包" Grid.Column="1" Click="Button_Click"/>
+        </Grid>
+    </Expander.Content>
+</Expander>

@@ -1,5 +1,6 @@
 ﻿using GL.WinUI3;
 using GL.WinUI3.Model;
+using GL.WinUI3.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
@@ -28,16 +29,12 @@ namespace MyApp1.ViewModel
             string a = await startAgument.GO(myini.GetAgument());
             if (a == "1")
             {
-
-                (App.MainWindow as MainWin).Tip.Title = "启动游戏成功！";
-                (App.MainWindow as MainWin).Tip.Subtitle = "可以快乐的玩耍了";
-                (App.MainWindow as MainWin).Tip.IsOpen = true;
+                TipWindow.Show("启动游戏成功！", "可以快乐的玩耍了");
             }
             else
             {
-                (App.MainWindow as MainWin).Tip.Title = "启动游戏失败，请检查游戏文件夹！";
-                (App.MainWindow as MainWin).Tip.Subtitle = "😒";
-                (App.MainWindow as MainWin).Tip.IsOpen = true;
+
+                TipWindow.Show("启动失败，请检查游戏文件夹！", "😒");
             };
         }
 

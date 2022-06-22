@@ -9,7 +9,7 @@
   <Identity
     Name="86143d46-9a0b-4662-9298-14e5a6482b65"
     Publisher="CN=怪"
-    Version="0.0.1.0" />
+    Version="0.0.2.0" />
 
   <Properties>
     <DisplayName>GL</DisplayName>

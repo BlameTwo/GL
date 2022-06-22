@@ -35,7 +35,23 @@ namespace MyApp1
         public App()
         {
             this.InitializeComponent();
+            this.UnhandledException += App_UnhandledException;
         }
+
+        private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            
+        }
+
+        void StopServer()
+        {
+            if (App.helper != null)
+            {
+                App.helper.RunCMD("stop");
+                App.helper.Stop();
+            }
+        }
+
         public static Window MainWindow { get; set; }
         public static CMD_Helper helper { get; set; }
         /// <summary>
@@ -48,7 +64,14 @@ namespace MyApp1
             m_window = new MainWin();
             MainWindow = m_window;
             m_window.Activate();
+            App.MainWindow.Closed += MainWindow_Closed;
         }
+
+        private void MainWindow_Closed(object sender, WindowEventArgs args)
+        {
+            StopServer();
+        }
+
         private Window m_window;
     }
 }

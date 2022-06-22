@@ -10,15 +10,11 @@ using Newtonsoft.Json.Linq;
 
 namespace GL.WinUI3.Models
 {
-    public class OSAD
+    public static class OSAD
     {
-        public OSAD()
-        {
-
-        }
 
 
-        public async Task<OSADArgs> GetOSAD()
+        public static async Task<OSADArgs> GetOSAD()
         {
             string retString = await MyHttpClient.GetJson("https://api.xygeng.cn/one");
             var joject = JObject.Parse(retString);
@@ -32,7 +28,7 @@ namespace GL.WinUI3.Models
 
         }
 
-        public async Task<OSADArgs> GetOSADAsync()
+        public static async Task<OSADArgs> GetOSADAsync()
         {
             var result = await Task.Run(() => GetOSAD());
             return result;

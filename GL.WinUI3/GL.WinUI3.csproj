@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+	  <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>MyApp1</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -20,14 +20,16 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
+	  <!--Attempted to read or write protected memory. This is often an indication that other memory is corrupt-->
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Dialog\ServerAdd.xaml" />
     <None Remove="MainWin.xaml" />
     <None Remove="MyControl\ServerData.xaml" />
     <None Remove="SettingExpander\GameExpander.xaml" />
+    <None Remove="SettingExpander\ServerExpander.xaml" />
     <None Remove="View\DefaultGame.xaml" />
-    <None Remove="View\HomePage.xaml" />
     <None Remove="View\ServerGame.xaml" />
     <None Remove="View\SettingPage.xaml" />
   </ItemGroup>
@@ -47,6 +49,7 @@
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.1" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.8" />
     <PackageReference Include="Nancy" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <Manifest Include="$(ApplicationManifest)" />
@@ -72,6 +75,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="SettingExpander\ServerExpander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="View\ServerGame.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,11 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\SettingPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="View\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

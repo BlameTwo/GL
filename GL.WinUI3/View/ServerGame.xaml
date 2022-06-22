@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MyApp1.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="using:MyApp1.MyControl" xmlns:convert="using:MyApp1.Converter"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:control="using:MyApp1.MyControl" xmlns:convert="using:MyApp1.Converter" xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     NavigationCacheMode="Required"
     Loaded="Page_Loaded">
@@ -35,7 +35,7 @@
                 </Button.Content>
             </Button>
 
-            <Button HorizontalAlignment="Left" VerticalAlignment="Center"  
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center" 
                 Style="{ThemeResource  ButtonRevealStyle}"
                 Padding="10"
                 Margin="10 0 0 0"
@@ -43,12 +43,17 @@
                 >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal" >
-                        <SymbolIcon Symbol="Add" Margin="0 0 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                        <SymbolIcon Symbol="Play" Margin="0 0 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
                                 />
                         <TextBlock Text="开始游戏"
                                Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
                     </StackPanel>
                 </Button.Content>
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="Click">
+                        <Core:InvokeCommandAction Command="{x:Bind vm.PlayGame}"/>
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
             </Button>
 
             <Button HorizontalAlignment="Left" VerticalAlignment="Center"  
@@ -61,16 +66,44 @@
                 >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal" >
-                        <SymbolIcon Symbol="Add" Margin="0 0 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                        <SymbolIcon Symbol="Stop" Margin="0 0 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
                                 />
                         <TextBlock Text="断开连接"
                                Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
                     </StackPanel>
                 </Button.Content>
             </Button>
+
+            <DropDownButton AutomationProperties.Name="Email" Content="证书选项" Margin="10 0 0 0" Padding="10">
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="Bottom">
+                        <MenuFlyoutItem Text="安装证书" >
+                            <MenuFlyoutItem.Icon>
+                                <SymbolIcon Symbol="Add"/>
+                            </MenuFlyoutItem.Icon>
+                            <Interactivity:Interaction.Behaviors>
+                                <Core:EventTriggerBehavior EventName="Click">
+                                    <Core:InvokeCommandAction Command="{x:Bind vm.Setup_Book}"/>
+                                </Core:EventTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="卸载证书">
+                            <MenuFlyoutItem.Icon>
+                                <SymbolIcon Symbol="Clear"/>
+                            </MenuFlyoutItem.Icon>
+                            <Interactivity:Interaction.Behaviors>
+                                <Core:EventTriggerBehavior EventName="Click">
+                                    <Core:InvokeCommandAction Command="{x:Bind vm.UnSetup_Book}"/>
+                                </Core:EventTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+
             <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
                 <Ellipse x:Name="ServerChangedEllipse" Fill="{x:Bind vm._Fill,Mode=OneWay}" Margin="0 3 0 0" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0"  Text="未连接"/>
+                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0"  Text="{x:Bind vm._SelectText,Mode=OneWay}"/>
             </StackPanel>
         </StackPanel>
         <ItemsControl
