@@ -1,4 +1,5 @@
 ﻿using GL.WinUI3.Model;
+using GL.WinUI3.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -29,13 +30,13 @@ namespace MyApp1.SettingExpander
 
         bool Exits()
         {
-            if(File.Exists(Resource.docpath+ @"\GSIConfig\ProxyProxyHelper.exe"))
+            if(File.Exists(Resource.docpath+ @"\GSIConfig\Proxy\ProxyHelper.exe"))
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
@@ -51,7 +52,23 @@ namespace MyApp1.SettingExpander
             if(folder != null)
             {
                 System.IO.Compression.ZipFile.ExtractToDirectory(folder.Path,Resource.docpath+ @"\GSIConfig\Proxy");
+                if(File.Exists(Resource.docpath + @"\GSIConfig\Proxy\ProxyHelper.exe"))
+                {
+                    (sender as Button).IsEnabled = false;
+                    this.Exits();
+                    TipWindow.Show("服务器补丁安装完毕！", "从现在开始可以使用服务器连接到他人的游戏中一同游玩。");
+                }
+                else
+                {
+                    TipWindow.Show("服务器补丁安装错误，可能是安装包选择错误", "请向Github提交iss反馈BUG！");
+                    Directory.Delete(Resource.docpath + @"\GSIConfig\Proxy\");
+                }
             }
+        }
+
+        private void LeftText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
         }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using MyApp1.Dialog;
 using MyApp1.Models;
+using MyApp1.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,7 +33,7 @@ namespace MyApp1.ViewModel
             Serveradd = new RelayCommand(async () =>
             {
                 ServerAdd add = new ServerAdd();
-                add.XamlRoot = (App.MainWindow as MainWin).MyFrame.XamlRoot;
+                add.XamlRoot = ((App.MainWindow as MainWin).Content as MainPage).MyFrame.XamlRoot;
                 await add.ShowAsync();
             });
             StopProxy = new RelayCommand(() =>

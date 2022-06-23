@@ -1,24 +1,24 @@
-﻿<Window
-    x:Class="GL.WinUI3.MainWin"
+﻿<Page
+    x:Class="MyApp1.View.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyApp1.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:main="using:GL.WinUI3.View"
-    mc:Ignorable="d">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="Transparent">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
         <Border x:Name="AppTitleBar" Grid.Column="1" VerticalAlignment="Top">
             <TextBlock x:Name="AppTitle" Text="原神启动器" VerticalAlignment="Top" Margin="10" />
         </Border>
         <TeachingTip x:FieldModifier="public" x:Name="Tip" PlacementMargin="20" PreferredPlacement="Bottom"/>
         <NavigationView IsBackButtonVisible="Collapsed"
-                        Visibility="Collapsed"
                         x:FieldModifier="public"
-                        x:Name="Navigation" 
+                        x:Name="Navigation"
                         IsSettingsVisible="True" 
                         Grid.Row="1"
                         IsPaneToggleButtonVisible="False"
@@ -40,4 +40,4 @@
             </NavigationView.Content>
         </NavigationView>
     </Grid>
-</Window>
+</Page>

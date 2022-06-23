@@ -53,7 +53,7 @@ namespace MyApp1.View
                 if (File.Exists(Resource.docpath + @"\GSIConfig\Proxy\ProxyHelper.exe"))
                 {
                     App.helper = new CMD_Helper($@"{System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\GSIConfig\Proxy\ProxyHelper.exe");
-                    App.helper.ReStart();
+                    
                 }
             }
             base.OnNavigatedTo(e);

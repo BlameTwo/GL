@@ -8,34 +8,36 @@
     mc:Ignorable="d"
     NavigationCacheMode="Enabled"
     Background="Transparent">
+    <ScrollViewer>
 
-    <StackPanel  Margin="10">
-        <control:GameExpander Margin="0 10"  HorizontalAlignment="Stretch">
-        </control:GameExpander>
-        <control:ServerExpander Margin="0 10" HorizontalAlignment="Stretch"/>
-        <Expander Margin="0 10"  HorizontalAlignment="Stretch">
-            <Expander.Header>
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Account" />
-                    <TextBlock  Text ="米游社Cookie" Margin="15 0 0 0"/>
-                </StackPanel>
-            </Expander.Header>
-        </Expander>
-        <Expander Margin="0 10"  HorizontalAlignment="Stretch">
-            <Expander.Header>
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="FontColor" />
-                    <TextBlock  Text ="效果" Margin="15 0 0 0"/>
-                </StackPanel>
-            </Expander.Header>
-        </Expander>
-        <Expander Margin="0 10"  HorizontalAlignment="Stretch">
-            <Expander.Header>
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="PhoneBook" />
-                    <TextBlock  Text ="代理证书" Margin="15 0 0 0"/>
-                </StackPanel>
-            </Expander.Header>
-        </Expander>
-    </StackPanel>
+        <StackPanel  Margin="10">
+            <control:GameExpander Margin="0 10"  HorizontalAlignment="Stretch">
+            </control:GameExpander>
+            <control:ServerExpander Margin="0 10" HorizontalAlignment="Stretch"/>
+            <Expander Margin="0 10"  HorizontalAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Account" />
+                        <TextBlock  Text ="米游社Cookie" Margin="15 0 0 0"/>
+                    </StackPanel>
+                </Expander.Header>
+            </Expander>
+            <Expander Margin="0 10"  HorizontalAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="FontColor" />
+                        <TextBlock  Text ="效果" Margin="15 0 0 0"/>
+                    </StackPanel>
+                </Expander.Header>
+            </Expander>
+            <Expander Margin="0 10"  HorizontalAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="PhoneBook" />
+                        <TextBlock  Text ="代理证书" Margin="15 0 0 0"/>
+                    </StackPanel>
+                </Expander.Header>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

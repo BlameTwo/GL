@@ -1,4 +1,5 @@
 ﻿using GL.WinUI3;
+using GL.WinUI3.Model;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -8,6 +9,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
 using MyApp1.Models;
+using MyApp1.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -63,8 +65,17 @@ namespace MyApp1
         {
             m_window = new MainWin();
             MainWindow = m_window;
-            m_window.Activate();
+
+            MainWindow.Content = new MainPage();
+            Launcher_Ini ini = new Launcher_Ini(Resource.docpath + @"\GSIConfig\Config\LauncherConfig.ini");
+            MainWindow.Activate();
+            Directory.CreateDirectory(Resource.docpath+@"\GSIConfig");
+            Directory.CreateDirectory(Resource.docpath + @"\GSIConfig\Config");
             App.MainWindow.Closed += MainWindow_Closed;
+            if (!File.Exists(Resource.docpath + @"\GSIConfig\Config\LauncherConfig.ini"))
+            {
+                ini.SaveDefaultSettingArgs();
+            }
         }
 
         private void MainWindow_Closed(object sender, WindowEventArgs args)

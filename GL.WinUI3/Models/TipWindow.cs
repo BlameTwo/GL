@@ -1,5 +1,6 @@
 ﻿
 using MyApp1;
+using MyApp1.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,11 @@ namespace GL.WinUI3.Models
     {
         public static void Show(string title, string subtitle)
         {
-            (App.MainWindow as MainWin).Tip.Title = title;
-            (App.MainWindow as MainWin).Tip.Subtitle = subtitle;
-            (App.MainWindow as MainWin).Tip.IsOpen = true;
+            ((App.MainWindow as MainWin).Content as MainPage).Tip.Title = title;
+
+            ((App.MainWindow as MainWin).Content as MainPage).Tip.Subtitle = subtitle;
+
+            ((App.MainWindow as MainWin).Content as MainPage).Tip.IsOpen = true;
         }
     }
 }

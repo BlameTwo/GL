@@ -5,21 +5,24 @@
     xmlns:local="using:MyApp1.SettingExpander"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="MyExpander"
     mc:Ignorable="d">
     <Expander.Header>
         <StackPanel Orientation="Horizontal">
             <SymbolIcon Symbol="WebCam" />
-            <TextBlock  Text ="游戏设置" Margin="15 0 0 0"/>
+            <TextBlock  Text ="代理设置" Margin="15 0 0 0"/>
         </StackPanel>
     </Expander.Header>
     <Expander.Content>
-        <Grid HorizontalAlignment="Stretch" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBox PlaceholderText="代理端口"/>
-            <Button IsEnabled="{x:Bind Exits()}" Content="服务器补丁包" Grid.Column="1" Click="Button_Click"/>
-        </Grid>
+        <RelativePanel HorizontalAlignment="Stretch">
+            <TextBox 
+                x:Name="LeftText"
+                TextChanged="LeftText_TextChanged"
+                Width="auto"
+                PlaceholderText="代理端口"/>
+            <Button  x:Name="RightButton" IsEnabled="{x:Bind Exits(),Mode=OneWay}"
+                     RelativePanel.RightOf="LeftText"
+                    Content="服务器补丁包" Grid.Column="1" Click="Button_Click"/>
+        </RelativePanel>
     </Expander.Content>
 </Expander>

@@ -12,20 +12,27 @@ using MyApp1.Properties;
 
 namespace GL.WinUI3.Model
 {
-    public class Resource
+    public static class Resource
     {
+        static Resource()
+        {
+            myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+            GameIni = new Launcher_Ini($@"{myini.IniReadValue("MyLanucherConfig", "GamePath")}/config.ini");
+        }
+
+
         /// <summary>
         /// 从地址中获取图片数据，转换为可显示的图片格式
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public ImageSource GetImage(string path)
+        public static ImageSource GetImage(string path)
         {
             var a =  new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(new Uri(path));
             return a;
         }
-
-        static  Launcher_Ini myini { get; set; }
+        public static Launcher_Ini myini { get; set; }
+        public static Launcher_Ini GameIni { get; set; }
         public static string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         /// <summary>
         /// 修复SDK

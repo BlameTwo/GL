@@ -62,8 +62,7 @@ namespace GL.WinUI3.Model
             try
             {
                 IniWriteValue("MyLanucherConfig", "Height", height.ToString());
-                Launcher_Ini  myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-                IniWriteValue("MyLanucherConfig", "GamePath", myini.IniReadValue("MyLanucherConfig","GamePath"));
+                IniWriteValue("MyLanucherConfig", "GamePath", Resource.myini.IniReadValue("MyLanucherConfig","GamePath"));
                 return true;
             }
             catch (Exception)
@@ -90,8 +89,7 @@ namespace GL.WinUI3.Model
                 {
                     IniWriteValue("MyLanucherConfig", "Height", width.ToString());
                 }
-                Launcher_Ini myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-                IniWriteValue("MyLanucherConfig", "GamePath", myini.IniReadValue("MyLanucherConfig", "GamePath"));
+                IniWriteValue("MyLanucherConfig", "GamePath", Resource.myini.IniReadValue("MyLanucherConfig", "GamePath"));
                 return true;
             }
             catch (Exception)
@@ -113,8 +111,7 @@ namespace GL.WinUI3.Model
             {
                 WriteMyLauncherConfig(height);
                 IniWriteValue("MyLanucherConfig", "Width", width.ToString());
-                Launcher_Ini myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-                IniWriteValue("MyLanucherConfig", "GamePath", myini.IniReadValue("MyLanucherConfig", "GamePath"));
+                IniWriteValue("MyLanucherConfig", "GamePath", Resource.myini.IniReadValue("MyLanucherConfig", "GamePath"));
                 return true;
             }
             catch (Exception)
@@ -295,8 +292,7 @@ namespace GL.WinUI3.Model
             }
             else if (server == Server.官服)            //严谨一点好
             {
-                Launcher_Ini myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-                if (myini.IniReadValue("MyLanucherConfig", "GamePath") == null || myini.IniReadValue("MyLanucherConfig", "GamePath").Equals(""))
+                if (Resource.myini.IniReadValue("MyLanucherConfig", "GamePath") == null || Resource.myini.IniReadValue("MyLanucherConfig", "GamePath").Equals(""))
                 {
                     //TipWindow.Show("区服切换失败", "旅行者似乎没有配置游戏路径呢", WPFUI.Common.SymbolRegular.ErrorCircle24);
                     return false;

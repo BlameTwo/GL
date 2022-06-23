@@ -29,25 +29,27 @@ namespace MyApp1.SettingExpander
         {
             this.InitializeComponent();
             Tip = new TeachingTip();
-            myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-            GameIni = new Launcher_Ini($@"{myini.IniReadValue("MyLanucherConfig", "GamePath")}/config.ini");
-            var StartArgs = myini.GetAgument();
-            GameWidth.Text = string.IsNullOrWhiteSpace(myini.IniReadValue("MyLanucherConfig", "Width")) ? "" : myini.IniReadValue("MyLanucherConfig", "Width");
-            GameHeight.Text = string.IsNullOrWhiteSpace(myini.IniReadValue("MyLanucherConfig", "Height")) ? "" : myini.IniReadValue("MyLanucherConfig", "Height");
+            
+            var StartArgs = Resource.myini.GetAgument();
+            GameWidth.Text = string.IsNullOrWhiteSpace(Resource.myini.IniReadValue("MyLanucherConfig", "Width")) ? "" : Resource.myini.IniReadValue("MyLanucherConfig", "Width");
+            GameHeight.Text = string.IsNullOrWhiteSpace(Resource.myini.IniReadValue("MyLanucherConfig", "Height")) ? "" : Resource.myini.IniReadValue("MyLanucherConfig", "Height");
+
             if (StartArgs.GameServer == Server.B站)
                 Server2.IsChecked = true;
+            else if (StartArgs == null)
+                Server1.IsChecked = true;
             else
                 Server1.IsChecked = true;
-            GameFull.IsOn =Convert.ToBoolean(string.IsNullOrWhiteSpace(myini.IniReadValue("MyLanucherConfig", "IsFull"))?"False": myini.IniReadValue("MyLanucherConfig", "IsFull"));
-            GameBorder.IsOn =Convert.ToBoolean(string.IsNullOrWhiteSpace(myini.IniReadValue("MyLanucherConfig", "IsPop"))?"False": myini.IniReadValue("MyLanucherConfig", "IsPop"));
-            GameFPS.IsOn =Convert.ToBoolean(string.IsNullOrWhiteSpace(myini.IniReadValue("MyLanucherConfig", "FPS"))?"False": myini.IniReadValue("MyLanucherConfig", "FPS"));
-            GamePath.Text = string.IsNullOrWhiteSpace(myini.IniReadValue("MyLanucherConfig", "GamePath")) ? "" : myini.IniReadValue("MyLanucherConfig", "GamePath");
+            
+            GameFull.IsOn =Convert.ToBoolean(string.IsNullOrWhiteSpace(Resource.myini.IniReadValue("MyLanucherConfig", "IsFull"))?"False": Resource.myini.IniReadValue("MyLanucherConfig", "IsFull"));
+            GameBorder.IsOn =Convert.ToBoolean(string.IsNullOrWhiteSpace(Resource.myini.IniReadValue("MyLanucherConfig", "IsPop"))?"False": Resource.myini.IniReadValue("MyLanucherConfig", "IsPop"));
+            GameFPS.IsOn =Convert.ToBoolean(string.IsNullOrWhiteSpace(Resource.myini.IniReadValue("MyLanucherConfig", "FPS"))?"False": Resource.myini.IniReadValue("MyLanucherConfig", "FPS"));
+            GamePath.Text = string.IsNullOrWhiteSpace(Resource.myini.IniReadValue("MyLanucherConfig", "GamePath")) ? "" : Resource.myini.IniReadValue("MyLanucherConfig", "GamePath");
         }
 
 
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        Launcher_Ini myini { get; set; }
-        Launcher_Ini GameIni { get; set; }
+        
 
         private void Server_Check(object sender, RoutedEventArgs e)
         {
@@ -57,8 +59,8 @@ namespace MyApp1.SettingExpander
                 case "官服":
                     if ((bool)radio.IsChecked)
                     {
-                        GameIni.GameLauncherWrite(Launcher_Ini.Server.官服);
-                        myini.GameLauncherWrite(Server.官服);
+                        Resource.GameIni.GameLauncherWrite(Launcher_Ini.Server.官服);
+                        Resource.myini.GameLauncherWrite(Server.官服);
                         GL.WinUI3.Model.Resource.BilibiliSDK(false);
                         TipWindow.Show("修改官服成功！", "😊");
                         return;
@@ -67,8 +69,8 @@ namespace MyApp1.SettingExpander
                 case "B服":
                     if ((bool)radio.IsChecked)
                     {
-                        GameIni.GameLauncherWrite(Launcher_Ini.Server.B站);
-                        myini.GameLauncherWrite(Server.B站);
+                        Resource.GameIni.GameLauncherWrite(Launcher_Ini.Server.B站);
+                        Resource.myini.GameLauncherWrite(Server.B站);
                         GL.WinUI3.Model.Resource.BilibiliSDK(true);
 
                         TipWindow.Show("修改B服成功！", "😊");
@@ -95,19 +97,19 @@ namespace MyApp1.SettingExpander
         private void Width_Changed(object sender, TextChangedEventArgs e)
         {
 
-            myini.IniWriteValue("MyLanucherConfig", "Width", (sender as TextBox).Text);
+            Resource.myini.IniWriteValue("MyLanucherConfig", "Width", (sender as TextBox).Text);
         }
 
         private void Height_Changed(object sender, TextChangedEventArgs e)
         {
 
-            myini.IniWriteValue("MyLanucherConfig", "Height", (sender as TextBox).Text);
+            Resource.myini.IniWriteValue("MyLanucherConfig", "Height", (sender as TextBox).Text);
             
         }
 
         private void Full_Toggled(object sender, RoutedEventArgs e)
         {
-            myini.IniWriteValue("MyLanucherConfig", "IsFull", (sender as ToggleSwitch).IsOn.ToString());
+            Resource.myini.IniWriteValue("MyLanucherConfig", "IsFull", (sender as ToggleSwitch).IsOn.ToString());
         }
         private async void Button_ClickAsync(object sender, RoutedEventArgs e)
         {
@@ -119,10 +121,10 @@ namespace MyApp1.SettingExpander
             var folder = await folderPicker.PickSingleFolderAsync();
             if (folder != null)
             {
-                if (File.Exists(folder.Path + "YuanShen.exe")|| File.Exists(folder.Path + "GenshinImpact.exe"))
+                if (File.Exists( folder.Path + @"\YuanShen.exe")|| File.Exists(folder.Path + @"\GenshinImpact.exe"))
                 {
-                    myini.IniWriteValue("MyLanucherConfig", "GamePath", folder.Path);
-
+                    Resource.myini.IniWriteValue("MyLanucherConfig", "GamePath", folder.Path);
+                    GamePath.Text = folder.Path;
                     TipWindow.Show("设置成功！！", "😊，找到可执行文件啦！");
                 }
             };
@@ -131,12 +133,12 @@ namespace MyApp1.SettingExpander
         private void Pop_Toggle(object sender, RoutedEventArgs e)
         {
 
-            myini.IniWriteValue("MyLanucherConfig", "IsPop", (sender as ToggleSwitch).IsOn.ToString());
+            Resource.myini.IniWriteValue("MyLanucherConfig", "IsPop", (sender as ToggleSwitch).IsOn.ToString());
         }
 
         private void Fps_Toggled(object sender, RoutedEventArgs e)
         {
-            myini.IniWriteValue("MyLanucherConfig", "FPS", (sender as ToggleSwitch).IsOn.ToString());
+            Resource.myini.IniWriteValue("MyLanucherConfig", "FPS", (sender as ToggleSwitch).IsOn.ToString());
         }
     }
 }

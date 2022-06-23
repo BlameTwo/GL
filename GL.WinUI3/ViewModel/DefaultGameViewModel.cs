@@ -15,18 +15,17 @@ namespace MyApp1.ViewModel
     {
 
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        Launcher_Ini myini { get; set; }
         public DefaultGameViewModel()
         {
             IsActive = true;
             StartGame = new AsyncRelayCommand(async () => await start());
-            myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+            Resource.myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
         }
 
         private async Task start()
         {
             StartGame startAgument = new StartGame();
-            string a = await startAgument.GO(myini.GetAgument());
+            string a = await startAgument.GO(Resource.myini.GetAgument());
             if (a == "1")
             {
                 TipWindow.Show("启动游戏成功！", "可以快乐的玩耍了");
