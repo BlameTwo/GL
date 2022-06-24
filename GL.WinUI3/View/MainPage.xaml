@@ -4,9 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MyApp1.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:tb="using:H.NotifyIcon"
     mc:Ignorable="d"
     Background="Transparent">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -15,13 +16,26 @@
         <Border x:Name="AppTitleBar" Grid.Column="1" VerticalAlignment="Top">
             <TextBlock x:Name="AppTitle" Text="原神启动器" VerticalAlignment="Top" Margin="10" />
         </Border>
+
+        <tb:TaskbarIcon 
+            DoubleClickCommand="{x:Bind VM.ShowApp}"
+            ContextMenuMode="SecondWindow"  
+            GeneratedIconText="❤️" 
+            GeneratedIconForeground="Red">
+            <tb:TaskbarIcon.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyout.Items>
+                        <MenuFlyoutItem Icon="Clear" Text="关闭应用" Command="{x:Bind VM.CloseApp}"/>
+                    </MenuFlyout.Items>
+                </MenuFlyout>
+            </tb:TaskbarIcon.ContextFlyout>
+        </tb:TaskbarIcon>
         <TeachingTip x:FieldModifier="public" x:Name="Tip" PlacementMargin="20" PreferredPlacement="Bottom"/>
-        <NavigationView IsBackButtonVisible="Collapsed"
+        <NavigationView BackRequested="Navigation_BackRequested"
                         x:FieldModifier="public"
                         x:Name="Navigation"
                         IsSettingsVisible="True" 
                         Grid.Row="1"
-                        IsPaneToggleButtonVisible="False"
                         SelectionChanged="NavigationView_SelectionChanged">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="游戏" x:FieldModifier="public" Icon="Play" x:Name="StartGame"/>
@@ -30,7 +44,7 @@
                 <NavigationViewItem Content="原神" x:FieldModifier="public" Icon="List" x:Name="MiHaYou"/>
             </NavigationView.MenuItems>
             <NavigationView.Content>
-                <Frame Background="Transparent" Grid.Row="1" x:FieldModifier="public" x:Name="MyFrame">
+                <Frame Navigated="MyFrame_Navigated" Background="Transparent" Grid.Row="1" x:FieldModifier="public" x:Name="MyFrame">
                     <Frame.ContentTransitions>
                         <TransitionCollection>
                             <NavigationThemeTransition  />

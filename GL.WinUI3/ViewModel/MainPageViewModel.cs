@@ -1,4 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using MyApp1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +15,16 @@ namespace GL.WinUI3.ViewModel
         {
             IsActive = true;
         }
+
+
+        public RelayCommand ShowApp { get; set; } = new RelayCommand(() =>
+        {
+            App.AppWin.Show();
+        });
+
+        public RelayCommand CloseApp { get; set; } = new RelayCommand(() =>
+        {
+            System.Environment.Exit(0);
+        });
     }
 }

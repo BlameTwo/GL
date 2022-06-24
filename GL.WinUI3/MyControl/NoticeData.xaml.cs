@@ -1,4 +1,5 @@
-﻿using GL.WinUI3.GameNotifys;
+﻿using GL.WinUI3;
+using GL.WinUI3.GameNotifys;
 using GL.WinUI3.WindowHelper;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -8,6 +9,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Web.WebView2.Core;
+using MyApp1.View;
+using MyApp1.View.Pages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,6 +58,9 @@ namespace MyApp1.MyControl
             MoveFalse.Begin();
         }
 
-      
+        private void UserControl_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            (App.MainWindow.Content as MainPage).MyFrame.Navigate(typeof(WebPage), MyData);
+        }
     }
 }

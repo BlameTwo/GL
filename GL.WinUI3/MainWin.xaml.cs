@@ -16,13 +16,13 @@ using System.Runtime.InteropServices; // For DllImport
 using WinRT; // required to support Window.As<ICompositionSupportsSystemBackdrop>()
 using MyApp1;
 using Microsoft.UI;
-using MyApp1.WindowHelper;
 using MyApp1.View;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Net;
 using MyApp1.EventArgs;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using GL.WinUI3.WindowHelper;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,7 +31,7 @@ namespace GL.WinUI3
 {
    
 
-    public sealed partial class MainWin : Window
+    public sealed partial class MainWin : WinUIEx.WindowEx
     {
         public MainWin()
         {
@@ -44,7 +44,6 @@ namespace GL.WinUI3
             var res = Microsoft.UI.Xaml.Application.Current.Resources;
             res["WindowCaptionBackground"] = Colors.Transparent;
             res["WindowCaptionBackgroundDisabled"] = Colors.Transparent;
-            res["WindowCaptionForeground"] = Colors.White;
             res["WindowCaptionForegroundDisabled"] = Colors.Transparent;
             m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
             m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
@@ -184,6 +183,8 @@ namespace GL.WinUI3
             }
             this.Activated -= Window_Activated;
             m_configurationSource = null;
+            App.AppWin.Hide();
+            args.Handled = true;
         }
 
         private void Window_ThemeChanged(FrameworkElement sender, object args)
@@ -204,27 +205,6 @@ namespace GL.WinUI3
             }
         }
 
-        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-        {
-            if (args.IsSettingsSelected)
-            {
-                MyFrame.Navigate(typeof(SettingPage), new DrillInNavigationTransitionInfo());
-                return;
-            }
-            Type type = null;
-            if (args.SelectedItem as NavigationViewItem == StartGame!)
-            {
-                type = typeof(DefaultGame);
-            }
-            if (args.SelectedItem as NavigationViewItem == Server!)
-            {
-                type = typeof(ServerGame);
-            }
-            Navigation.AlwaysShowHeader = false;
-            Navigation.IsTitleBarAutoPaddingEnabled = false;
-            if (type != null)
-                MyFrame.Navigate(type, new DrillInNavigationTransitionInfo());
-
-        }
+        
     }
 }

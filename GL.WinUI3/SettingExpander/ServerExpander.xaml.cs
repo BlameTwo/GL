@@ -1,4 +1,5 @@
-﻿using GL.WinUI3.Model;
+﻿using GL.WinUI3;
+using GL.WinUI3.Model;
 using GL.WinUI3.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;

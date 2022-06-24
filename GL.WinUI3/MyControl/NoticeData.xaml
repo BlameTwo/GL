@@ -8,7 +8,8 @@
     mc:Ignorable="d"
     Margin="10"
     PointerEntered="UserControl_PointerEntered"
-    PointerExited="UserControl_PointerExited">
+    PointerExited="UserControl_PointerExited"
+    DoubleTapped="UserControl_DoubleTapped">
     <UserControl.Resources>
         <Storyboard x:Name="MoveTrue">
             <DoubleAnimation From="0" To="0.8" Duration="0:0:0.3" Storyboard.TargetProperty="StackPanel.Opacity" Storyboard.TargetName="stackPanel"/>
@@ -31,12 +32,12 @@
             </Grid.RowDefinitions>
             <TextBlock
                     TextWrapping="Wrap"
-                    x:Name="textBlock" Margin="10" Text="{x:Bind MyData.subtitle}" FontSize="15" FontWeight="Bold" Foreground="White"/>
+                    x:Name="textBlock" Margin="10" Text="{x:Bind MyData.subtitle}" FontSize="15" FontWeight="Bold" />
             <TextBlock
                     TextWrapping="Wrap"
                     VerticalAlignment="Top"
-                    Grid.Row="1" Margin="10" Text="{x:Bind MyData.title}" FontSize="15" FontWeight="Bold" Foreground="White"/>
-            <TextBlock Grid.Row="2" Margin="10" Foreground="White">
+                    Grid.Row="1" Margin="10" Text="{x:Bind MyData.title}" FontSize="15" FontWeight="Bold" />
+            <TextBlock  Grid.Row="2" Margin="10">
                     <Run Text="时间："/>
                     <Run Text="{x:Bind MyData.Start_time}" FontSize="10"/>
                     <Run Text="--"/>

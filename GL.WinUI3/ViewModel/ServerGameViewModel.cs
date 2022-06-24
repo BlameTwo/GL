@@ -44,7 +44,7 @@ namespace MyApp1.ViewModel
             PlayGame = new RelayCommand(async () =>
             {
                 StartGame startAgument = new StartGame();
-                string a = await startAgument.GO(myini.GetAgument());
+                string a = await startAgument.GO(myini.GetAgument(),()=>NotificationHelper.Show("应用隐藏","可以双击任务栏托盘图标进行重新打开"));
                 if (a == "1")
                 {
                     TipWindow.Show("启动游戏成功！", "可以快乐的玩耍了");
@@ -61,7 +61,7 @@ namespace MyApp1.ViewModel
         Launcher_Ini myini { get; set; }
         public void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var cfgpath = myini.IniReadValue("MyLanucherConfig", "ProxyPath");
+            var cfgpath = docpath + @"\GSIConfig\Config\Proxy.json";
             if (!File.Exists(cfgpath))
             {
                 //创建

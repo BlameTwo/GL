@@ -1,15 +1,24 @@
-﻿using System;
+﻿using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyApp1.WindowHelper
+namespace GL.WinUI3.WindowHelper
 {
-    public class WindowHelper
+    public static class WindowHelper
     {
+        public static AppWindow GetWindow(Window window)
+        {
+            IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            WindowId windowId = Win32Interop.GetWindowIdFromWindow(hwnd);
 
+            return AppWindow.GetFromWindowId(windowId);
+        }
     }
     public class WindowsSystemDispatcherQueueHelper
     {
@@ -44,4 +53,6 @@ namespace MyApp1.WindowHelper
             }
         }
     }
+
+    
 }

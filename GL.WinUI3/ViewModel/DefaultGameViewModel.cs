@@ -3,6 +3,7 @@ using GL.WinUI3.Model;
 using GL.WinUI3.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using MyApp1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace MyApp1.ViewModel
         private async Task start()
         {
             StartGame startAgument = new StartGame();
-            string a = await startAgument.GO(Resource.myini.GetAgument());
+            string a = await startAgument.GO(Resource.myini.GetAgument(),() => NotificationHelper.Show("应用隐藏", "可以双击任务栏托盘图标进行重新打开"));
             if (a == "1")
             {
                 TipWindow.Show("启动游戏成功！", "可以快乐的玩耍了");

@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Xaml;
+﻿using GL.WinUI3;
+using GL.WinUI3.ViewModel;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -31,8 +33,9 @@ namespace MyApp1.View
             {
                 App.MainWindow.SetTitleBar(AppTitleBar);
             };
+            this.DataContext = VM;
         }
-
+        MainPageViewModel VM = new MainPageViewModel();
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
@@ -58,6 +61,17 @@ namespace MyApp1.View
             if (type != null)
                 MyFrame.Navigate(type, new DrillInNavigationTransitionInfo());
 
+        }
+
+        private void Navigation_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            if (MyFrame.CanGoBack)
+                MyFrame.GoBack();
+        }
+
+        private void MyFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (MyFrame.CanGoBack)this.Navigation.IsBackEnabled = true;
         }
     }
 }

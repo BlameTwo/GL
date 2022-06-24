@@ -60,7 +60,7 @@ namespace GL.WinUI3.Model
     /// </summary>
     public class StartGame
     {
-        public async Task<string> GO(StartAgument args)
+        public async Task<string> GO(StartAgument args,Action action)
         {
             return await Task.Run(async () =>
             {
@@ -104,12 +104,14 @@ namespace GL.WinUI3.Model
                             Unlocker unlocker = new(p, 144);
                             p.Start();
                             var result = await unlocker.StartProcessAndUnlockAsync();
+                            action.Invoke();
                             return "1";
                         }
                         else
                         {
                             p.Start();
                         }
+                        action.Invoke();
                         return "1";
                     }
                 }
