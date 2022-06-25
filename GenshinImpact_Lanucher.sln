@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenshinImpact_Lanuncher", "GenshinImpact_Lanucher\GenshinImpact_Lanuncher.csproj", "{3BD3934A-12FA-41FB-AAEE-560A4F47A930}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GL.WinUI3", "GL.WinUI3\GL.WinUI3.csproj", "{89D6FB8A-7409-45D7-AAD9-F56E9E1385A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyHelper", "ProxyHelper\ProxyHelper.csproj", "{17DBE139-D06E-404C-9DAC-D72D45DBC761}"
@@ -21,22 +19,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Debug|arm64.ActiveCfg = Debug|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Debug|arm64.Build.0 = Debug|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Debug|x64.Build.0 = Debug|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Debug|x86.ActiveCfg = Debug|x86
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Debug|x86.Build.0 = Debug|x86
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Release|arm64.ActiveCfg = Release|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Release|arm64.Build.0 = Release|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Release|x64.ActiveCfg = Release|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Release|x64.Build.0 = Release|Any CPU
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Release|x86.ActiveCfg = Release|x86
-		{3BD3934A-12FA-41FB-AAEE-560A4F47A930}.Release|x86.Build.0 = Release|x86
 		{89D6FB8A-7409-45D7-AAD9-F56E9E1385A6}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{89D6FB8A-7409-45D7-AAD9-F56E9E1385A6}.Debug|Any CPU.Build.0 = Debug|x64
 		{89D6FB8A-7409-45D7-AAD9-F56E9E1385A6}.Debug|Any CPU.Deploy.0 = Debug|x64
