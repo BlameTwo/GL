@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GL.WinUI3", "GL.WinUI3\GL.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyHelper", "ProxyHelper\ProxyHelper.csproj", "{17DBE139-D06E-404C-9DAC-D72D45DBC761}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GL.UI", "GL.UI\GL.UI.csproj", "{368A9B1A-399A-4881-8B8C-375A80D44B4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GL.UI", "GL.UI\GL.UI.csproj", "{368A9B1A-399A-4881-8B8C-375A80D44B4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
