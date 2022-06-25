@@ -4,6 +4,9 @@ using GL.WinUI3.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using MyApp1.Models;
+using MyApp1.View;
+using MyApp1.View.Pages;
+using MyApp1.WindowHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,5 +42,19 @@ namespace MyApp1.ViewModel
         }
 
         public AsyncRelayCommand StartGame { get; private set; }
+
+
+        public RelayCommand NewConfig { get; private set; } = new RelayCommand(() =>
+        {
+            NavigationHelper helper = new NavigationHelper();
+            INavigations navigations = new INavigations();
+            navigations.MyAction = () =>
+            {
+                (App.MainWindow.Content as MainPage).MyFrame.Navigate(typeof(NewStartConfig));
+
+            };
+            navigations.Message = "跳转到配置页";
+            helper.GO(navigations);
+        });
     }
 }

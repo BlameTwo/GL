@@ -8,8 +8,10 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
+using MyApp1.WindowHelper;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -41,6 +43,7 @@ namespace MyApp1.View
             if (args.IsSettingsSelected)
             {
                 MyFrame.Navigate(typeof(SettingPage), new DrillInNavigationTransitionInfo());
+                Debug.WriteLine("跳转到设置页面");
                 return;
             }
             Type type = null;
@@ -56,10 +59,15 @@ namespace MyApp1.View
             {
                 type = typeof(NotifyPage);
             }
+            NavigationHelper helper = new NavigationHelper();
             Navigation.AlwaysShowHeader = false;
             Navigation.IsTitleBarAutoPaddingEnabled = false;
             if (type != null)
-                MyFrame.Navigate(type, new DrillInNavigationTransitionInfo());
+                helper.GO(new INavigations() { MyAction = new Action(() =>
+                {
+                    (App.MainWindow.Content as MainPage).MyFrame.Navigate(type, new DrillInNavigationTransitionInfo());
+                }),Message=$"跳转到:{type.Name}类页面"});
+                
 
         }
 

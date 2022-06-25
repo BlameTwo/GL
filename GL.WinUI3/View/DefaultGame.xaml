@@ -22,23 +22,28 @@
                 <TextBlock FontSize="18" Text="😁点击右下角的的按钮开始游戏吧！" Margin="0 5 0 0"/>
             </StackPanel>
         </Border>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 25 25"
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 25 25">
+            <Button 
                 Command="{x:Bind vm.StartGame}"  Style="{ThemeResource  ButtonRevealStyle}"
                 
                 Padding="15"
                 FontSize="25"
                 >
-            <Button.Content>
-                <StackPanel Orientation="Horizontal" >
-                    <SymbolIcon Symbol="Play" Margin="0 5 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal" >
+                        <SymbolIcon Symbol="Play" Margin="0 5 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
                                 RenderTransformOrigin="0.5,0.5">
-                        <SymbolIcon.RenderTransform>
-                            <CompositeTransform ScaleX="1.5" ScaleY="1.5"/>
-                        </SymbolIcon.RenderTransform>
-                    </SymbolIcon>
-                    <TextBlock Text="开始游戏" Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
-                </StackPanel>
-            </Button.Content>
-        </Button>
+                            <SymbolIcon.RenderTransform>
+                                <CompositeTransform ScaleX="1.5" ScaleY="1.5"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
+                        <TextBlock Text="开始游戏" Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Content="添加新的启动配置" Command="{x:Bind vm.NewConfig}">
+                
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>
