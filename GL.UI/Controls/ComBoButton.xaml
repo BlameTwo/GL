@@ -1,0 +1,28 @@
+﻿<local:ComboButtonControl
+    x:Class="GL.UI.Controls.ComboButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GL.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Border CornerRadius="10" Padding="15" Background="{ThemeResource RefreshVisualizerBackground}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="配置文件" Grid.Column="0" VerticalAlignment="Center" />
+            <Button Style="{x:Null}" Grid.Column="1" Background="Red">
+                <Border>
+                    <Path Fill="Blue" 
+                          Stretch="Fill" 
+                          VerticalAlignment="Center"  
+                          Width="15" Height="10" 
+                          Data="M185.884 327.55 146.3 367.133 512.021 732.779 877.7 367.133 838.117 327.55 511.997 653.676Z"/>
+                </Border>
+            </Button>
+        </Grid>
+    </Border>
+</local:ComboButtonControl>

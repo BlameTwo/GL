@@ -42,7 +42,7 @@ namespace GL.WinUI3
             this.UnhandledException += App_UnhandledException;
             //系统颜色
             var a = new UISettings();
-            var b= a.GetColorValue( UIColorType.Accent);
+            var b= a.GetColorValue(UIColorType.Accent);
             
         }
 
@@ -59,6 +59,8 @@ namespace GL.WinUI3
                 App.helper.Stop();
             }
         }
+
+
         public static AppWindow AppWin { get; set; }
         public static Window MainWindow { get; set; }
         public static CMD_Helper helper { get; set; }
@@ -69,7 +71,7 @@ namespace GL.WinUI3
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWin();
+            var m_window = new MainWin();
             MainWindow = m_window;
             App.AppWin = WindowHelper.WindowHelper.GetWindow(m_window);
             
@@ -90,6 +92,5 @@ namespace GL.WinUI3
             StopServer();
         }
 
-        private Window m_window;
     }
 }

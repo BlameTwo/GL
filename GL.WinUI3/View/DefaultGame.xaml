@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MyApp1.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:contrpl="using:GL.UI.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Disabled"
     Background="Transparent">
@@ -22,14 +22,13 @@
                 <TextBlock FontSize="18" Text="😁点击右下角的的按钮开始游戏吧！" Margin="0 5 0 0"/>
             </StackPanel>
         </Border>
-        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 25 25">
-            <Button 
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 25 25">
+            <SplitButton 
                 Command="{x:Bind vm.StartGame}"  Style="{ThemeResource  ButtonRevealStyle}"
-                
                 Padding="15"
                 FontSize="25"
                 >
-                <Button.Content>
+                <SplitButton.Content>
                     <StackPanel Orientation="Horizontal" >
                         <SymbolIcon Symbol="Play" Margin="0 5 0 0"  Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
                                 RenderTransformOrigin="0.5,0.5">
@@ -39,11 +38,12 @@
                         </SymbolIcon>
                         <TextBlock Text="开始游戏" Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
                     </StackPanel>
-                </Button.Content>
-            </Button>
+                </SplitButton.Content>
+            </SplitButton>
             <Button Content="添加新的启动配置" Command="{x:Bind vm.NewConfig}">
-                
+
             </Button>
+           
         </StackPanel>
     </Grid>
 </Page>

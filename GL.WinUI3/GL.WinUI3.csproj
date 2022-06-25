@@ -25,7 +25,10 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Dialog\ServerAdd.xaml" />
+    <None Remove="Dialog\StartGameConfig.xaml" />
     <None Remove="MainWin.xaml" />
+    <None Remove="MyControl\ConfigsData.xaml" />
+    <None Remove="MyControl\ExeData.xaml" />
     <None Remove="MyControl\NoticeData.xaml" />
     <None Remove="MyControl\ServerData.xaml" />
     <None Remove="SettingExpander\GameExpander.xaml" />
@@ -150,6 +153,27 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\Pages\WebPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Style\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GL.UI\GL.UI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MyControl\ExeData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MyControl\ConfigsData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dialog\StartGameConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

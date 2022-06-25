@@ -52,6 +52,7 @@ namespace MyApp1.Models
         }
 
 
+        public bool IsRunning { get; set; } = false;
         /// <summary>
         /// 重新启用
         /// </summary>

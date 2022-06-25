@@ -50,7 +50,12 @@ namespace MyApp1.View
             }
             else
             {
-                if (File.Exists(Resource.docpath + @"\GSIConfig\Proxy\ProxyHelper.exe"))
+                if(App.helper == null)
+                {
+                    App.helper = new CMD_Helper($@"{System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\GSIConfig\Proxy\ProxyHelper.exe");
+                    App.helper.IsRunning = true;
+                }
+                if (App.helper.IsRunning == false)
                 {
                     App.helper = new CMD_Helper($@"{System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\GSIConfig\Proxy\ProxyHelper.exe");
                     
@@ -65,7 +70,7 @@ namespace MyApp1.View
         {
             if ( this.MyGridView.Items.Count == 0)
             {
-                vm.Page_Loaded(null, null);
+                vm.Page_Loaded();
             }
         }
 

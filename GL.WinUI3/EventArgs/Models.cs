@@ -1,6 +1,7 @@
 ﻿
 using GenshinImpact_Lanuncher.Utils;
 using GL.WinUI3.GameNotifys;
+using MyApp1.Models;
 using MyApp1.MyControl;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,17 @@ namespace GL.WinUI3.EventArgs
 {
     public class Models
     {
+    }
+
+    public class ExeArgs
+    {
+        public ExeConfig Config { get; set; }
+        public ExeEnum ExeEnum { get; set; }    
+    }
+
+    public enum ExeEnum
+    {
+        Add,Remove
     }
 
     public class ProxyEvnetArgs

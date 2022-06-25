@@ -19,7 +19,7 @@ namespace GL.WinUI3.ViewModel
 
         public RelayCommand ShowApp { get; set; } = new RelayCommand(() =>
         {
-            App.AppWin.Show();
+            App.MainWindow.Activate();
         });
 
         public RelayCommand CloseApp { get; set; } = new RelayCommand(() =>

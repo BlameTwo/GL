@@ -5,55 +5,95 @@
     xmlns:local="using:MyApp1.View.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Margin="0 30 0 0">
 
-    <Grid>
-        <Grid  >
+    <ScrollViewer>
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="区服" Margin="0 10"/>
-            <TextBlock Grid.Row="1" Margin="0 10" Text="分辨率" />
-            <TextBlock Grid.Row="2" Margin="0 10" Text="游戏窗口" />
-            <TextBlock Grid.Row="3" Margin="0 10" Text="游戏性" />
-            <TextBlock Grid.Row="4" Margin="0 10 10 10" Text="游戏文件夹"  />
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <RadioButton Content="官服" GroupName="Server" x:Name="Server1"/>
-                <RadioButton Content="B服" GroupName="Server" x:Name="Server2"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1" VerticalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
-                <TextBox PlaceholderText="宽度" x:Name="GameWidth" Width="80" VerticalAlignment="Center" />
-                <TextBlock Text="×" VerticalAlignment="Center" FontSize="25" Margin="10 0"/>
-                <TextBox PlaceholderText="高度" x:Name="GameHeight"  Width="80" VerticalAlignment="Center" />
-            </StackPanel>
+            <TextBlock Text="新建启动配置文件" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Border Padding="15" 
+                Grid.Row="1"
+                Margin="0 5 0 0"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top"
+                CornerRadius="10"
+                Background="{ThemeResource AccentAAFillColorDisabledBrush}">
+                <Grid  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="区服" Margin="0 10"/>
+                    <TextBlock Grid.Row="1" Margin="0 10" Text="分辨率" />
+                    <TextBlock Grid.Row="2" Margin="0 10" Text="游戏窗口" />
+                    <TextBlock Grid.Row="3" Margin="0 10" Text="游戏性" />
+                    <TextBlock Grid.Row="4" Margin="0 10 10 10" Text="游戏文件夹"  />
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <RadioButton Content="官服" GroupName="Server" x:Name="Server1"/>
+                        <RadioButton Content="B服" GroupName="Server" x:Name="Server2"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                        <TextBox PlaceholderText="宽度" x:Name="GameWidth" Width="80" VerticalAlignment="Center" />
+                        <TextBlock Text="×" VerticalAlignment="Center" FontSize="25" Margin="10 0"/>
+                        <TextBox PlaceholderText="高度" x:Name="GameHeight"  Width="80" VerticalAlignment="Center" />
+                    </StackPanel>
 
-            <StackPanel Grid.Column="1" VerticalAlignment="Center"  Grid.Row="2" Orientation="Horizontal">
-                <ToggleSwitch OffContent="全屏" x:Name="GameFull" Width="50" OnContent="全屏" />
-                <ToggleSwitch OffContent="无边框" x:Name="GameBorder" Width="auto" OnContent="无边框" />
-            </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center"  Grid.Row="2" Orientation="Horizontal">
+                        <ToggleSwitch OffContent="全屏" x:Name="GameFull" Width="50" OnContent="全屏" />
+                        <ToggleSwitch OffContent="无边框" x:Name="GameBorder" Width="auto" OnContent="无边框" />
+                    </StackPanel>
 
-            <StackPanel Grid.Column="1" VerticalAlignment="Center"  Grid.Row="3"  Orientation="Horizontal">
-                <ToggleSwitch OffContent="解锁帧率" x:Name="GameFPS" Width="50" OnContent="解锁帧率" />
-            </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center"  Grid.Row="3"  Orientation="Horizontal">
+                        <ToggleSwitch OffContent="解锁帧率" x:Name="GameFPS" Width="50" OnContent="解锁帧率" />
+                    </StackPanel>
 
-            <Grid Grid.Column="1" VerticalAlignment="Center" Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBox x:Name="GamePath"/>
-                <Button Grid.Column="1"
-                        Content="浏览"
-                        Margin="10 0 0 0"/>
-            </Grid>
+                    <Grid Grid.Column="1" VerticalAlignment="Center" Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="GamePath"/>
+                        <Button Grid.Column="1"
+                    Content="浏览"
+                    Margin="10 0 0 0"/>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Padding="15" 
+                Grid.Row="2"
+                Margin="25 5 25 0"
+                HorizontalAlignment="Stretch"  
+                VerticalAlignment="Top"
+                CornerRadius="10"
+                Background="{ThemeResource AccentAAFillColorDisabledBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel HorizontalAlignment="Center"  Orientation="Horizontal">
+                        <TextBlock FontFamily="微软雅黑" FontSize="18" Text="添加启动跟随" VerticalAlignment="Center" />
+                        <Button Margin="10 0 0 0"
+                                Click="Button_Click">
+                            <SymbolIcon Symbol="Add"/>
+                        </Button>
+                    </StackPanel>
+                    <ItemsControl Grid.Row="2">
+                        
+                    </ItemsControl>
+                </Grid>
+            </Border>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>

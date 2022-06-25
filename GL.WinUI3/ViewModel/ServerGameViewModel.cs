@@ -59,7 +59,8 @@ namespace MyApp1.ViewModel
 
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         Launcher_Ini myini { get; set; }
-        public void Page_Loaded(object sender, RoutedEventArgs e)
+
+        public void Page_Loaded()
         {
             var cfgpath = docpath + @"\GSIConfig\Config\Proxy.json";
             if (!File.Exists(cfgpath))
