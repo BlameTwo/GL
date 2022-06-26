@@ -8,7 +8,7 @@ using System.Drawing;
 using static GL.WinUI3.Model.Launcher_Ini;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Media;
-using MyApp1.Properties;
+using GL.WinUI3.Properties;
 
 namespace GL.WinUI3.Model
 {

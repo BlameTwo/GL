@@ -24,7 +24,7 @@
         </Border>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 25 25">
             <SplitButton 
-                Command="{x:Bind vm.StartGame}"  Style="{ThemeResource  ButtonRevealStyle}"
+                Command="{x:Bind vm.StartGame}"
                 Padding="15"
                 FontSize="25"
                 >
@@ -39,11 +39,22 @@
                         <TextBlock Text="开始游戏" Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Margin="15 0 0 0"/>
                     </StackPanel>
                 </SplitButton.Content>
-            </SplitButton>
-            <Button Content="添加新的启动配置" Command="{x:Bind vm.NewConfig}">
+                <SplitButton.Flyout>
+                    <Flyout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button HorizontalAlignment="Stretch" Content="增加配置"
+                                    Command="{x:Bind vm.NewConfig}"/>
+                            <ItemsControl Grid.Row="1">
 
-            </Button>
-           
+                            </ItemsControl>
+                        </Grid>
+                    </Flyout>
+                </SplitButton.Flyout>
+            </SplitButton>
         </StackPanel>
     </Grid>
 </Page>

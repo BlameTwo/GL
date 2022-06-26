@@ -1,4 +1,5 @@
 ﻿using GL.WinUI3;
+using GL.WinUI3.EventArgs;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -42,11 +43,15 @@ namespace MyApp1.Dialog
             }
             else
             {
-                ExeConfig arg = new ExeConfig()
+                ExeArgs arg = new ExeArgs()
                 {
-                    Name = ExeName.Text,
-                    Path = ExePath.Text,
-                    Args = ExeArgs.Text
+                    Config = new ExeConfig()
+                    {
+                        Name = ExeName.Text,
+                        Path = ExePath.Text,
+                        Args = ExeArgs.Text
+                    },
+                     ExeEnum = ExeEnum.Add
                 };
                 WeakReferenceMessenger.Default.Send(arg);
             }

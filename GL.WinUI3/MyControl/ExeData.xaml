@@ -5,9 +5,31 @@
     xmlns:local="using:MyApp1.MyControl"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Margin="5"
+    PointerEntered="UserControl_PointerEntered"
+    PointerExited="UserControl_PointerExited"
+    Foreground="{ThemeResource AccentAAFillColorDefaultBrush}">
+    <UserControl.ContextFlyout>
+        <MenuFlyout>
+            <MenuFlyout.Items>
+                <MenuFlyoutItem Icon="clear" Click="MenuFlyoutItem_Click" Text="删除"/>
+            </MenuFlyout.Items>
+        </MenuFlyout>
+    </UserControl.ContextFlyout>
+    <UserControl.Resources>
+        <Storyboard x:Name="MySelect">
+            <DoubleAnimation Duration="0:0:0.1" From="0.3" To="1" Storyboard.TargetProperty="Border.Opacity" Storyboard.TargetName="Back"/>
+        </Storyboard>
+        <Storyboard x:Name="MySelect2">
+            <DoubleAnimation Duration="0:0:0.1" From="1" To="0.3"  Storyboard.TargetProperty="Border.Opacity" Storyboard.TargetName="Back"/>
+        </Storyboard>
+    </UserControl.Resources>
 
     <Grid>
-        
+        <Border x:Name="Back" Background="{ThemeResource BackButtonPointerOverBackgroundThemeBrush}" Opacity="0.3" CornerRadius="5"/>
+        <Border CornerRadius="5" Padding="10"  Margin="5" ToolTipService.ToolTip="{x:Bind MyData.Name}">
+            <Image Width="30" Height="30" Stretch="UniformToFill" x:Name="MyIcon"/>
+        </Border>
     </Grid>
 </UserControl>

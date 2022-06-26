@@ -16,21 +16,34 @@ namespace MyApp1.ViewModel
         public NewStartConfigViewModel()
         {
             IsActive = true;
+            _Lists = new ObservableCollection<ExeConfig>();
         }
 
         public void Receive(ExeArgs message)
         {
-            switch (message.ExeEnum)
+            if (Exit(message.Config) == false)
             {
-                case ExeEnum.Add:
+                if(message.ExeEnum == ExeEnum.Add)
                     _Lists.Add(message.Config);
-                    break;
-                case ExeEnum.Remove:
-                    _Lists.Remove(message.Config);
-                    break;
             }
+            if(message.ExeEnum == ExeEnum.Remove)
+            {
+                _Lists.Remove(message.Config);
+            }
+            
         }
 
+        bool Exit(ExeConfig exeConfig)
+        {
+            foreach (var item in _Lists)
+            {
+                if(exeConfig.Path == item.Path)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private ObservableCollection<ExeConfig> Lists;
 

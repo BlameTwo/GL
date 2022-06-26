@@ -22,7 +22,7 @@ namespace MyApp1.ViewModel
         public DefaultGameViewModel()
         {
             IsActive = true;
-            StartGame = new AsyncRelayCommand(async () => await start());
+            StartGame = new RelayCommand(async () => await start());
             Resource.myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
         }
 
@@ -41,7 +41,7 @@ namespace MyApp1.ViewModel
             };
         }
 
-        public AsyncRelayCommand StartGame { get; private set; }
+        public RelayCommand StartGame { get; private set; }
 
 
         public RelayCommand NewConfig { get; private set; } = new RelayCommand(() =>

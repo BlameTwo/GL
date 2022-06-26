@@ -3,7 +3,7 @@
     <OutputType>WinExe</OutputType>
 	  <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <RootNamespace>MyApp1</RootNamespace>
+    <RootNamespace>GL.WinUI3</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86;x64;arm64</Platforms>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
@@ -24,6 +24,7 @@
 	  <!--Attempted to read or write protected memory. This is often an indication that other memory is corrupt-->
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\app.png" />
     <None Remove="Dialog\ServerAdd.xaml" />
     <None Remove="Dialog\StartGameConfig.xaml" />
     <None Remove="MainWin.xaml" />
@@ -43,13 +44,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\LockScreenLogo.scale-200.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Square150x150Logo.scale-200.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Square44x44Logo.scale-200.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\StoreLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Wide310x150Logo.scale-200.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -157,10 +172,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Style\" />
+    <ProjectReference Include="..\GL.UI\GL.UI.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GL.UI\GL.UI.csproj" />
+    <Content Update="Assets\app.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MyControl\ExeData.xaml">
@@ -176,5 +193,8 @@
     <Page Update="Dialog\StartGameConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Style\" />
   </ItemGroup>
 </Project>

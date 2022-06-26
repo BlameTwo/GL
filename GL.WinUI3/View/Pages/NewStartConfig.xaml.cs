@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using MyApp1.Dialog;
+using MyApp1.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,8 +29,9 @@ namespace MyApp1.View.Pages
         public NewStartConfig()
         {
             this.InitializeComponent();
+            this.DataContext = vm;
         }
-
+        NewStartConfigViewModel vm = new NewStartConfigViewModel();
         private async  void Button_Click(object sender, RoutedEventArgs e)
         {
             StartGameConfig dialog = new StartGameConfig();
