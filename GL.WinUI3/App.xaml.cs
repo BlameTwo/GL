@@ -1,5 +1,6 @@
 ﻿using GL.WinUI3;
 using GL.WinUI3.Model;
+using GL.WinUI3.Models;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -11,6 +12,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
 using MyApp1.Models;
 using MyApp1.View;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,10 +42,17 @@ namespace GL.WinUI3
         {
             this.InitializeComponent();
             this.UnhandledException += App_UnhandledException;
-            //系统颜色
-            var a = new UISettings();
-            var b= a.GetColorValue(UIColorType.Accent);
-            
+
+            StartConfigJson jsons = new StartConfigJson()
+            {
+                Config = new StartAgument() { full = true, GameHeight = "1080", GamePath = "D:\\123", GameServer = Launcher_Ini.Server.B站, GameWidth = "1980", IsFPS = true, IsPop = true }
+                , ExeList = new System.Collections.ObjectModel.ObservableCollection<ExeConfig>()
+                {
+                    new ExeConfig(){ Args="fdsfa", Name="元神启动", Path ="D:\\args.exe"}
+                }
+            };
+            var json = JsonConvert.SerializeObject(jsons);
+            //var json = JsonConvert.SerializeObject(ServerProfiles);
         }
 
         private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)

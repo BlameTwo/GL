@@ -18,8 +18,14 @@ namespace GL.WinUI3.Model
         /// </summary>
         public string GameHeight { get; set; }
 
+        /// <summary>
+        /// 是否无边框
+        /// </summary>
         public bool IsPop { get; set; }
 
+        /// <summary>
+        /// 解锁帧率
+        /// </summary>
         public bool IsFPS { get; set; }
 
         /// <summary>
@@ -27,30 +33,20 @@ namespace GL.WinUI3.Model
         /// </summary>
         public string GameWidth { get; set; }
 
+        /// <summary>
+        /// 游戏区服
+        /// </summary>
         public Server GameServer { get; set; }
 
+        /// <summary>
+        /// 游戏路径
+        /// </summary>
         public string GamePath { get; set; }
 
         /// <summary>
         /// 是否全屏
         /// </summary>
         public bool full { get; set; }
-
-
-        public static StartAgument GetDefultAgument()
-        {
-            var start = new StartAgument()
-            {
-                full = true,
-                GameServer = Server.官服,
-                GameHeight = "1080",
-                GameWidth = "1980",
-                IsPop = false
-                , 
-                GamePath = LanucherRegistryKey.GetGamePath()
-            };
-            return start;
-        }
 
 
     }
@@ -121,32 +117,8 @@ namespace GL.WinUI3.Model
                 }
             });
         }
+
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-
-        public async Task<string> ServerGo( bool flage, StartAgument args)
-        {
-            return await Task.Run(() =>
-            {
-                Launcher_Ini ini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
-                if (flage == true)
-                {
-                    Console.WriteLine("正在打开代理，并使用证书");
-                }
-                else
-                {
-                    Console.WriteLine("正在关闭代理，并清除证书");
-                    foreach (Process item in Process.GetProcesses())
-                    {
-                        if(item.ProcessName == "YuanShen.exe")
-                        {
-                            item.Kill();
-                            Console.WriteLine("已经吧YuanShen进程杀灭，并清除证书");
-                        }
-                    }
-                }
-                return "1";
-            });
-        }
     }
 }

@@ -34,6 +34,8 @@ namespace GL.WinUI3.Model
         public static Launcher_Ini myini { get; set; }
         public static Launcher_Ini GameIni { get; set; }
         public static string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+        public static string LauncherConfig = docpath + @"GSIConfig\Config";
         /// <summary>
         /// 修复SDK
         /// </summary>

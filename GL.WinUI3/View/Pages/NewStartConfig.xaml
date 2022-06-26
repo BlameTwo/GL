@@ -17,14 +17,16 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="新建启动配置文件" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="名称：" VerticalAlignment="Center"  FontSize="15" FontWeight="Bold" />
+                <TextBox FontSize="15" FontWeight="Bold" HorizontalAlignment="Center"/>
+            </StackPanel>
             <Border Padding="15" 
                 Grid.Row="1"
                 Margin="0 5 0 0"
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Top"
                 CornerRadius="10"
-                
                 BorderBrush="{ThemeResource AccentAAFillColorDisabledBrush}"
                 BorderThickness="1">
                 <Grid  >
