@@ -31,5 +31,6 @@ namespace MyApp1.View
         }
 
         DefaultGameViewModel vm = new DefaultGameViewModel();
+
     }
 }

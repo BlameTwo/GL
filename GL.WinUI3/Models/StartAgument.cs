@@ -1,4 +1,5 @@
 ﻿
+using GL.WinUI3.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,7 +37,7 @@ namespace GL.WinUI3.Model
         /// <summary>
         /// 游戏区服
         /// </summary>
-        public Server GameServer { get; set; }
+        public string GameServer { get; set; }
 
         /// <summary>
         /// 游戏路径
@@ -56,28 +57,40 @@ namespace GL.WinUI3.Model
     /// </summary>
     public class StartGame
     {
-        public async Task<string> GO(StartAgument args,Action action)
+        public async Task<string> GO(StartConfigJson args,Action action)
         {
             return await Task.Run(async () =>
             {
                 try
                 {
-                    
+                    if(args.Config.GameServer == "B服")
+                    {
+                        Resource.GameIni.GameLauncherWrite("B站");
+                        Resource.myini.GameLauncherWrite("B站");
+                        GL.WinUI3.Model.Resource.BilibiliSDK(true);
+                    }
+                    else if(args.Config.GameServer == "官服")
+                    {
+                        Resource.GameIni.GameLauncherWrite("官服");
+                        Resource.myini.GameLauncherWrite("官服");
+                        GL.WinUI3.Model.Resource.BilibiliSDK(false);
+                    }
+
                     using (Process p = new Process())
                     {
                         string pop = "";
-                        if(args.IsPop == true)
+                        if(args.Config.IsPop == true)
                         {
                             pop = "-popupwindow 1";
                         }
-                        if(File.Exists(Path.Combine(args.GamePath , "YuanShen.exe"))){
+                        if(File.Exists(Path.Combine(args.Config.GamePath , "YuanShen.exe"))){
                             p.StartInfo = new ProcessStartInfo()
                             {
-                                FileName =Path.Combine( args.GamePath , "YuanShen.exe"),
+                                FileName =Path.Combine( args.Config.GamePath , "YuanShen.exe"),
                                 Verb = "runas",
-                                Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
-                                $" -screen-width {args.GameWidth} {pop}",
-                                WorkingDirectory = args.GamePath,
+                                Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.Config.full)} -screen-height {args.Config.GameHeight}" +
+                                $" -screen-width {args.Config.GameWidth} {pop}",
+                                WorkingDirectory = args.Config.GamePath,
                                 UseShellExecute = true,
                             };
 
@@ -86,21 +99,22 @@ namespace GL.WinUI3.Model
                         {
                             p.StartInfo = new ProcessStartInfo()
                             {
-                                FileName =Path.Combine( args.GamePath ,"GenshinImpact.exe"),
+                                FileName =Path.Combine( args.Config.GamePath ,"GenshinImpact.exe"),
                                 Verb = "runas",
-                                Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.full)} -screen-height {args.GameHeight}" +
-                                $" -screen-width {args.GameWidth} {pop}",
-                                WorkingDirectory = args.GamePath,
+                                Arguments = $"-screen-fullscreen {System.Convert.ToInt32(args.Config.full)} -screen-height {args.Config.GameHeight}" +
+                                $" -screen-width {args.Config.GameWidth} {pop}",
+                                WorkingDirectory = args.Config.GamePath,
                                 UseShellExecute = true,
                             };
 
                         }
-                        if(args.IsFPS == true)
+                        if(args.Config.IsFPS == true)
                         {
                             Unlocker unlocker = new(p, 144);
                             p.Start();
                             var result = await unlocker.StartProcessAndUnlockAsync();
                             action.Invoke();
+                            
                             return "1";
                         }
                         else

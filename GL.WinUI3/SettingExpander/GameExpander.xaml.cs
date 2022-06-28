@@ -34,7 +34,7 @@ namespace MyApp1.SettingExpander
             GameWidth.Text = string.IsNullOrWhiteSpace(Resource.myini.IniReadValue("MyLanucherConfig", "Width")) ? "" : Resource.myini.IniReadValue("MyLanucherConfig", "Width");
             GameHeight.Text = string.IsNullOrWhiteSpace(Resource.myini.IniReadValue("MyLanucherConfig", "Height")) ? "" : Resource.myini.IniReadValue("MyLanucherConfig", "Height");
 
-            if (StartArgs.GameServer == Server.B站)
+            if (StartArgs.GameServer == "B站")
                 Server2.IsChecked = true;
             else if (StartArgs == null)
                 Server1.IsChecked = true;
@@ -59,8 +59,8 @@ namespace MyApp1.SettingExpander
                 case "官服":
                     if ((bool)radio.IsChecked)
                     {
-                        Resource.GameIni.GameLauncherWrite(Launcher_Ini.Server.官服);
-                        Resource.myini.GameLauncherWrite(Server.官服);
+                        Resource.GameIni.GameLauncherWrite("官服");
+                        Resource.myini.GameLauncherWrite("官服");
                         GL.WinUI3.Model.Resource.BilibiliSDK(false);
                         TipWindow.Show("修改官服成功！", "😊");
                         return;
@@ -69,8 +69,8 @@ namespace MyApp1.SettingExpander
                 case "B服":
                     if ((bool)radio.IsChecked)
                     {
-                        Resource.GameIni.GameLauncherWrite(Launcher_Ini.Server.B站);
-                        Resource.myini.GameLauncherWrite(Server.B站);
+                        Resource.GameIni.GameLauncherWrite("B站");
+                        Resource.myini.GameLauncherWrite("B站");
                         GL.WinUI3.Model.Resource.BilibiliSDK(true);
 
                         TipWindow.Show("修改B服成功！", "😊");

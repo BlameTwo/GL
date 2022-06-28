@@ -44,7 +44,7 @@ namespace MyApp1.ViewModel
             PlayGame = new RelayCommand(async () =>
             {
                 StartGame startAgument = new StartGame();
-                string a = await startAgument.GO(myini.GetAgument(),()=>NotificationHelper.Show("应用隐藏","可以双击任务栏托盘图标进行重新打开"));
+                string a = await startAgument.GO(App.Json,()=>NotificationHelper.Show("应用隐藏","可以双击任务栏托盘图标进行重新打开"));
                 if (a == "1")
                 {
                     TipWindow.Show("启动游戏成功！", "可以快乐的玩耍了");
@@ -60,14 +60,16 @@ namespace MyApp1.ViewModel
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         Launcher_Ini myini { get; set; }
 
-        public void Page_Loaded()
+        public   void Page_Loaded()
         {
-            var cfgpath = docpath + @"\GSIConfig\Config\Proxy.json";
+            
+            var cfgpath = docpath + @"\GSIConfig\Proxy\Proxy.json";
+            Directory.CreateDirectory(docpath+ @"\GSIConfig\Proxy");
             if (!File.Exists(cfgpath))
             {
                 //创建
-                File.CreateText(docpath+ @"\GSIConfig\Config\Proxy.json").Dispose();
-                myini.IniWriteValue("MyLanucherConfig", "ProxyPath", docpath + @"\GSIConfig\Config\Proxy.json");
+                File.CreateText(docpath+ @"\GSIConfig\Proxy\Proxy.json").Dispose();
+                myini.IniWriteValue("MyLanucherConfig", "ProxyPath", docpath + @"\GSIConfig\Proxy\Proxy.json");
             }
             ProxyJson xml = new ProxyJson(cfgpath);
             _Lists = xml.ServerProfiles;

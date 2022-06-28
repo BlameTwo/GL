@@ -78,7 +78,7 @@ namespace GL.WinUI3.Model
         /// 将程序设置保存在官方ini下
         /// </summary>
         /// <returns></returns>
-        public async static Task<bool> ConfigSave(Server server)
+        public async static Task<bool> ConfigSave(string server)
         {
             return await Task.Run(() =>
             {

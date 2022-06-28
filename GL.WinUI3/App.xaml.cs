@@ -45,7 +45,7 @@ namespace GL.WinUI3
 
             StartConfigJson jsons = new StartConfigJson()
             {
-                Config = new StartAgument() { full = true, GameHeight = "1080", GamePath = "D:\\123", GameServer = Launcher_Ini.Server.B站, GameWidth = "1980", IsFPS = true, IsPop = true }
+                Config = new StartAgument() { full = true, GameHeight = "1080", GamePath = "D:\\123", GameServer = "B站", GameWidth = "1980", IsFPS = true, IsPop = true }
                 , ExeList = new System.Collections.ObjectModel.ObservableCollection<ExeConfig>()
                 {
                     new ExeConfig(){ Args="fdsfa", Name="元神启动", Path ="D:\\args.exe"}
@@ -70,6 +70,7 @@ namespace GL.WinUI3
         }
 
 
+        public static StartConfigJson Json = new StartConfigJson();
         public static AppWindow AppWin { get; set; }
         public static Window MainWindow { get; set; }
         public static CMD_Helper helper { get; set; }

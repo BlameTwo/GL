@@ -15,9 +15,9 @@ namespace GameLauncherPrism.Event
     public class SettingArgs
     {
         /// <summary>
-        /// 区服设置
+        /// 区服设置,true为官服，false为B服
         /// </summary>
-        public Server server { get; set; }
+        public string server { get; set; }
 
         /// <summary>
         /// 游戏宽度
@@ -48,7 +48,7 @@ namespace GameLauncherPrism.Event
             args.GameWidth = 1024;
             args.IsFul = false;
             args.IsPop = true;
-            args.server = Server.官服;
+            args.server = "官服";
             
             return args;
         }

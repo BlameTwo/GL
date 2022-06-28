@@ -9,6 +9,7 @@ using MyApp1.View.Pages;
 using MyApp1.WindowHelper;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,12 +25,63 @@ namespace MyApp1.ViewModel
             IsActive = true;
             StartGame = new RelayCommand(async () => await start());
             Resource.myini = new Launcher_Ini($@"{docpath}/GSIConfig/Config/LauncherConfig.ini");
+            Loaded = new RelayCommand(async () =>
+            {
+                StartConfigReadAndWrite write = new StartConfigReadAndWrite();
+                _ConfigList = await write.Reads();
+            });
+
+            Selected = new RelayCommand<StartConfigJson>((args) =>
+            {
+                if(args.Config.GamePath != null)
+                {
+                    App.Json = args;
+                    _StartEnable = true;
+                }
+                else
+                {
+                    _StartEnable = false;
+                }
+            });
         }
+
+
+
+        private bool StartEnable;
+
+        public bool _StartEnable
+        {
+            get { return StartEnable; }
+            set 
+            {
+                SetProperty(ref StartEnable, value);
+            }
+        }
+
+
+        public RelayCommand Loaded { get; private set; }
+
+        private ObservableCollection<StartConfigJson> ConfigList;
+
+        public ObservableCollection<StartConfigJson> _ConfigList
+        {
+            get { return ConfigList; }
+            set 
+            {
+                SetProperty(ref ConfigList, value);
+
+            }
+        }
+
 
         private async Task start()
         {
+            if (_StartEnable)
+            {
+
+            }
             StartGame startAgument = new StartGame();
-            string a = await startAgument.GO(Resource.myini.GetAgument(),() => NotificationHelper.Show("应用隐藏", "可以双击任务栏托盘图标进行重新打开"));
+            string a = await startAgument.GO(App.Json, () => NotificationHelper.Show("应用隐藏", "可以双击任务栏托盘图标进行重新打开"));
             if (a == "1")
             {
                 TipWindow.Show("启动游戏成功！", "可以快乐的玩耍了");
@@ -43,7 +95,7 @@ namespace MyApp1.ViewModel
 
         public RelayCommand StartGame { get; private set; }
 
-
+        public RelayCommand<StartConfigJson> Selected { get; private set; }
         public RelayCommand NewConfig { get; private set; } = new RelayCommand(() =>
         {
             NavigationHelper helper = new NavigationHelper();

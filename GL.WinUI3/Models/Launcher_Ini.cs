@@ -140,18 +140,18 @@ namespace GL.WinUI3.Model
         /// <param name="IsFull">是否全屏</param>
         /// <param name="Server">服务器选择，“B站”或“官服”</param>
         /// <returns></returns>
-        public bool WriteMyLauncherConfig(int height, int width, bool IsFull,Server Server)
+        public bool WriteMyLauncherConfig(int height, int width, bool IsFull,string Server)
         {
             try
             {
                 WriteMyLauncherConfig(height, width, IsFull);
-                if (Server == Server.B站)
+                if (Server == "B站")
                 {
                     IniWriteValue("MyLanucherConfig", "cps", "bilibili");
                     IniWriteValue("MyLanucherConfig", "channel", "14");
                     IniWriteValue("MyLanucherConfig", "sub_channel", "0");
                 }
-                else if (Server == Server.官服)
+                else if (Server == "官服")
                 {
                     IniWriteValue("MyLanucherConfig", "cps", "pcadbdpz");
                     IniWriteValue("MyLanucherConfig", "channel", "1");
@@ -194,11 +194,11 @@ namespace GL.WinUI3.Model
            
             if (IniReadValue("General", "channel") =="14" )
             {
-                agument.GameServer = Server.B站;
+                agument.GameServer = "B站";
             }
             else
             {
-                agument.GameServer = Server.官服;
+                agument.GameServer = "官服";
             }
 
             agument.IsFPS =System.Convert.ToBoolean(IniReadValue("MyLanucherConfig", "FPS"));
@@ -217,20 +217,16 @@ namespace GL.WinUI3.Model
             
             if (IniReadValue("MyLanucherConfig", "channel") == "14")
             {
-                args.server = Server.B站;
+                args.server = "B服";
             }
             else
             {
-                args.server = Server.官服;
+                args.server = "官服";
             }
             //在全屏状态下，取消去边框
             //args.IsPop = args.IsFul?false:true;
 
             return args;
-        }
-        public enum Server
-        {
-            B站,官服
         }
 
 
@@ -272,9 +268,9 @@ namespace GL.WinUI3.Model
             return true;
         }
 
-        public  bool GameLauncherWrite(Server server)
+        public  bool GameLauncherWrite(string server)
         {
-            if (server == Server.B站)        //为B服
+            if (server == "B站")        //为B服
             {
                 if (Resource.BilibiliSDK(true) == true)
                 {
@@ -290,7 +286,7 @@ namespace GL.WinUI3.Model
                 }
                     return false;
             }
-            else if (server == Server.官服)            //严谨一点好
+            else if (server == "官服")            //严谨一点好
             {
                 if (Resource.myini.IniReadValue("MyLanucherConfig", "GamePath") == null || Resource.myini.IniReadValue("MyLanucherConfig", "GamePath").Equals(""))
                 {

@@ -7,8 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:contrpl="using:GL.UI.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Disabled"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core" 
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:dt="using:MyApp1.MyControl" xmlns:model="using:GL.WinUI3.Models"
     Background="Transparent">
-
+    <Interactivity:Interaction.Behaviors>
+        <Core:EventTriggerBehavior EventName="Loaded">
+            <Core:InvokeCommandAction Command="{x:Bind vm.Loaded}"/>
+        </Core:EventTriggerBehavior>
+    </Interactivity:Interaction.Behaviors>
     <Grid>
         <Border CornerRadius="5" Padding="70 30" Background="{ThemeResource  BackButtonPointerOverBackgroundThemeBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 -100 0 0"
             >
@@ -48,9 +54,34 @@
                             </Grid.RowDefinitions>
                             <Button HorizontalAlignment="Stretch" Content="增加配置"
                                     Command="{x:Bind vm.NewConfig}"/>
-                            <ItemsControl Grid.Row="1">
-
-                            </ItemsControl>
+                            <ListView Margin="0 10 0 0" Grid.Row="1" x:Name="List2" ItemsSource="{x:Bind vm._ConfigList,Mode=OneWay}">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="SelectionChanged">
+                                        <Core:InvokeCommandAction Command="{x:Bind vm.Selected}" CommandParameter="{x:Bind List2.SelectedItem,Mode=OneWay}"/>
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                                <ListView.ItemTemplate>
+                                    
+                                    <DataTemplate x:DataType="model:StartConfigJson">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock VerticalAlignment="Center" 
+                                                       Text="{x:Bind Name}" HorizontalAlignment="Left"/>
+                                            <Grid Height="20" Width="20" Grid.Column="1" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                                <Ellipse   Fill="{ThemeResource AccentAAFillColorDefaultBrush}"/>
+                                                <TextBlock VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Center"
+                                                       Grid.Column="1"
+                                                       Margin="1 0 0 1"
+                                                       Text="{x:Bind ExeList.Count}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Grid>
                     </Flyout>
                 </SplitButton.Flyout>
