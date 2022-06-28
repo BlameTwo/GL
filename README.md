@@ -10,13 +10,16 @@
 ## 修改
 - 由于WinUI3不支持系统代理，服务器页面修改为单独运行，
 - 下述为服务器补丁命令行
-``` Powershell
-start ProxyHelper.exe  #运行该补丁
+
 
 ## 预览
-![](/Private/Home.png)
-![](/Private/Notify.png)
-![](/Private/Server.png)
+![](Private/Home.png)
+![](Private/Notify.png)
+![](Private/Server.png)
+
+
+``` Powershell
+start ProxyHelper.exe  #运行该补丁
 
 exit    #为退出程序
 
