@@ -13,6 +13,11 @@
 ``` Powershell
 start ProxyHelper.exe  #运行该补丁
 
+## 预览
+![](/Private/Home.png)
+![](/Private/Notify.png)
+![](/Private/Server.png)
+
 exit    #为退出程序
 
 start127.0.0.1  #start为连接代理，命令后跟一个IP地址，暂时不可修改端口
