@@ -164,7 +164,11 @@ namespace GL.WinUI3
 
         private void Window_Activated(object sender, WindowActivatedEventArgs args)
         {
-            m_configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
+            if(m_configurationSource != null)
+            {
+                m_configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
+            }
+            SetBackdrop(BackdropType.Mica);
         }
 
         private void Window_Closed(object sender, WindowEventArgs args)
@@ -181,7 +185,6 @@ namespace GL.WinUI3
                 m_acrylicController.Dispose();
                 m_acrylicController = null;
             }
-            this.Activated -= Window_Activated;
             m_configurationSource = null;
             App.AppWin.Hide();
             args.Handled = true;

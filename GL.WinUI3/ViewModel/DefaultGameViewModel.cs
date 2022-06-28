@@ -1,4 +1,5 @@
 ﻿using GL.WinUI3;
+using GL.WinUI3.MiHaYouAPI;
 using GL.WinUI3.Model;
 using GL.WinUI3.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -7,17 +8,22 @@ using MyApp1.Models;
 using MyApp1.View;
 using MyApp1.View.Pages;
 using MyApp1.WindowHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MyApp1.ViewModel
 {
+
+    
     public class DefaultGameViewModel:ObservableRecipient
     {
+        
 
         string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public DefaultGameViewModel()
@@ -43,6 +49,7 @@ namespace MyApp1.ViewModel
                     _StartEnable = false;
                 }
             });
+
         }
 
 
@@ -76,9 +83,10 @@ namespace MyApp1.ViewModel
 
         private async Task start()
         {
-            if (_StartEnable)
+            if (_StartEnable == false || App.Json == null)
             {
-
+                TipWindow.Show("启动失败，未设置启动配置", "😒");
+                return;
             }
             StartGame startAgument = new StartGame();
             string a = await startAgument.GO(App.Json, () => NotificationHelper.Show("应用隐藏", "可以双击任务栏托盘图标进行重新打开"));

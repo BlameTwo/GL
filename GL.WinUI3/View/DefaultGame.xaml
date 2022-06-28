@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:contrpl="using:GL.UI.Controls"
     mc:Ignorable="d"
-    NavigationCacheMode="Disabled"
-    xmlns:Core="using:Microsoft.Xaml.Interactions.Core" 
+    NavigationCacheMode="Required"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:dt="using:MyApp1.MyControl" xmlns:model="using:GL.WinUI3.Models"
     Background="Transparent">
     <Interactivity:Interaction.Behaviors>
