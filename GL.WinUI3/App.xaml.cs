@@ -42,7 +42,6 @@ namespace GL.WinUI3
         {
             this.InitializeComponent();
             this.UnhandledException += App_UnhandledException;
-
             StartConfigJson jsons = new StartConfigJson()
             {
                 Config = new StartAgument() { full = true, GameHeight = "1080", GamePath = "D:\\123", GameServer = "B站", GameWidth = "1980", IsFPS = true, IsPop = true }

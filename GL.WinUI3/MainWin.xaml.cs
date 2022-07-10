@@ -40,7 +40,6 @@ namespace GL.WinUI3
             {
                 return true;
             };
-            
             var res = Microsoft.UI.Xaml.Application.Current.Resources;
             res["WindowCaptionBackground"] = Colors.Transparent;
             res["WindowCaptionBackgroundDisabled"] = Colors.Transparent;

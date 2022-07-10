@@ -16,7 +16,13 @@
         </Core:EventTriggerBehavior>
     </Interactivity:Interaction.Behaviors>
     <Grid>
-        <Border CornerRadius="5" Padding="70 30" Background="{ThemeResource  BackButtonPointerOverBackgroundThemeBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 -100 0 0"
+        <Border 
+            CornerRadius="5" 
+            Padding="70 30" 
+            Background="{ThemeResource BackButtonPointerOverBackgroundThemeBrush}" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            Margin="0 -35 0 0"
             >
             <StackPanel  >
                 <TextBlock Text="欢迎使用原神启动器！" Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"

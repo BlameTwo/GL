@@ -1,4 +1,5 @@
-﻿using GL.WinUI3.GameNotifys;
+﻿using GL.WinUI3;
+using GL.WinUI3.GameNotifys;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -46,6 +47,19 @@ namespace MyApp1.View.Pages
         {
             await MyWeb.EnsureCoreWebView2Async();
             MyWeb.NavigateToString(Data.Content);
+            string js = null;
+            //注入js颜色补丁
+            if(App.Current.RequestedTheme == ApplicationTheme.Light)
+            {
+                js = File.ReadAllText(GL.WinUI3.Model.Resource.docpath + "/GSIConfig/Light.js", System.Text.Encoding.UTF8);
+            }
+            else
+            {
+                js = File.ReadAllText(GL.WinUI3.Model.Resource.docpath + "/GSIConfig/Dark.js", System.Text.Encoding.UTF8);
+            }
+
+
+            await MyWeb.CoreWebView2.ExecuteScriptAsync(js);
         }
     }
 }
