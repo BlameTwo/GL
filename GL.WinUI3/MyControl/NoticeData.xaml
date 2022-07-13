@@ -21,7 +21,7 @@
         </Storyboard>
     </UserControl.Resources>
     <Grid x:Name="grid">
-        <Image x:Name="image" Source="{x:Bind MyData.banner}" Stretch="Uniform"/>
+        <Image x:Name="image" Stretch="Uniform"/>
         <StackPanel x:Name="stackPanel" Background="{ThemeResource AppBarBackgroundThemeBrush}" Opacity="0"></StackPanel>
         <!--内容模板-->
         <Grid x:Name="Grid1" Opacity="0">

@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Web.WebView2.Core;
 using MyApp1.View;
@@ -41,13 +42,28 @@ namespace MyApp1.MyControl
 
         public Notice MyData
         {
-            get { return (Notice)GetValue(MyDataProperty); }
-            set { SetValue(MyDataProperty, value); }
+            get 
+            {
+                object obj = GetValue(MyDataProperty);
+                if((Notice)obj != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(((Notice)obj).banner))
+                    {
+                        image.Source = new BitmapImage(new Uri(MyData.banner));
+                        return (Notice)obj;
+                    }
+                }
+                return (Notice)obj;
+            }
+            set 
+            { 
+                SetValue(MyDataProperty, value); 
+            }
         }
 
         // Using a DependencyProperty as the backing store for MyData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MyDataProperty =
-            DependencyProperty.Register("MyData", typeof(Notice), typeof(NoticeData), new PropertyMetadata(null));
+            DependencyProperty.Register("MyData", typeof(Notice), typeof(NoticeData),new PropertyMetadata(default(Notice)));
 
         private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
